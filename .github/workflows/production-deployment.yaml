@@ -8,6 +8,7 @@ on:
 
 env:
   STORE_PATH: ''
+  NETLIFY_URL: ''
 
 concurrency:
   group: ${{ github.ref }}
@@ -63,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 正式 Production
-      url: https://nolebase.ayaka.io
+      url: ${{ env.NETLIFY_URL }}
     steps:
       - name: 签出代码
         uses: actions/checkout@v4

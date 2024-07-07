@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 正式 Production - GitHub Pages
-      url: https://nolebase.github.io/nolebase
+      url: https://zll600.github.io/zll600-blog
     steps:
       - name: 签出代码
         uses: actions/checkout@v4
@@ -106,11 +106,9 @@ jobs:
       - name: 构建
         run: pnpm docs:build
 
-      - name: 推送到 gh-pages 分支
+      - name: 部署至 Github Pages
         timeout-minutes: 10
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: .vitepress/dist
+          folder: .vitepress/dist
         uses: JamesIves/github-pages-deploy-action@v4
 

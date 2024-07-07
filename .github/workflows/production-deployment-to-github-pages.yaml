@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 正式 Production - GitHub Pages
-      url: https://zll600.github.io/zll600-blog/
+      url: https://zll600.github.io/zll600-blog
     steps:
       - name: 签出代码
         uses: actions/checkout@v4

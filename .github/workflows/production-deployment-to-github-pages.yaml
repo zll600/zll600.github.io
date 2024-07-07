@@ -106,10 +106,9 @@ jobs:
       - name: 构建
         run: pnpm docs:build
 
-      - name: 推送到 gh-pages 分支
+      - name: 部署至 Github Pages
         timeout-minutes: 10
         with:
-          branch: gh-pages
           folder: .vitepress/dist
         uses: JamesIves/github-pages-deploy-action@v4
 

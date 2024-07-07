@@ -2,9 +2,9 @@ name: 构建并部署到 Github Pages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'main'
+  push:
+    branches:
+      - 'main'
 
 
 env:

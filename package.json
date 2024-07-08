@@ -40,7 +40,7 @@
     "@nolebase/vitepress-plugin-enhanced-mark": "^2.0.0-rc14",
     "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.1.2",
     "@nolebase/vitepress-plugin-git-changelog": "^2.1.2",
-    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.1.2",
+    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.2.1",
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.1.2",
     "@nolebase/vitepress-plugin-og-image": "^2.1.2",
     "@nolebase/vitepress-plugin-page-properties": "^2.1.2",

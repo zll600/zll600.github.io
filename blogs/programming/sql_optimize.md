@@ -71,7 +71,9 @@ CREATE INDEX idx_user_type_user_id on user_info(user_type, user_id) where delete
 | Planning Time: 0.264 ms |
 | Execution Time: 0.043 ms |
 
-这里的索引是是 user_type, user_id 联合索引。所以会先定位到 user_type = 3 的索引，然后再通过 user_id 定位到 user_id 小于 1000000000 的索引，然后再回表。
+这里的索引是是 user_type, user_id 联合索引。在该索引下，索引会先按照 `user_type` 排序，然后再按照 `user_id` 升序排序。
+
+所以会先定位到 user_type = 3 的索引，然后再通过 user_id 定位到 user_id 小于 1000000000 的索引，然后再回表。
 
 如果将查询 sql 改为下列的情况，则有：
 
@@ -98,7 +100,8 @@ LIMIT 10;
 | Planning Time: 0.100 ms |
 | Execution Time: 0.024 ms |
 
-修改查询后 Postgres 可以更好的命中联合索引
+
+这里修改了 where 子句中的查询条件，先命中 user_type，然后再命中 user_id。
 
 
 ### 方案二 (user_id, user_type) where deleted_at is null
@@ -121,6 +124,8 @@ CREATE INDEX idx_user_id_user_type ON user_info (user_id, user_type) WHERE delet
 
 同样是联合索引，但是索引是 user_id, user_type 联合索引。所以会先定位到 user_id 小于 1000000000 的索引，然后再过滤 user_type = 3 的索引，然后再回表。
 
+方案二可以和方案一对比，一般来讲 `user_id` 的离散度会比 `user_type` 更大，因此方案二会更稳定一些.
+
 ### 方案三 user_id WHERE user_type = 3 AND WHERE deleted_at is null
 
 ```sql
@@ -140,6 +145,8 @@ CREATE INDEX idx_user_id ON user_info (user_id) WHERE user_type = 3 AND deleted_
 | Execution Time: 0.026 ms |
 
 这里利用了 Postgres 的条件索引，所以会先定位到 user_id 小于 1000000000 的索引，然后再回表。但是这里只对有效查询结果的集合建立的索引。
+
+方案三和方案二很像，但是方案三这里使用的是条件索引，因此相比方案二在空间、时间上的效率会提升一些。（整个索引树更小）
 
 
 ### 方案四 user_id DESC WHERE user_type = 3 AND WHERE deleted_at is null
@@ -161,8 +168,8 @@ CREATE INDEX idx_user_id ON user_info (user_id DESC) WHERE user_type = 3 AND del
 | Planning Time: 0.229 ms |
 | Execution Time: 0.035 ms |
 
-整体同方案三，这里使用了倒序索引，所以会先定位到 user_id 小于 1000000000 的索引，然后再回表。
 
+方案四也可以和方案三对比，但是相比方案三，这里使用了倒序索引，更贴近这里的查询场景。
 
 
 测试过程中使用脚本插入了 10000 条数据（from GPT）

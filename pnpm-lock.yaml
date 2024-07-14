@@ -42,8 +42,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
-        specifier: ^2.2.1
-        version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)
+        specifier: ^2.2.2
+        version: 2.2.2(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)
       '@nolebase/vitepress-plugin-inline-link-preview':
         specifier: ^2.2.1
         version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)
@@ -813,6 +813,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -820,6 +821,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.2':
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    deprecated: Use @eslint/object-schema instead
 
   '@iconify-json/carbon@1.1.36':
     resolution: {integrity: sha512-NC3VcqLtwLZpi7+LeXj+99/byv+asrnCQxiDNCZV6hKr9WcNh6C25kJguJYfN+dV54kOkw78e+6PitQi2Bppnw==}
@@ -923,8 +925,8 @@ packages:
   '@nolebase/vitepress-plugin-git-changelog@2.2.1':
     resolution: {integrity: sha512-PUaOSJyOmlhYKt3otHEuEEBsUfWL3Rvyq/+jGBAUnIsK6IgGHhw5voiwwe367IpLEENhJ9Z7eQTsMaZcO0ADXg==}
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.2.1':
-    resolution: {integrity: sha512-BFHfneikfDv54cQ62CK8l8YRffQ4m8WRunx8mppGrTqyry/jKqe/Z6XBDkiJU+g7dgUYb489pu3WO8oWqHkRew==}
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.2.2':
+    resolution: {integrity: sha512-QS6YB9S16JlXs7gERzxxK9rhbLZcp2SQPlQvAcyqXiAZ+FUkaeVe/uNPMpSIu7+CQsfpu0H/ZKkbCi9AwJplHw==}
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.2.1':
     resolution: {integrity: sha512-EZnsGJnOyRvn9kQViPK4hfjdaTvdbA5nw//Iro9gTEXCfl2C9kmI0Rv2j1Kv2ley9OB6NiEPpFmfXBbCNqaVBw==}
@@ -2389,6 +2391,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -2535,6 +2538,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -3303,6 +3307,7 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rollup@4.13.0:
@@ -4879,7 +4884,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.2.2(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)':
     dependencies:
       less: 4.2.0
       vitepress: 1.3.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.39)(search-insights@2.14.0)(typescript@5.4.5)

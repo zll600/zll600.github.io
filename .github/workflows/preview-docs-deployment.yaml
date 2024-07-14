@@ -87,16 +87,15 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: 创建评论
-        uses: peter-evans/create-or-update-comment@v4
+        uses: actions-ecosystem/action-create-comment@v1
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          github_token: ${{ secrets.github_token }}
           body: |
             ## ✅ 成功部署到 Netlify
 
             | 系统     | 状态         | 预览链接                           |
             |:---------|:------------|:----------------------------------|
             | Ubuntu   | 成功         | ${{ env.NETLIFY_URL }}            |
-          edit-mode: replace
 
   on-failure:
     name: 无法部署预览到 Netlify

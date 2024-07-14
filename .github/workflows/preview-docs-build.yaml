@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     if: |
-      github.event.pull_request != null && contains(github.event.comment.body, '/preview')
+      github.event.issue.pull_request != null && contains(github.event.comment.body, '/preview')
     name: 构建
     runs-on: ubuntu-latest
     steps:

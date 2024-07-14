@@ -23,6 +23,7 @@ jobs:
       url: ${{ env.NETLIFY_URL }}
     permissions:
       pull-requests: write
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 下载 PR 信息
         uses: dawidd6/action-download-artifact@v6
@@ -111,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 下载 PR 信息
         uses: dawidd6/action-download-artifact@v6

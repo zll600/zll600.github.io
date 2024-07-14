@@ -16,7 +16,7 @@ env:
 
 jobs:
   on-success:
-    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
+    if: ${{ contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview') }}
     name: 部署预览到 Netlify
     runs-on: ubuntu-latest
     environment:
@@ -109,7 +109,7 @@ jobs:
           edit-mode: replace
 
   on-failure:
-    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
+    if: ${{ contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview') }}
     name: 无法部署预览到 Netlify
     runs-on: ubuntu-latest
     permissions:

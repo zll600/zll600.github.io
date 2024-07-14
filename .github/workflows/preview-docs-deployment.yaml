@@ -15,6 +15,7 @@ env:
   NETLIFY_URL: ''
 
 jobs:
+  if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
   on-success:
     name: 部署预览到 Netlify
     runs-on: ubuntu-latest
@@ -107,6 +108,7 @@ jobs:
             | Ubuntu   | 成功         | ${{ env.NETLIFY_URL }}            |
           edit-mode: replace
 
+  if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
   on-failure:
     name: 无法部署预览到 Netlify
     runs-on: ubuntu-latest

@@ -86,10 +86,9 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
-      - name: 创建或更新评论
+      - name: 创建评论
         uses: peter-evans/create-or-update-comment@v4
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ env.PR_NUM }}
           body: |
             ## ✅ 成功部署到 Netlify

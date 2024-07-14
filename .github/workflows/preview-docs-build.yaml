@@ -15,7 +15,6 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview') }}
     name: 构建
     runs-on: ubuntu-latest
     steps:

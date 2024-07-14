@@ -6,8 +6,7 @@ on:
       - 构建预览
     types:
       - completed
-  issue_comment:                                     
-    types: [created, edited, deleted]
+  workflow_dispatch:
 
 env:
   PR_NUM: 0
@@ -24,7 +23,6 @@ jobs:
       url: ${{ env.NETLIFY_URL }}
     permissions:
       pull-requests: write
-    if: ${{ (github.event.workflow_run.conclusion == 'success') && github.event.issue.pull_request && contains(github.event.comment.body, '/preview') }}
     steps:
       - name: 下载 PR 信息
         uses: dawidd6/action-download-artifact@v6
@@ -114,7 +112,6 @@ jobs:
     permissions:
       pull-requests: write
 
-    if: ${{ (github.event.workflow_run.conclusion == 'failure') && github.event.issue.pull_request && contains(github.event.comment.body, '/preview') }}
     steps:
       - name: 下载 PR 信息
         uses: dawidd6/action-download-artifact@v6

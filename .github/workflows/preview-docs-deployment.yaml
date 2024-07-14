@@ -6,7 +6,8 @@ on:
       - 构建预览
     types:
       - completed
-  workflow_dispatch:
+  issue_comment:                                     
+    types: [created, edited, deleted]
 
 env:
   PR_NUM: 0

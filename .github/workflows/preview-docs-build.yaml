@@ -2,7 +2,7 @@ name: 构建预览
 
 on:
   issue_comment:                                     
-    types: [created, edited, deleted]
+    types: [created, edited]
 
   workflow_dispatch:
 
@@ -15,8 +15,7 @@ concurrency:
 
 jobs:
   build:
-    if: |
-      github.event.issue.pull_request != null && contains(github.event.comment.body, '/preview')
+    if: ${{ contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview') }}
     name: 构建
     runs-on: ubuntu-latest
     steps:

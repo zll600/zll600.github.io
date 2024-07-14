@@ -12,10 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
   build:
+    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/preview')
     name: 构建
-
     runs-on: ubuntu-latest
     steps:
       # This is quite weird.

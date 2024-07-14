@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     name: 构建
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/support') }}
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/preview') }}
     runs-on: ubuntu-latest
     steps:
       # This is quite weird.

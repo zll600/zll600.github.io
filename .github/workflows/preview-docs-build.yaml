@@ -1,9 +1,9 @@
 name: 构建预览
 
 on:
-  issue_comment:          
-    types: [created, edited]
-
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     name: 构建
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/support') }}
+
     runs-on: ubuntu-latest
     steps:
       # This is quite weird.

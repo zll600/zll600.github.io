@@ -1,8 +1,8 @@
 name: 构建预览
 
 on:
-  issue_comment:
-    types: [created, edited]
+  issue_comment:          
+    types: [created, edited, deleted]
 
   workflow_dispatch:
 
@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     name: 构建
-    if: ${{ github.event.issue.pull_request }}
+    if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
     runs-on: ubuntu-latest
     steps:
       # This is quite weird.

@@ -1,7 +1,7 @@
 name: 构建预览
 
 on:
-  issue_comment:                                     
+  issue_comment:
     types: [created, edited]
 
   workflow_dispatch:
@@ -15,8 +15,8 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.event.issue.pull_request }}
     name: 构建
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       # This is quite weird.

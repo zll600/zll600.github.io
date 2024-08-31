@@ -61,6 +61,7 @@ tags:
 
 - 《数据库系统概念》（第 7 版）
 - 《Database Internal》
+- 《SQL反模式》
 
 ### Redis
 

@@ -52,7 +52,7 @@
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node-fetch": "^2.6.11",
     "@unocss/eslint-config": "^0.58.9",
-    "@unocss/reset": "^0.58.9",
+    "@unocss/reset": "^0.62.4",
     "@vueuse/core": "^10.9.0",
     "@vueuse/shared": "^10.9.0",
     "emoji-regex": "^10.3.0",

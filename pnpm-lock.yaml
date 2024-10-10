@@ -78,8 +78,8 @@ importers:
         specifier: ^0.58.9
         version: 0.58.9(eslint@8.57.0)(typescript@5.4.5)
       '@unocss/reset':
-        specifier: ^0.58.9
-        version: 0.58.9
+        specifier: ^0.63.3
+        version: 0.63.3
       '@vueuse/core':
         specifier: ^10.9.0
         version: 10.9.0(vue@3.4.31(typescript@5.4.5))
@@ -1406,6 +1406,9 @@ packages:
   '@unocss/reset@0.58.9':
     resolution: {integrity: sha512-nA2pg3tnwlquq+FDOHyKwZvs20A6iBsKPU7Yjb48JrNnzoaXqE+O9oN6782IG2yKVW4AcnsAnAnM4cxXhGzy1w==}
 
+  '@unocss/reset@0.63.3':
+    resolution: {integrity: sha512-AByvjMrKYOMcqVQc659b3oF85B/np+wvsTRYGLHYf/ZLrBCkdKNWGHMDS3O6RuJUzYqKOzR4HiM0VJLw3BJU8Q==}
+
   '@unocss/rule-utils@0.58.9':
     resolution: {integrity: sha512-45bDa+elmlFLthhJmKr2ltKMAB0yoXnDMQ6Zp5j3OiRB7dDMBkwYRPvHLvIe+34Ey7tDt/kvvDPtWMpPl2quUQ==}
     engines: {node: '>=14'}
@@ -2189,6 +2192,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   esm@3.2.25:
@@ -5615,6 +5619,8 @@ snapshots:
       '@unocss/rule-utils': 0.58.9
 
   '@unocss/reset@0.58.9': {}
+
+  '@unocss/reset@0.63.3': {}
 
   '@unocss/rule-utils@0.58.9':
     dependencies:

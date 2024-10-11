@@ -32,7 +32,7 @@ import {
 import AppContainer from './components/AppContainer.vue'
 import DocFooter from './components/DocFooter.vue'
 import HomePage from './components/HomePage.vue'
-import Share from './components/Share.vue'
+import Share from './components/ShareLink.vue'
 import TocList from './components/TocList.vue'
 
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'

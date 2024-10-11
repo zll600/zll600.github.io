@@ -80,7 +80,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           run_install: false
-          version: '9.1.2'
+          version: '9.12.1'
 
       - name: 获取 pnpm store 目录
         shell: bash

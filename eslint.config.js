@@ -11,5 +11,5 @@ export default [
   ...tseslint.configs.recommended,
   ...pluginVue.configs["flat/essential"],
   {files: ["**/*.vue"], languageOptions: {parserOptions: {parser: tseslint.parser}}},
-  {ignores: ['**/*.md','**/*.yaml','**/*.yml',],},
+  {ignores: ['**/*.md','**/*.yaml','**/*.yml','.vitepress/cache/*'],},
 ];

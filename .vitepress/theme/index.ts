@@ -32,7 +32,7 @@ import {
 import AppContainer from './components/AppContainer.vue'
 import DocFooter from './components/DocFooter.vue'
 import HomePage from './components/HomePage.vue'
-import Share from './components/ShareLink.vue'
+import ShareLink from './components/ShareLink.vue'
 import TocList from './components/TocList.vue'
 
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'
@@ -63,7 +63,7 @@ const ExtendedTheme: Theme = {
       ],
       'nav-bar-content-after': () => [
         h(NolebaseEnhancedReadabilitiesMenu),
-        h(Share),
+        h(ShareLink),
       ],
       'nav-screen-content-after': () => [
         h(NolebaseEnhancedReadabilitiesScreenMenu),
@@ -80,7 +80,7 @@ const ExtendedTheme: Theme = {
 
     app.component('HomePage', HomePage)
     app.component('DocFooter', DocFooter)
-    app.component('Share', Share)
+    app.component('ShareLink', ShareLink)
     app.component('TocList', TocList)
     app.component('AppContainer', AppContainer)
     app.component('NolebaseUnlazyImg', NolebaseUnlazyImg)

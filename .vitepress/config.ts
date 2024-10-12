@@ -11,6 +11,7 @@ import { transformHeadMeta } from '@nolebase/vitepress-plugin-meta'
 
 import { creatorNames, creatorUsernames, discordLink, githubRepoLink, siteDescription, siteName, targetDomain } from '../metadata'
 import { sidebar } from './docsMetadata.json'
+import MarkdownIt, { PluginSimple, PluginWithOptions } from 'markdown-it'
 
 export default defineConfig({
   vue: {
@@ -220,16 +221,16 @@ export default defineConfig({
       dark: 'one-dark-pro',
     },
     math: true,
-    config: (md) => {
+    config: (md: MarkdownIt) => {
       md.use(MarkdownItFootnote)
-      md.use(MarkdownItMathjax3 as any)
+      md.use(MarkdownItMathjax3 as PluginWithOptions)
       md.use(BiDirectionalLinks({
         dir: process.cwd(),
-      }) as any)
-      md.use(UnlazyImages() as any, {
+      }) as PluginSimple)
+      md.use(UnlazyImages() as PluginWithOptions, {
         imgElementTag: 'NolebaseUnlazyImg',
       })
-      md.use(InlineLinkPreviewElementTransform as any, {
+      md.use(InlineLinkPreviewElementTransform as PluginWithOptions, {
         tag: 'VPNolebaseInlineLinkPreview',
       })
     },

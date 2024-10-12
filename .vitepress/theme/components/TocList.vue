@@ -1,21 +1,21 @@
 <!-- 目录 -->
 <script lang="ts" setup>
-import { computed } from 'vue'
-import type { ArticleTree } from '../../../scripts/types/metadata'
+import { computed, Ref } from 'vue'
+import type { ArticleTree, SideBarItemWithCategory } from '../../../scripts/types/metadata'
 import { sidebar } from '../../docsMetadata.json'
 
-const list = computed(() => {
-  const list: ArticleTree[] = ([] as any).concat(...sidebar.map(series => [...series?.items.map(item => ({ ...item, category: series.text }))]))
+const list: Ref<ArticleTree[]> = computed(() => {
+  const list: ArticleTree[] = ([] as SideBarItemWithCategory[]).concat(...sidebar.map(series => series.items ? series?.items.map(item => ({ ...item, category: series.text })) : []))
   for (let i = 0; i < list.length; i++) {
     const items = list[i].items
-    if (items)
-
+    if (items) {
       list.push(...items.map(item => ({ ...item, category: list[i].category })))
+    }
   }
   return list.filter(item => item.link)
 })
 
-const sortedList = computed(() => {
+const sortedList: Ref<ArticleTree[]> = computed(() => {
   const ls = [...list.value]
   return ls.sort((a, b) => (b.lastUpdated || 0) - (a.lastUpdated || 0))
 })

@@ -19,6 +19,8 @@
     "vitepress-doc"
   ],
   "scripts": {
+    "lint": "pnpm dlx eslint",
+    "fix_lint": "pnpm dlx eslint --fix",
     "dev": "pnpm run docs:dev",
     "build": "pnpm run docs:build",
     "serve": "pnpm run docs:serve",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.1",
+    "@eslint/js": "^9.12.0",
     "@iconify-json/eos-icons": "^1.1.10",
     "@iconify-json/ic": "^1.1.17",
     "@iconify-json/octicon": "^1.2.0",
@@ -57,8 +60,10 @@
     "@vueuse/shared": "^10.9.0",
     "emoji-regex": "^10.3.0",
     "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.29.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
+    "globals": "^15.11.0",
     "gray-matter": "^4.0.3",
     "less": "^4.2.0",
     "lodash": "^4.17.21",
@@ -70,6 +75,7 @@
     "simple-git": "^3.24.0",
     "tsx": "^4.10.2",
     "typescript": "^5.4.5",
+    "typescript-eslint": "^8.8.1",
     "unocss": "^0.58.9",
     "unplugin-vue-components": "^0.26.0",
     "uuid": "^9.0.1",

@@ -56,3 +56,21 @@ export interface Creator {
   nameAliases?: string[]
   emailAliases?: string[]
 }
+
+export interface SideBarItem {
+  index: string
+  text: string
+  link: string
+  lastUpdated: number
+}
+
+export interface SideBar {
+  index: string
+  text: string
+  collapsed: boolean
+  items: SideBarItem[]
+}
+
+export interface SideBarItemWithCategory extends SideBarItem {
+  category: string
+}

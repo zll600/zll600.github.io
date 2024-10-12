@@ -88,7 +88,7 @@ async function addRouteItem(indexes: ArticleTree[], path: string, upgradeIndex =
  * @param upgradeIndex 是否升级 index
  * @returns 路由树
  */
-function addRouteItemRecursion(indexes: ArticleTree[], item: any, path: string[], upgradeIndex: boolean) {
+function addRouteItemRecursion(indexes: ArticleTree[], item: ArticleTree, path: string[], upgradeIndex: boolean) {
   if (path.length === 1) {
     indexes.push(item)
     return indexes

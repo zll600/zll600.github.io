@@ -77,7 +77,7 @@ const handler: Handler = async (event: HandlerEvent) => {
       statusCode: 502,
       body: JSON.stringify({
         code: 502,
-        message: 'message' in (err as any) ? (err as any).message : String(err),
+        message: 'message' in (err as Error) ? (err as Error).message : String(err),
       }),
     }
   }

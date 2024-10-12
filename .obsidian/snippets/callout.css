@@ -1,6 +1,7 @@
 body {
   /** Tweak the padding of the callout */
-  --callout-padding: var(--size-4-6) var(--size-4-6) var(--size-4-4) var(--size-4-6);
+  --callout-padding: var(--size-4-6) var(--size-4-6) var(--size-4-4)
+    var(--size-4-6);
 }
 
 .cm-callout .callout {

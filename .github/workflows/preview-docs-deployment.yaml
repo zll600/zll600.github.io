@@ -10,9 +10,9 @@ on:
 
 env:
   PR_NUM: 0
-  STORE_PATH: ''
-  NETLIFY_JSON_OUTPUT: ''
-  NETLIFY_URL: ''
+  STORE_PATH: ""
+  NETLIFY_JSON_OUTPUT: ""
+  NETLIFY_URL: ""
 
 jobs:
   on-success:
@@ -57,7 +57,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           run_install: false
-          version: '9.12.1'
+          version: "9.12.1"
 
       - name: 获取 pnpm store 目录
         shell: bash
@@ -91,7 +91,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ env.PR_NUM }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: 到 Netlify
 
       - name: 创建或更新评论
@@ -134,7 +134,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ env.PR_NUM }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: 到 Netlify
 
       - name: 创建或更新评论

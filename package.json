@@ -19,6 +19,7 @@
     "vitepress-doc"
   ],
   "scripts": {
+    "format": "pnpm exec prettier . --write",
     "lint": "pnpm dlx eslint",
     "fix_lint": "pnpm dlx eslint --fix",
     "dev": "pnpm run docs:dev",
@@ -60,6 +61,7 @@
     "@vueuse/shared": "^10.9.0",
     "emoji-regex": "^10.3.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-vue": "^9.29.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",

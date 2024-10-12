@@ -174,7 +174,7 @@ export default defineConfig({
           let contentPart = ''
           let fullContent = ''
           const sortContent = () => [headingPart, tagsPart, contentPart] as const
-          let { frontmatter, content } = env
+          const { frontmatter, content} = env
 
           if (!frontmatter)
             return html
@@ -182,15 +182,15 @@ export default defineConfig({
           if (frontmatter.search === false)
             return ''
 
-          contentPart = content ||= src
+          contentPart = content || src
 
-          const headingMatch = content.match(/^# .*/m)
+          const headingMatch = contentPart.match(/^# .*/m)
           const hasHeading = !!(headingMatch && headingMatch[0] && headingMatch.index !== undefined)
 
           if (hasHeading) {
             const headingEnd = headingMatch.index! + headingMatch[0].length
-            headingPart = content.slice(0, headingEnd)
-            contentPart = content.slice(headingEnd)
+            headingPart = contentPart.slice(0, headingEnd)
+            contentPart = contentPart.slice(headingEnd)
           }
           else if (frontmatter.title) {
             headingPart = `# ${frontmatter.title}`

@@ -36,8 +36,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-enhanced-readabilities':
-        specifier: ^2.2.1
-        version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+        specifier: ^2.6.1
+        version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: ^2.2.1
         version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
@@ -931,8 +931,8 @@ packages:
     resolution: {integrity: sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/carbon@1.1.36':
-    resolution: {integrity: sha512-NC3VcqLtwLZpi7+LeXj+99/byv+asrnCQxiDNCZV6hKr9WcNh6C25kJguJYfN+dV54kOkw78e+6PitQi2Bppnw==}
+  '@iconify-json/carbon@1.2.3':
+    resolution: {integrity: sha512-smQ1nMHZn1BcTBqr13SP/7z3F1mbGCjUT1PdcpmbRoBrB4nAA9ErkTvUp49zxCQ/6VHcJsVzLV2zVXY3jJ4Bnw==}
 
   '@iconify-json/eos-icons@1.2.1':
     resolution: {integrity: sha512-nqucN9E670dRHDk5osNNObhxQg/eBI8wvYA+zWaOMsJR0g8VodF9z/cpDvMH7YyUm4elOF9r8cGIj3byFBFLRQ==}
@@ -942,6 +942,9 @@ packages:
 
   '@iconify-json/icon-park-outline@1.1.15':
     resolution: {integrity: sha512-jQbk/ETARyYPjX6HolkdjSLJHsNCfSBfYUqcUQLXYK/1tfuVnQsUdWG2IM2a7VBpxJtrK7r4n1iwPOFaZ5T46g==}
+
+  '@iconify-json/icon-park-outline@1.2.1':
+    resolution: {integrity: sha512-cNvUJL9mk3xOfyffErQuxvyRCWk0hCx1M8AEyGmNXjqIfgPC25OChCstt0KFB3IULS+hw9es+uA7pvVPmQh+AA==}
 
   '@iconify-json/octicon@1.2.1':
     resolution: {integrity: sha512-4w7yMipQtp6s6aCHrSVlVXsf0OCBQ8CRmUTkMQUBexR42SXl4z5GnaUyaOMVoZttfgaBNnj0mlMB5T1cmRDgTg==}
@@ -1017,11 +1020,14 @@ packages:
   '@nolebase/ui@2.2.1':
     resolution: {integrity: sha512-Ro93Nl39JnwfU6XJzYEraXYzalNbHI2HSIw9049uAGR1P0IScdjZlgq95JXRqZ8OEn3bF28mkFNuemwXLoAx2A==}
 
+  '@nolebase/ui@2.6.1':
+    resolution: {integrity: sha512-4jNnLalJOc1BOfuHTU6IfzP1zbXcgr2QumI2vSlZRHeIHZYYSeJTrSKfWRNTcQg2lNan7MXpYAXME478nuryvQ==}
+
   '@nolebase/vitepress-plugin-enhanced-mark@2.2.1':
     resolution: {integrity: sha512-3BIfnLEacAAq6Rn6uaRuOW4j2l0qMkBmsxJk6rPu1jZnBXLu8AzSMfLEjdl4vx4hKtcTr205FgFu8kYnzA28nw==}
 
-  '@nolebase/vitepress-plugin-enhanced-readabilities@2.2.1':
-    resolution: {integrity: sha512-igeTSiSQqX8dyJo2nhLCOYP6cAW9HNUQxfjZHr08GRM3iU6+mYNKhNJlUM64zp2jSnDcCfEE73l8LOiTdiin1A==}
+  '@nolebase/vitepress-plugin-enhanced-readabilities@2.6.1':
+    resolution: {integrity: sha512-m/gFsc/Qhz2YiaUsOL7Y37uvy7rnf7jQtjeGxaR/JvWkOdREGvxLt1ApgqjITsGnw1GBsIoxq6t6+jualFYetQ==}
 
   '@nolebase/vitepress-plugin-git-changelog@2.2.1':
     resolution: {integrity: sha512-PUaOSJyOmlhYKt3otHEuEEBsUfWL3Rvyq/+jGBAUnIsK6IgGHhw5voiwwe367IpLEENhJ9Z7eQTsMaZcO0ADXg==}
@@ -4107,7 +4113,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.1': {}
 
-  '@iconify-json/carbon@1.1.36':
+  '@iconify-json/carbon@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -4120,6 +4126,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/icon-park-outline@1.1.15':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/icon-park-outline@1.2.1':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -4259,6 +4269,41 @@ snapshots:
       - typescript
       - universal-cookie
 
+  '@nolebase/ui@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+    dependencies:
+      '@iconify-json/octicon': 1.2.1
+      less: 4.2.0
+      vitepress: 1.4.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      vue: 3.5.12(typescript@5.6.3)
+    transitivePeerDependencies:
+      - '@algolia/client-search'
+      - '@types/node'
+      - '@types/react'
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - lightningcss
+      - markdown-it-mathjax3
+      - nprogress
+      - postcss
+      - qrcode
+      - react
+      - react-dom
+      - sass
+      - sass-embedded
+      - search-insights
+      - sortablejs
+      - stylus
+      - sugarss
+      - terser
+      - typescript
+      - universal-cookie
+
   '@nolebase/vitepress-plugin-enhanced-mark@2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
       less: 4.2.0
@@ -4292,11 +4337,11 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-enhanced-readabilities@2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+  '@nolebase/vitepress-plugin-enhanced-readabilities@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
-      '@iconify-json/carbon': 1.1.36
-      '@iconify-json/icon-park-outline': 1.1.15
-      '@nolebase/ui': 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      '@iconify-json/carbon': 1.2.3
+      '@iconify-json/icon-park-outline': 1.2.1
+      '@nolebase/ui': 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       less: 4.2.0
       vitepress: 1.4.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
     transitivePeerDependencies:

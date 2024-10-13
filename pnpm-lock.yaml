@@ -57,8 +57,8 @@ importers:
         specifier: ^2.6.1
         version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-thumbnail-hash':
-        specifier: ^2.6.0
-        version: 2.6.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+        specifier: ^2.6.1
+        version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -1019,8 +1019,8 @@ packages:
   '@nolebase/vitepress-plugin-page-properties@2.6.1':
     resolution: {integrity: sha512-0JpLRr24/BvyEVos8v1mFZp5j4CoFARcT9TNT3trFkOMg8R6AFQKY7Bv6RIwetWFs1Kt1GmX8wU+FFLUyY02nA==}
 
-  '@nolebase/vitepress-plugin-thumbnail-hash@2.6.0':
-    resolution: {integrity: sha512-7PSYgk1ynf7gOZuR/eMz7rkNBpIP8lCMjZxp0HI7/T5UjbECrKg4pWV/stFqZmHaCeeir4idRRwtiBzZP2bhbA==}
+  '@nolebase/vitepress-plugin-thumbnail-hash@2.6.1':
+    resolution: {integrity: sha512-kdZqioy42bjVQVnvhtWJYhimuylnJs2Gz2qlNPLn8+LTql8pecQCzOoeAJT4C83kDOz6u7nhEYXUwwgrhXskBA==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -4207,7 +4207,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-thumbnail-hash@2.6.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+  '@nolebase/vitepress-plugin-thumbnail-hash@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
       '@unlazy/vue': 0.11.3
       canvaskit-wasm: 0.39.1

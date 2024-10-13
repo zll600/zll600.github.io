@@ -14,6 +14,14 @@ export default [
     files: ["**/*.vue"],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
-  { ignores: ["**/*.md", "**/*.yaml", "**/*.yml", ".vitepress/cache/*"] },
+  {
+    ignores: [
+      "**/*.md",
+      "**/*.yaml",
+      "**/*.yml",
+      ".vitepress/cache/*",
+      ".vitepress/dist/*",
+    ],
+  },
   eslintConfigPrettier,
 ];

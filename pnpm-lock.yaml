@@ -54,8 +54,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-page-properties':
-        specifier: ^2.2.1
-        version: 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+        specifier: ^2.6.1
+        version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-thumbnail-hash':
         specifier: ^2.6.0
         version: 2.6.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
@@ -1044,8 +1044,8 @@ packages:
   '@nolebase/vitepress-plugin-og-image@2.2.1':
     resolution: {integrity: sha512-HVg6kgxfbVqbB0pOgEKw2BQ0I/KYda+QIkhlrvCKoAg6NfrdyFacLMo6PysLI1oO9xT/nJVD0XYBwMIdiVGe4A==}
 
-  '@nolebase/vitepress-plugin-page-properties@2.2.1':
-    resolution: {integrity: sha512-uIPFzR1jBtRhytRthEn10CF9Mi+fH99SvH4wUDiT5bwN17cAXXhPfWMVra5LwMhXTWPPkhtUaykVL1c+LFReLw==}
+  '@nolebase/vitepress-plugin-page-properties@2.6.1':
+    resolution: {integrity: sha512-0JpLRr24/BvyEVos8v1mFZp5j4CoFARcT9TNT3trFkOMg8R6AFQKY7Bv6RIwetWFs1Kt1GmX8wU+FFLUyY02nA==}
 
   '@nolebase/vitepress-plugin-thumbnail-hash@2.6.0':
     resolution: {integrity: sha512-7PSYgk1ynf7gOZuR/eMz7rkNBpIP8lCMjZxp0HI7/T5UjbECrKg4pWV/stFqZmHaCeeir4idRRwtiBzZP2bhbA==}
@@ -1773,6 +1773,9 @@ packages:
 
   date-fns@3.6.0:
     resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -3304,10 +3307,6 @@ packages:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
 
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
-    hasBin: true
-
   valid-data-url@3.0.1:
     resolution: {integrity: sha512-jOWVmzVceKlVVdwjNSenT4PbGghU0SBIizAev8ofZVgivk/TVHXSbNL8LP6M3spZvkR9/QolkyJavGSX5Cs0UA==}
     engines: {node: '>=10'}
@@ -4576,15 +4575,15 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-page-properties@2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+  '@nolebase/vitepress-plugin-page-properties@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
-      '@iconify-json/icon-park-outline': 1.1.15
+      '@iconify-json/icon-park-outline': 1.2.1
       '@iconify-json/octicon': 1.2.1
-      '@nolebase/ui': 2.2.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
-      date-fns: 3.6.0
+      '@nolebase/ui': 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      date-fns: 4.1.0
       gray-matter: 4.0.3
       less: 4.2.0
-      uuid: 9.0.1
+      uuid: 10.0.0
       vitepress: 1.4.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -5489,6 +5488,8 @@ snapshots:
   data-uri-to-buffer@4.0.1: {}
 
   date-fns@3.6.0: {}
+
+  date-fns@4.1.0: {}
 
   debug@4.3.4:
     dependencies:
@@ -7239,8 +7240,6 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@10.0.0: {}
-
-  uuid@9.0.1: {}
 
   valid-data-url@3.0.1: {}
 

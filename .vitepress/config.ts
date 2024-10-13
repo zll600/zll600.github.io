@@ -1,5 +1,5 @@
 import process from "node:process";
-import { defineConfig } from "vitepress";
+import { defineConfig, SiteConfig, TransformContext } from "vitepress";
 import MarkdownItFootnote from "markdown-it-footnote";
 import MarkdownItMathjax3 from "markdown-it-mathjax3";
 
@@ -185,7 +185,7 @@ export default defineConfig({
     darkModeSwitchLabel: "切换主题",
     editLink: {
       pattern: `${githubRepoLink}/tree/main/:path`,
-      text: "编辑本页面",
+      text: "Edit this page on GitHub",
     },
     socialLinks: [
       { icon: "github", link: githubRepoLink },
@@ -220,6 +220,11 @@ export default defineConfig({
 
         // Add title ang tags field in frontmatter to search
         // You can exclude a page from search by adding search: false to the page's frontmatter.
+        /**
+         * @param {string} src
+         * @param {import('vitepress').MarkdownEnv} env
+         * @param {import('markdown-it')} md
+         */
         _render(src, env, md) {
           // without `md.render(src, env)`, the some information will be missing from the env.
           let html = md.render(src, env);
@@ -293,7 +298,7 @@ export default defineConfig({
       });
     },
   },
-  async transformHead(context) {
+  async transformHead(context: TransformContext) {
     let head = [...context.head];
 
     const returnedHead = await transformHeadMeta()(head, context);
@@ -301,7 +306,7 @@ export default defineConfig({
 
     return head;
   },
-  async buildEnd(siteConfig) {
+  async buildEnd(siteConfig: SiteConfig) {
     await buildEndGenerateOpenGraphImages({
       baseUrl: targetDomain,
       category: {

@@ -15,6 +15,7 @@ import { ThumbnailHashImages } from "@nolebase/vitepress-plugin-thumbnail-hash/v
 
 import { githubRepoLink } from "./metadata";
 
+/** @type {import('vite').UserConfig} */
 export default defineConfig(async () => {
   return {
     assetsInclude: ["**/*.mov"],

@@ -138,8 +138,8 @@ importers:
         specifier: ^0.33.5
         version: 0.33.5
       simple-git:
-        specifier: ^3.24.0
-        version: 3.24.0
+        specifier: ^3.27.0
+        version: 3.27.0
       tsx:
         specifier: ^4.11.0
         version: 4.11.0
@@ -2747,8 +2747,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-git@3.24.0:
-    resolution: {integrity: sha512-QqAKee9Twv+3k8IFOFfPB2hnk6as6Y6ACUpwCtQvRYBAes23Wv3SZlHVobAzqcE8gfsisCvPw3HGW3HYM+VYYw==}
+  simple-git@3.27.0:
+    resolution: {integrity: sha512-ivHoFS9Yi9GY49ogc6/YAi3Fl9ROnF4VyubNylgCkA+RVqLaKWnDSzXOVzya8csELIaWaYNutsEuAhZrtOjozA==}
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -6237,11 +6237,11 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-git@3.24.0:
+  simple-git@3.27.0:
     dependencies:
       '@kwsites/file-exists': 1.1.1
       '@kwsites/promise-deferred': 1.1.1
-      debug: 4.3.4
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
 

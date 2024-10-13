@@ -151,7 +151,7 @@ importers:
         version: 8.8.1(eslint@8.57.0)(typescript@5.4.5)
       unocss:
         specifier: ^0.58.9
-        version: 0.58.9(postcss@8.4.47)(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))
+        version: 0.58.9(postcss@8.4.47)(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))
       unplugin-vue-components:
         specifier: ^0.26.0
         version: 0.26.0(@babel/parser@7.25.7)(rollup@4.24.0)(vue@3.4.31(typescript@5.4.5))
@@ -159,11 +159,11 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       vite:
-        specifier: ^5.2.14
-        version: 5.2.14(@types/node@20.14.5)(less@4.2.0)
+        specifier: ^5.4.8
+        version: 5.4.8(@types/node@20.14.5)(less@4.2.0)
       vite-plugin-inspect:
         specifier: ^0.8.4
-        version: 0.8.4(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))
+        version: 0.8.4(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))
       vitepress:
         specifier: ^1.4.0
         version: 1.4.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.4.5)
@@ -3904,34 +3904,6 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  vite@5.2.14:
-    resolution: {integrity: sha512-TFQLuwWLPms+NBNlh0D9LZQ+HXW471COABxw/9TEUBrjuHMo9BrYBPrN/SYAwIuVL+rLerycxiLT41t4f5MZpA==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-
   vite@5.4.8:
     resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -5739,13 +5711,13 @@ snapshots:
     dependencies:
       unlazy: 0.11.3
 
-  '@unocss/astro@0.58.9(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))':
+  '@unocss/astro@0.58.9(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))':
     dependencies:
       '@unocss/core': 0.58.9
       '@unocss/reset': 0.58.9
-      '@unocss/vite': 0.58.9(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))
+      '@unocss/vite': 0.58.9(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))
     optionalDependencies:
-      vite: 5.2.14(@types/node@20.14.5)(less@4.2.0)
+      vite: 5.4.8(@types/node@20.14.5)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
 
@@ -5920,7 +5892,7 @@ snapshots:
     dependencies:
       '@unocss/core': 0.58.9
 
-  '@unocss/vite@0.58.9(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))':
+  '@unocss/vite@0.58.9(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@rollup/pluginutils': 5.1.0(rollup@4.24.0)
@@ -5932,7 +5904,7 @@ snapshots:
       chokidar: 3.6.0
       fast-glob: 3.3.2
       magic-string: 0.30.8
-      vite: 5.2.14(@types/node@20.14.5)(less@4.2.0)
+      vite: 5.4.8(@types/node@20.14.5)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
 
@@ -8543,9 +8515,9 @@ snapshots:
     dependencies:
       '@unlazy/core': 0.11.3
 
-  unocss@0.58.9(postcss@8.4.47)(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0)):
+  unocss@0.58.9(postcss@8.4.47)(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0)):
     dependencies:
-      '@unocss/astro': 0.58.9(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))
+      '@unocss/astro': 0.58.9(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))
       '@unocss/cli': 0.58.9(rollup@4.24.0)
       '@unocss/core': 0.58.9
       '@unocss/extractor-arbitrary-variants': 0.58.9
@@ -8564,9 +8536,9 @@ snapshots:
       '@unocss/transformer-compile-class': 0.58.9
       '@unocss/transformer-directives': 0.58.9
       '@unocss/transformer-variant-group': 0.58.9
-      '@unocss/vite': 0.58.9(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0))
+      '@unocss/vite': 0.58.9(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0))
     optionalDependencies:
-      vite: 5.2.14(@types/node@20.14.5)(less@4.2.0)
+      vite: 5.4.8(@types/node@20.14.5)(less@4.2.0)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -8635,7 +8607,7 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-plugin-inspect@0.8.4(rollup@4.24.0)(vite@5.2.14(@types/node@20.14.5)(less@4.2.0)):
+  vite-plugin-inspect@0.8.4(rollup@4.24.0)(vite@5.4.8(@types/node@20.14.5)(less@4.2.0)):
     dependencies:
       '@antfu/utils': 0.7.7
       '@rollup/pluginutils': 5.1.0(rollup@4.24.0)
@@ -8646,20 +8618,10 @@ snapshots:
       perfect-debounce: 1.0.0
       picocolors: 1.0.0
       sirv: 2.0.4
-      vite: 5.2.14(@types/node@20.14.5)(less@4.2.0)
+      vite: 5.4.8(@types/node@20.14.5)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
-
-  vite@5.2.14(@types/node@20.14.5)(less@4.2.0):
-    dependencies:
-      esbuild: 0.20.2
-      postcss: 8.4.47
-      rollup: 4.24.0
-    optionalDependencies:
-      '@types/node': 20.14.5
-      fsevents: 2.3.3
-      less: 4.2.0
 
   vite@5.4.8(@types/node@20.14.5)(less@4.2.0):
     dependencies:

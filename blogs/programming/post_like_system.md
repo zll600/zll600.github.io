@@ -15,7 +15,7 @@ tags:
 - 查询某条 post 的点赞数
 - 判断用户是否对某条 post 点赞
 - 判断对某条 post 点赞的用户列表
-                                            
+
 # 方案
 
 ## 数据库 schema
@@ -55,18 +55,19 @@ CREATE TABLE post_like_count
 
 - topic: post_like_topic
 - message:
+
 ```txt
 - post_id: int
 - user_id: int
 - is_like: boolean
 ```
 
-
 ## 服务端的逻辑
 
 ### 写接口
 
 在本地需求中，写接口有两种操作
+
 - 点赞
 - 取消点赞。
 

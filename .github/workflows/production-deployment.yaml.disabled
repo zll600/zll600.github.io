@@ -3,12 +3,12 @@ name: 构建并部署到 Netlify
 on:
   push:
     branches:
-      - 'main'
+      - "main"
   workflow_dispatch:
 
 env:
-  STORE_PATH: ''
-  NETLIFY_URL: ''
+  STORE_PATH: ""
+  NETLIFY_URL: ""
 
 concurrency:
   group: ${{ github.ref }}
@@ -80,7 +80,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           run_install: false
-          version: '9.1.2'
+          version: "9.12.1"
 
       - name: 获取 pnpm store 目录
         shell: bash
@@ -115,4 +115,3 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-

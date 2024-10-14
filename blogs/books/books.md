@@ -61,6 +61,7 @@ tags:
 
 - 《数据库系统概念》（第 7 版）
 - 《Database Internal》
+- 《SQL反模式》
 
 ### Redis
 
@@ -145,24 +146,27 @@ tags:
 - 《代码整洁之道》
 
 ### 前端
+
 - 《你所不知道的 javascript》
 
 ### 项目管理
+
 - 最后期限：https://book.douban.com/subject/1231972/
 - 代码大全title: bookstitle: books
-date: 2023-03-15 22:59:07
-date: 2023-03-15 22:59:07
+  date: 2023-03-15 22:59:07
+  date: 2023-03-15 22:59:07
 - 《如何阅读一本书》
 
 ### 哲学
+
 - 《思想录》
 - 《忏悔录》
 - 《赎罪》
 - 《古文观止》
 - 《原罪》
 
-
 ### 心理学
+
 - 《思考，快与慢》
 - 《即兴的智慧》
 - 《了不起的我》
@@ -178,6 +182,7 @@ date: 2023-03-15 22:59:07
 - 罗老师说刑法
 
 ### 小说
+
 - 美麗新世界: https://book.douban.com/subject/27002046/
 - 罪与罚: https://book.douban.com/subject/1858568/
 - 生命不可承受之轻：https://book.douban.com/subject/1433377/
@@ -192,10 +197,12 @@ date: 2023-03-15 22:59:07
 - 《原罪》
 
 ### 理财
+
 - 穷爸爸，富爸爸： https://book.douban.com/subject/1033778/
 - 小狗钱钱： https://book.douban.com/subject/1033778/
 
 IT
+
 - https://movie.douban.com/subject/1418357/
 - https://movie.douban.com/subject/1437389/?from=subject-page
 - https://movie.douban.com/subject/3124124/?from=subject-page

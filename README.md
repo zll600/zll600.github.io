@@ -115,6 +115,7 @@ git clone https://github.com/nolebase/nolebase
 > 这是 [Git for Windows](https://gitforwindows.org/) 的默认配置导致的[问题](https://github.com/git-for-windows/git/issues/2777)。
 >
 > 你可以在命令行窗口中输入下面的命令来解决这个问题：
+>
 > ```PowerShell
 > git config --global core.protectNTFS false
 > ```
@@ -171,6 +172,7 @@ scoop install nodejs
 > 由于我们使用到了 `sharp` 这个依赖来生成图片，而 `sharp` 依赖需要使用到 Python，因此你也需要安装 Python。
 >
 > 如果采用了上面提到的 `scoop`，可以使用下面的命令来安装 Python：
+>
 > ```shell
 > scoop install python
 > ```
@@ -207,6 +209,7 @@ cd
 > 如果你使用的是 macOS，可以选择通过 [`Homebrew`](https://brew.sh/)（一款在 macOS 上面向开发者可用的包管理器）来安装这些必要的工具，这样可以避免在 macOS 上面安装和配置这些工具的时候遇到的一些问题。
 >
 > 想要快速安装 Homebrew，使用 <kbd data-macos-keyboard-key="command">command</kbd> + <kbd data-keyboard-key="space">空格</kbd> 打开「终端」应用，然后输入下面的命令：
+>
 > ```shell
 > /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 > ```
@@ -364,6 +367,7 @@ Nólëbase 知识库使用 VitePress 静态生成器来驱动和生成静态页�
 > ![](/public/obsidian-screenshot-2.png)
 >
 > 这样配置也会有以下几个好处：
+>
 > - 方便迁移文件和图片，你只需要把图片文件夹和 Markdown 文件一起复制就行（如果是全部汇总在某个文件夹下，以后复制比较麻烦）
 
 > [!TIP]
@@ -386,85 +390,86 @@ pnpm add -D vitepress-plugin-comment-with-giscus
 4. 在 `./.vitepress/theme/components` 下新建一个 `Gitcus.ts` 的文件，并填充为下面的内容：
 
 ```ts
-import { defineComponent, toRefs } from 'vue'
-import giscusTalk from 'vitepress-plugin-comment-with-giscus/lib/giscus'
-import { useData, useRoute } from 'vitepress'
+import { defineComponent, toRefs } from "vue";
+import giscusTalk from "vitepress-plugin-comment-with-giscus/lib/giscus";
+import { useData, useRoute } from "vitepress";
 
 export default defineComponent({
   setup() {
     // Get frontmatter and route
-    const { frontmatter } = toRefs(useData())
-    const route = useRoute()
+    const { frontmatter } = toRefs(useData());
+    const route = useRoute();
 
     // Obtain configuration from: https://giscus.app/
-    giscusTalk({
-      repo: 'your github repository',
-      repoId: 'your repo Id',
-      category: 'your category', // default: `General`
-      categoryId: 'your category id',
-      mapping: 'pathname', // default: `pathname`
-      inputPosition: 'top', // default: `top`
-      lang: 'zh-CN', // default: `zh-CN`
-      // i18n setting (Note: This configuration will override the default language set by lang)
-      // Configured as an object with key-value pairs inside:
-      // [your i18n configuration name]: [corresponds to the language pack name in Giscus]
-      locales: {
-        'zh-Hans': 'zh-CN',
-        'en-US': 'en',
+    giscusTalk(
+      {
+        repo: "your github repository",
+        repoId: "your repo Id",
+        category: "your category", // default: `General`
+        categoryId: "your category id",
+        mapping: "pathname", // default: `pathname`
+        inputPosition: "top", // default: `top`
+        lang: "zh-CN", // default: `zh-CN`
+        // i18n setting (Note: This configuration will override the default language set by lang)
+        // Configured as an object with key-value pairs inside:
+        // [your i18n configuration name]: [corresponds to the language pack name in Giscus]
+        locales: {
+          "zh-Hans": "zh-CN",
+          "en-US": "en",
+        },
+        homePageShowComment: false, // Whether to display the comment area on the homepage, the default is false
+        lightTheme: "light", // default: `light`
+        darkTheme: "transparent_dark", // default: `transparent_dark`
+        // ...
       },
-      homePageShowComment: false, // Whether to display the comment area on the homepage, the default is false
-      lightTheme: 'light', // default: `light`
-      darkTheme: 'transparent_dark', // default: `transparent_dark`
-      // ...
-    }, {
-      frontmatter,
-      route,
-    },
-    // Whether to activate the comment area on all pages.
-    // The default is true, which means enabled, this parameter can be ignored;
-    // If it is false, it means it is not enabled.
-    // You can use `comment: true` preface to enable it separately on the page.
-    true)
+      {
+        frontmatter,
+        route,
+      },
+      // Whether to activate the comment area on all pages.
+      // The default is true, which means enabled, this parameter can be ignored;
+      // If it is false, it means it is not enabled.
+      // You can use `comment: true` preface to enable it separately on the page.
+      true,
+    );
   },
-})
+});
 ```
 
 5. 在 `./vitepress/theme/index.ts` 中将我们上一步创建的 `gitcus.ts` 引入（注意更改部分内容为你第一步得到的配置信息哦），演示如下，具体请参考[插件文档](https://github.com/T-miracle/vitepress-plugin-comment-with-giscus)
 
 ```ts
-import type { Theme } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-import { h } from 'vue'
+import type { Theme } from "vitepress";
+import DefaultTheme from "vitepress/theme";
+import { h } from "vue";
 
 // 其他配置.......
 
-import Gitcus from './components/gitcus' // [!code ++]
+import Gitcus from "./components/gitcus"; // [!code ++]
 
 const ExtendedTheme: Theme = {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'doc-top': () => [
+      "doc-top": () => [
         h(NolebaseHighlightTargetedHeading),
-        h(Gitcus),  // [!code ++]
+        h(Gitcus), // [!code ++]
       ],
-      'doc-footer-before': () => [
-        h(DocFooter),
-      ],
-      'nav-bar-content-after': () => [
+      "doc-footer-before": () => [h(DocFooter)],
+      "nav-bar-content-after": () => [
         h(NolebaseEnhancedReadabilitiesMenu),
         h(Share),
       ],
-      'nav-screen-content-after': () => [
+      "nav-screen-content-after": () => [
         h(NolebaseEnhancedReadabilitiesScreenMenu),
       ],
-    })
+    });
   },
   // 结束！好了，上面的内容就是你需要修改的部分，其他维持原样就好啦
-}
+};
 
-export default ExtendedTheme
+export default ExtendedTheme;
 ```
 
 > [!NOTE]
@@ -490,16 +495,16 @@ export default ExtendedTheme
 一般，文档需要有以下结构（按照从上到下排列）：
 
 1. 使用一级标题的**标题**（一般为文件名本身）
-	1. 使用正文格式的**作者**
-	2. *非强制* · 标签（如果有的话，方便搜索和索引）
-	4. *非强制* · 使用五级标题的 **文档兼容性** （仅针对涉及了不同软件或是 API 的指南和操作文档）
-	5. *非强制* · 使用五级标题的 **Archive 信息** （仅针对 **📃 Archives** 目录下的所有文档）
-2. *非强制* · 使用二级标题的**概述**（仅针对超大型文档，提供概述可以提高检索和快速查阅的效率）
+   1. 使用正文格式的**作者**
+   2. _非强制_ · 标签（如果有的话，方便搜索和索引）
+   3. _非强制_ · 使用五级标题的 **文档兼容性** （仅针对涉及了不同软件或是 API 的指南和操作文档）
+   4. _非强制_ · 使用五级标题的 **Archive 信息** （仅针对 **📃 Archives** 目录下的所有文档）
+2. _非强制_ · 使用二级标题的**概述**（仅针对超大型文档，提供概述可以提高检索和快速查阅的效率）
 3. 使用二级标题的**目录**
 4. 使用二级标题的**说明**
 5. 有完善标题分级和注解、甚至是脚注的**正文**
-6. *非强制* · 使用二级标题的**延伸阅读**或是**参考资料**（仅针对如果引用了文章、网页的绝大多数内容；没有实际引用到文档内但是值得参考和阅读的文章、网页的内容；查阅资料时遇到的（非强关联，但是也有关系的）相关内容时需要添加）
-7. *非强制* · 不使用标题的**脚注**（如果有的话，通过使用脚注插件 Footnote shortcut（参考[🔌 知识库插件列表](%F0%9F%94%8C%20%E7%9F%A5%E8%AF%86%E5%BA%93%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8.md) ）创建，可以避免过多的引用和链接出现在正文里）
+6. _非强制_ · 使用二级标题的**延伸阅读**或是**参考资料**（仅针对如果引用了文章、网页的绝大多数内容；没有实际引用到文档内但是值得参考和阅读的文章、网页的内容；查阅资料时遇到的（非强关联，但是也有关系的）相关内容时需要添加）
+7. _非强制_ · 不使用标题的**脚注**（如果有的话，通过使用脚注插件 Footnote shortcut（参考[🔌 知识库插件列表](%F0%9F%94%8C%20%E7%9F%A5%E8%AF%86%E5%BA%93%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8.md) ）创建，可以避免过多的引用和链接出现在正文里）
 
 每一项的内容和说明都会在下方的文档中一一说明
 
@@ -548,13 +553,13 @@ tags:
 
 当前支持的来源有：
 
-| Archive 自 |
-| ---- |
+| Archive 自     |
+| -------------- |
 | 微信公众号文章 |
-| CSDN |
-| ADDitude |
-| The Verge |
-| 知乎 |
+| CSDN           |
+| ADDitude       |
+| The Verge      |
+| 知乎           |
 
 ###### Archive 创建于
 
@@ -586,9 +591,9 @@ tags:
 ```markdown
 ##### Archive 信息
 
-| Archive 自 | Archive 创建于 | 分类 | 原始作者 | 原始地址 | 原始资源创建时间 | 原始资源更新时间 |
-| ---------- | ------------ | ---- | ------- | ------- | ------------- | ------------- |
-| Medium | 2022-10-29 16:30 | 文章 | 作者 Alpha | [链接](https://example.com) | 2022-10-29 16:30 | 2022-10-29 16:30 |
+| Archive 自 | Archive 创建于   | 分类 | 原始作者   | 原始地址                    | 原始资源创建时间 | 原始资源更新时间 |
+| ---------- | ---------------- | ---- | ---------- | --------------------------- | ---------------- | ---------------- |
+| Medium     | 2022-10-29 16:30 | 文章 | 作者 Alpha | [链接](https://example.com) | 2022-10-29 16:30 | 2022-10-29 16:30 |
 ```
 
 #### 文档兼容性
@@ -616,8 +621,8 @@ tags:
 ```markdown
 ### 文档兼容性
 
-| 主体 | 版本号 | 文档地址（如果有） |
-| -- | -- | -- |
+| 主体        | 版本号 | 文档地址（如果有）                      |
+| ----------- | ------ | --------------------------------------- |
 | NebulaGraph | v2.6.1 | https://docs.nebula-graph.com.cn/2.6.1/ |
 ```
 

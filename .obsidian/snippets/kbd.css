@@ -5,11 +5,12 @@ kbd {
   user-select: none;
   position: relative;
   bottom: 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Adjusted",
+    "Segoe UI", "Liberation Sans", sans-serif;
 }
 
 kbd::after {
-  content: '';
+  content: "";
   display: inline;
   position: absolute;
   left: 0;

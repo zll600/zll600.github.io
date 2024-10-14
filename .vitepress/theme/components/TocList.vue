@@ -1,14 +1,11 @@
 <!-- 目录 -->
 <script lang="ts" setup>
 import { computed, Ref } from "vue";
-import type {
-  ArticleTree,
-  SideBarItemWithCategory,
-} from "../../../scripts/types/metadata";
+import type { ArticleTree } from "../../../scripts/types/metadata";
 import { sidebar } from "../../docsMetadata.json";
 
 const list: Ref<ArticleTree[]> = computed(() => {
-  const list: ArticleTree[] = ([] as SideBarItemWithCategory[]).concat(
+  const list: ArticleTree[] = ([] as ArticleTree[]).concat(
     ...sidebar.map((series) =>
       series.items
         ? series?.items.map((item) => ({ ...item, category: series.text }))

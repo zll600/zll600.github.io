@@ -75,8 +75,8 @@ importers:
         specifier: ^2.6.11
         version: 2.6.11
       '@unocss/eslint-config':
-        specifier: ^0.63.4
-        version: 0.63.4(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
+        specifier: ^0.63.6
+        version: 0.63.6(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
       '@unocss/eslint-plugin':
         specifier: 0.63.6
         version: 0.63.6(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
@@ -1161,12 +1161,8 @@ packages:
   '@unocss/core@0.63.6':
     resolution: {integrity: sha512-Q4QPgJ271Up89+vIqqOKgtdCKkFpHqvHN8W1LUlKPqtYnOvVYaOIVNAZowaIdEhPuc83yLc6Tg2+7riK18QKEw==}
 
-  '@unocss/eslint-config@0.63.4':
-    resolution: {integrity: sha512-H7W6yx17t23ZTtvdJ1j+oRmPNi12k109m5H+tee6g92vjM9s82ZZmPNY/92XM0ZrObS7XaMxQkB3yF92Skw9Ew==}
-    engines: {node: '>=14'}
-
-  '@unocss/eslint-plugin@0.63.4':
-    resolution: {integrity: sha512-RXxlQq+dP8duOv3s/dEm7TmHn4sBBDJPFErJgsiI+RDPIvIo23bh4FZoej8/pUUZ24F9meSM8pEil1kNUBqVHw==}
+  '@unocss/eslint-config@0.63.6':
+    resolution: {integrity: sha512-D+fTTy+3I3yMAVvpziSZA3gc2L6nI4Y/BIXd6QUu1MEL4y9lKmgyEbt/Z9Tnwt5FUyX/2kZMx0WcY4h3S8XxBw==}
     engines: {node: '>=14'}
 
   '@unocss/eslint-plugin@0.63.6':
@@ -4248,21 +4244,9 @@ snapshots:
 
   '@unocss/core@0.63.6': {}
 
-  '@unocss/eslint-config@0.63.4(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)':
+  '@unocss/eslint-config@0.63.6(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)':
     dependencies:
-      '@unocss/eslint-plugin': 0.63.4(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
-    transitivePeerDependencies:
-      - eslint
-      - supports-color
-      - typescript
-
-  '@unocss/eslint-plugin@0.63.4(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)':
-    dependencies:
-      '@typescript-eslint/utils': 8.8.1(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
-      '@unocss/config': 0.63.4
-      '@unocss/core': 0.63.4
-      magic-string: 0.30.12
-      synckit: 0.9.2
+      '@unocss/eslint-plugin': 0.63.6(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
     transitivePeerDependencies:
       - eslint
       - supports-color

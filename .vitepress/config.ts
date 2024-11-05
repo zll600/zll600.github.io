@@ -8,6 +8,7 @@ import { InlineLinkPreviewElementTransform } from "@nolebase/vitepress-plugin-in
 import { buildEndGenerateOpenGraphImages } from "@nolebase/vitepress-plugin-og-image/vitepress";
 import { UnlazyImages } from "@nolebase/markdown-it-unlazy-img";
 import { transformHeadMeta } from "@nolebase/vitepress-plugin-meta";
+import { calculateSidebar } from "@nolebase/vitepress-plugin-sidebar";
 
 import {
   creatorNames,
@@ -18,7 +19,6 @@ import {
   siteName,
   targetDomain,
 } from "../metadata";
-import { sidebar } from "./docsMetadata.json";
 import MarkdownIt, { PluginSimple, PluginWithOptions } from "markdown-it";
 
 export default defineConfig({
@@ -271,10 +271,9 @@ export default defineConfig({
     },
     nav: [
       { text: "主页", link: "/" },
-      { text: "blogs", link: "/blogs/" },
       { text: "最近更新", link: "/toc" },
     ],
-    sidebar,
+    sidebar: calculateSidebar([{ folderName: "blogs", separate: true }]),
   },
   markdown: {
     theme: {

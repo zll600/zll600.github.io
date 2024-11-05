@@ -51,8 +51,8 @@ importers:
         specifier: ^2.6.1
         version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-og-image':
-        specifier: ^2.6.1
-        version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+        specifier: ^2.8.1
+        version: 2.8.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.6.1
         version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
@@ -868,8 +868,8 @@ packages:
   '@nolebase/vitepress-plugin-meta@2.6.1':
     resolution: {integrity: sha512-UM4DNBXGb0jxDTa6siljZHOjp0qT7YlfKBtRNrd5xFJJfgxpMj9l+sutAqfFChA0hTZVXL9uoNEAw3fwyzG+Kw==}
 
-  '@nolebase/vitepress-plugin-og-image@2.6.1':
-    resolution: {integrity: sha512-KABijY77XcfplAkGxvKMyNl3GBRcqbV7zKovuIh0OJt1kpF3o81otZ5GWKDalo5NtHpPpxRgMUqwwPojl5ONaw==}
+  '@nolebase/vitepress-plugin-og-image@2.8.1':
+    resolution: {integrity: sha512-ndbQMPrFGboEBDzK9Pkwbp+WuSgrbF44URuCXRdQRGvyhCB/Sd1SM4FUQdk0mDLJe9ruECy/SrveaUplHErqiA==}
 
   '@nolebase/vitepress-plugin-page-properties@2.6.1':
     resolution: {integrity: sha512-0JpLRr24/BvyEVos8v1mFZp5j4CoFARcT9TNT3trFkOMg8R6AFQKY7Bv6RIwetWFs1Kt1GmX8wU+FFLUyY02nA==}
@@ -3902,7 +3902,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-og-image@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+  '@nolebase/vitepress-plugin-og-image@2.8.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
       '@resvg/resvg-wasm': 2.6.2
       colorette: 2.0.20
@@ -3918,7 +3918,7 @@ snapshots:
       rehype-stringify: 10.0.1
       unified: 11.0.5
       unist-util-visit: 5.0.0
-      vitepress: 1.4.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      vitepress: 1.4.5(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'

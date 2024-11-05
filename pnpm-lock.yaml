@@ -87,8 +87,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0(vue@3.5.12(typescript@5.6.3))
       '@vueuse/shared':
-        specifier: ^11.1.0
-        version: 11.1.0(vue@3.5.12(typescript@5.6.3))
+        specifier: ^11.2.0
+        version: 11.2.0(vue@3.5.12(typescript@5.6.3))
       emoji-regex:
         specifier: ^10.4.0
         version: 10.4.0

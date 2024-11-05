@@ -56,6 +56,9 @@ importers:
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.6.1
         version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      '@nolebase/vitepress-plugin-sidebar':
+        specifier: ^2.8.1
+        version: 2.8.1
       '@nolebase/vitepress-plugin-thumbnail-hash':
         specifier: ^2.6.1
         version: 2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
@@ -867,6 +870,9 @@ packages:
 
   '@nolebase/vitepress-plugin-page-properties@2.6.1':
     resolution: {integrity: sha512-0JpLRr24/BvyEVos8v1mFZp5j4CoFARcT9TNT3trFkOMg8R6AFQKY7Bv6RIwetWFs1Kt1GmX8wU+FFLUyY02nA==}
+
+  '@nolebase/vitepress-plugin-sidebar@2.8.1':
+    resolution: {integrity: sha512-3lsB8ARvn3N1gZ4MxH9AlPyoSpvbtdWjvR8btqEM8bFGs6RvkA0IGLQpdm+cWVkNGLP3S11grRtZ6fQgjKKedg==}
 
   '@nolebase/vitepress-plugin-thumbnail-hash@2.6.1':
     resolution: {integrity: sha512-kdZqioy42bjVQVnvhtWJYhimuylnJs2Gz2qlNPLn8+LTql8pecQCzOoeAJT4C83kDOz6u7nhEYXUwwgrhXskBA==}
@@ -3901,6 +3907,11 @@ snapshots:
       - terser
       - typescript
       - universal-cookie
+
+  '@nolebase/vitepress-plugin-sidebar@2.8.1':
+    dependencies:
+      fs-extra: 11.2.0
+      glob: 11.0.0
 
   '@nolebase/vitepress-plugin-thumbnail-hash@2.6.1(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:

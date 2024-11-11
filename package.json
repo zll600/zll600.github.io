@@ -46,7 +46,7 @@
     "@nolebase/vitepress-plugin-git-changelog": "^2.9.0",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.8.1",
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.8.1",
-    "@nolebase/vitepress-plugin-meta": "^2.8.1",
+    "@nolebase/vitepress-plugin-meta": "^2.9.0",
     "@nolebase/vitepress-plugin-og-image": "^2.8.1",
     "@nolebase/vitepress-plugin-page-properties": "^2.8.1",
     "@nolebase/vitepress-plugin-sidebar": "^2.9.0",

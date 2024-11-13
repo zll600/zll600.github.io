@@ -52,7 +52,7 @@
     "@nolebase/vitepress-plugin-sidebar": "^2.9.0",
     "@nolebase/vitepress-plugin-thumbnail-hash": "^2.9.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.17.12",
+    "@types/lodash": "^4.17.13",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node-fetch": "^2.6.11",

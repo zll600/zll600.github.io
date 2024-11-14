@@ -25,7 +25,6 @@ import AppContainer from "./components/AppContainer.vue";
 import DocFooter from "./components/DocFooter.vue";
 import HomePage from "./components/HomePage.vue";
 import ShareLink from "./components/ShareLink.vue";
-import TocList from "./components/TocList.vue";
 
 import "@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css";
 import "@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css";
@@ -70,7 +69,6 @@ const ExtendedTheme: Theme = {
     app.component("HomePage", HomePage);
     app.component("DocFooter", DocFooter);
     app.component("ShareLink", ShareLink);
-    app.component("TocList", TocList);
     app.component("AppContainer", AppContainer);
     app.component("NolebaseUnlazyImg", NolebaseUnlazyImg);
 

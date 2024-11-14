@@ -44,6 +44,9 @@ importers:
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.9.0
         version: 2.9.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+      '@nolebase/vitepress-plugin-index':
+        specifier: ^2.9.0
+        version: 2.9.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-inline-link-preview':
         specifier: ^2.9.0
         version: 2.9.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
@@ -864,6 +867,9 @@ packages:
 
   '@nolebase/vitepress-plugin-highlight-targeted-heading@2.9.0':
     resolution: {integrity: sha512-9Qmyih4RNO3rp1pUp4REqWelxSenjfBRgU0HIq4BBmUlFT6AYDgKXllD1/Em3zLnpopdzbuDQyU2C+OQqs4Sig==}
+
+  '@nolebase/vitepress-plugin-index@2.9.0':
+    resolution: {integrity: sha512-31yAMQaQqS5TweEXNhtMg/gS97Pm91cPZjqvMcJVpD5I2Ni68rsXQEEa12o5vfZjVJkTA5QDfFIwtKz7c6OpSw==}
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.9.0':
     resolution: {integrity: sha512-nMg7SN+NeSXacCEZOfkS0iSgccUcK5o69ziXLdp5XJDCThSDQGho+7rBsJdFaYpR6o202KIm5LUsCnrynSpfBg==}
@@ -3769,6 +3775,44 @@ snapshots:
       - fuse.js
       - idb-keyval
       - jwt-decode
+      - lightningcss
+      - markdown-it-mathjax3
+      - nprogress
+      - postcss
+      - qrcode
+      - react
+      - react-dom
+      - sass
+      - sass-embedded
+      - search-insights
+      - sortablejs
+      - stylus
+      - sugarss
+      - terser
+      - typescript
+      - universal-cookie
+
+  '@nolebase/vitepress-plugin-index@2.9.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)':
+    dependencies:
+      defu: 6.1.4
+      execa: 9.5.1
+      glob: 11.0.0
+      globby: 14.0.2
+      gray-matter: 4.0.3
+      vitepress: 1.5.0(@algolia/client-search@4.23.3)(@types/node@20.14.5)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.3)
+    transitivePeerDependencies:
+      - '@algolia/client-search'
+      - '@types/node'
+      - '@types/react'
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - less
       - lightningcss
       - markdown-it-mathjax3
       - nprogress

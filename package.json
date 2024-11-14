@@ -2,7 +2,7 @@
   "name": "nolebase",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@9.13.0",
   "author": {
     "name": "Nólëbase",
     "email": "nolebase@ayaka.moe",
@@ -45,6 +45,7 @@
     "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.9.0",
     "@nolebase/vitepress-plugin-git-changelog": "^2.9.0",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.9.0",
+    "@nolebase/vitepress-plugin-index": "^2.9.0",
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.9.0",
     "@nolebase/vitepress-plugin-meta": "^2.9.0",
     "@nolebase/vitepress-plugin-og-image": "^2.8.1",

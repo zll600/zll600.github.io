@@ -4,6 +4,34 @@ tags:
   - mysql
 ---
 
+文章主要用来记录，我在分析线上环境的慢查询时的分析工具。
+
+问题描述
+
+表结构
+
+数据规模
+
+问题分析
+
+explain 语句
+
+explain analyze 语句
+
+optimizer_trace 分析 explain analyze
+
+使用 mysql histogram 来验证 optimizer_trace 的分析结果
+
+根据 histogram 的结果，可以尝试强制指定 join 时的驱动表。 因此 straight_join 可以解决问题
+
+列出 todo
+1. 整理 optimizer_trace 中各个字段的含义，单独开一篇 blog
+2. 调研深分页问题的常见解决方案
+  - 基于 cursor 分页
+  - 延迟 join
+
+
+
 这篇文章主要介绍一下，我学到的一些 mysql 查询性能分析工具。
 
 explain 语句

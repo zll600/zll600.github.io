@@ -54,8 +54,8 @@ importers:
         specifier: ^2.9.0
         version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-og-image':
-        specifier: ^2.9.0
-        version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)
+        specifier: ^2.10.0
+        version: 2.10.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.9.0
         version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)
@@ -867,8 +867,8 @@ packages:
   '@nolebase/vitepress-plugin-meta@2.9.0':
     resolution: {integrity: sha512-sF/q5CLWI7hKmmEG2LbYnWxT1moQdGyQgvjMbqFeBXQcLykzvxLfd7hvXKyu8e/EUinVijrRahyNm1nnvMyAfA==}
 
-  '@nolebase/vitepress-plugin-og-image@2.9.0':
-    resolution: {integrity: sha512-yVuNpRXxUgb2MiTfd7qvwIaLx6BYA44l83CNoQ/SpGJkzlYz9EGwiXdDOZuOmWu87Q+jLRPgEKTEjSudkAnuQA==}
+  '@nolebase/vitepress-plugin-og-image@2.10.0':
+    resolution: {integrity: sha512-sGqYs1H9Jx7ik1hzPShepUeFtp7S8Cjke/yuh6gS8Fvxtb6utAd7MjPjp5ixaPS0LoS9UZ8th+UJqs6FuB9enA==}
 
   '@nolebase/vitepress-plugin-page-properties@2.9.0':
     resolution: {integrity: sha512-PFgUedYVxA4BFpkq08NsvW+gTg6vNnDrF9fXNSbIMwdXUADSWuYulvJBQgd4XSDlz8Q/rYsQp2/ZJLqXF9s3Nw==}
@@ -3788,7 +3788,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-og-image@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)':
+  '@nolebase/vitepress-plugin-og-image@2.10.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.6.3)':
     dependencies:
       '@resvg/resvg-wasm': 2.6.2
       colorette: 2.0.20

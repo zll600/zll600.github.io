@@ -51,7 +51,7 @@
     "@nolebase/vitepress-plugin-og-image": "^2.9.0",
     "@nolebase/vitepress-plugin-page-properties": "^2.9.0",
     "@nolebase/vitepress-plugin-sidebar": "^2.9.0",
-    "@nolebase/vitepress-plugin-thumbnail-hash": "^2.9.0",
+    "@nolebase/vitepress-plugin-thumbnail-hash": "^2.10.0",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.13",
     "@types/markdown-it": "^14.1.2",

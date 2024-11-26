@@ -6,12 +6,8 @@ tags:
 
 文章主要用来记录在我比较关注的 mysql optimizer_trace 中的一些信息，留一个备忘录，方便日后查阅。
 
-简单解释 optimizer_trace 是什么
+> mysql optimizer_trace 中的各个字段目前并没有官方的文档来说明，这里只是结合我自己的理解来编写。未来 mysql 很有可能会修改这里的字段以及字段所表示的含义。
 
-给一个两张表 inner join 的例子。需要
-- 带分页，
-- 带排序
-- 带删除？
 
 从上到下解释一下 trace 中的各个步骤。
 
@@ -387,8 +383,13 @@ optimizer_trace 的解释
 2. `substitute_generated_columns` 替换掉虚拟的生成列
 3. `table_dependencies` 表之间的依赖关系
 4. `ref_optimizer_key_uses` 分析执行 ref 扫描可以利用的索引
-5. `rows_estimation`
-
+5. `rows_estimation` 估算表的扫描行数以及代价
+6. `considered_execution_plans` 对比不同的执行计划方案，选择执行计划
+7. `attaching_conditions_to_tables` 添加筛选条件，尽量将所有的条件添加在一张表上，减少对其他表的过滤
+8. `optimizing_distinct_group_by_order_by` 优化 `distinct`, `group_by` 和 `order_by`，尽量消除这些计算操作
+9. `finalizing_table_conditions` 选择最终应用在查询上的 `where` 条件
+10. `refine_plan` 最终确定的执行计划，查询表的顺序，这里先 users 表再 posts 表
+11. `considering_tmp_tables` 考虑使用临时表
 ````json
 {
       "join_optimization": {
@@ -639,7 +640,14 @@ optimizer_trace 的解释
     }
 ````
 
-第三步是 
+第三步是 `join_execution`，join 的执行阶段。
+1. `select#` 哪一个 select 查询，对应 `join_preparation` 的编号
+2. `steps` 查询执行的具体步骤
+    1. `sorting_table`: 需要排序的表，这里是 `临时表`
+    2. `filesort_information` 内存外排序相关信息，这里展示了排序的规则和使用的表达式
+    3. `filesort_priority_queue_optimization` 内存外排序的优先队列优化，这里是针对 `limit` 子句进行优化。
+    4. `filesort_execution` 内存外排序的执行，因为查询是 explain analyze，可能导致了这部分信息缺失
+    5. `filesort_summary` 内存外排序的汇总信息
 
 ````json
   {
@@ -687,3 +695,11 @@ optimizer_trace 的解释
 - https://dev.mysql.com/doc/refman/8.0/en/tracing-example.html
 - http://www.unofficialmysqlguide.com/optimizer-trace.html
 - https://blog.itpub.net/28218939/viewspace-2658978/
+
+# todo
+简单解释 optimizer_trace 是什么
+
+给一个两张表 inner join 的例子。需要
+- 带分页，
+- 带排序
+- 带删除？

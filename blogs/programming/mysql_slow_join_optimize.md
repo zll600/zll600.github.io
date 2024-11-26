@@ -133,7 +133,8 @@ set session optimizer_trace='enabled=off';
 ````
 
 查看 optimizer_trace 的结果
-````
+
+````sql
 select trace from information_schema.optimizer_trace\G
 mysql> select trace from information_schema.optimizer_trace\G
 *************************** 1. row ***************************
@@ -893,6 +894,80 @@ EXPLAIN: -> Limit: 100 row(s)  (cost=3.65e+6 rows=99.9) (actual time=0.273..1.55
 ````
 
 上述就是整个使用 optimizer_trace 分析的过程。
+
+## 实验脚本
+````python
+import random
+import uuid
+import string
+import mysql.connector
+
+config = {
+    'user': 'root',
+    'password': '',
+    'host': '127.0.0.1',
+    'database': 'sql_tests',
+    'raise_on_warnings': True
+}
+
+connection = mysql.connector.connect(**config)
+cursor = connection.cursor()
+
+def random_string(length):
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+
+def insert_users(count):
+    sql = '''INSERT INTO users (name, email)
+             VALUES (%s, %s)'''
+    cnt = 0
+    for _ in range(count):
+        email = str(uuid.uuid4()) + '@example.com'
+        name = random_string(12)
+        cursor.execute(sql, (name, email))
+        cnt += 1
+        if cnt > 1000:
+            connection.commit()
+            cnt = 0
+
+    connection.commit()
+
+def insert_logins(count, min_user_id, max_user_id):
+    sql = '''INSERT INTO posts (source, user_id)
+             VALUES (%s, %s)'''
+    cnt = 0
+    for _ in range(count):
+        user_id = random.randint(min_user_id, max_user_id)
+        source = random_string(12)
+        cursor.execute(sql, (source, user_id))
+        cnt += 1
+        if cnt > 1000:
+            connection.commit()
+            cnt = 0
+
+    connection.commit()
+
+user_count = 500_000
+login_count = 15_000_000
+
+insert_users(user_count)
+print('insert users successfully')
+
+select_bound_user_id = "select min(id) as min_id, max(id) as max_id from users"
+cursor.execute(select_bound_user_id)
+res = cursor.fetchone()
+min_user_id = res[0]
+max_user_id = res[1]
+insert_logins(login_count, min_user_id, max_user_id)
+print('insert posts successfully')
+
+cursor.close()
+connection.close()
+````
+
+需要安装
+````python
+pip install mysql-connector-python
+````
 
 参考：
 

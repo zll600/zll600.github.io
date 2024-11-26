@@ -1,4 +1,4 @@
-import{_ as B,c as d,j as i,a,G as n,as as h,w as l,B as t,o}from"./chunks/framework.CjH1QeIx.js";const D=JSON.parse('{"title":"问题描述","description":"","frontmatter":{"tags":["programming","mysql"]},"headers":[],"relativePath":"blogs/programming/mysql_slow_join_optimize.md","filePath":"blogs/programming/mysql_slow_join_optimize.md"}'),g={name:"blogs/programming/mysql_slow_join_optimize.md"};function y(u,s,c,A,q,C){const k=t("NolebasePageProperties"),p=t("VPNolebaseInlineLinkPreview"),e=t("NolebaseGitContributors"),r=t("NolebaseGitChangelog");return o(),d("div",null,[s[8]||(s[8]=i("p",null,"文章主要用来记录，我在分析线上环境的慢查询时的分析工具。",-1)),s[9]||(s[9]=i("h1",{id:"问题描述",tabindex:"-1"},[a("问题描述 "),i("a",{class:"header-anchor",href:"#问题描述","aria-label":'Permalink to "问题描述"'},"​")],-1)),n(k),s[10]||(s[10]=h(`<p>有一个两张表 join 的查询耗时 40s 甚至 60s。花费了很多时间才做了优化。</p><p>explain 语句</p><p>explain analyze 语句</p><p>optimizer_trace 分析 explain analyze</p><p>使用 mysql histogram 来验证 optimizer_trace 的分析结果</p><p>根据 histogram 的结果，可以尝试强制指定 join 时的驱动表。 因此 straight_join 可以解决问题</p><h1 id="实验环境" tabindex="-1">实验环境 <a class="header-anchor" href="#实验环境" aria-label="Permalink to &quot;实验环境&quot;">​</a></h1><p>mysql 版本 8.0.37 docker image OS macos 15 OrbStack 分配了 8 G RAM CPU M3 Pro</p><p>我们聚一个例子，需要两张表，如下</p><p>第一张 users 表</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"></span></code></pre></div><p>users 表插入数据 500_000 行，其中 deleted_at is not null 的数据很少（不到 10 条）</p><p>第二张 posts 表</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"></span></code></pre></div><p>posts 表插入数据 1500_000 行</p><p>查询如下</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">SELECT</span></span>
+import{_ as r,c as d,j as i,a,G as n,as as k,w as l,B as p,o as g}from"./chunks/framework.BZ8QyN4y.js";const D=JSON.parse('{"title":"问题描述","description":"","frontmatter":{"tags":["programming","mysql"]},"headers":[],"relativePath":"blogs/programming/mysql_slow_join_optimize.md","filePath":"blogs/programming/mysql_slow_join_optimize.md"}'),y={name:"blogs/programming/mysql_slow_join_optimize.md"};function o(A,s,F,C,u,c){const t=p("NolebasePageProperties"),h=p("VPNolebaseInlineLinkPreview"),e=p("NolebaseGitContributors"),B=p("NolebaseGitChangelog");return g(),d("div",null,[s[8]||(s[8]=i("p",null,"文章主要用来记录，我在分析线上环境的慢查询时的分析工具。",-1)),s[9]||(s[9]=i("h1",{id:"问题描述",tabindex:"-1"},[a("问题描述 "),i("a",{class:"header-anchor",href:"#问题描述","aria-label":'Permalink to "问题描述"'},"​")],-1)),n(t),s[10]||(s[10]=k(`<p>有一个两张表 join 的查询耗时 40s 甚至 60s。花费了很多时间才做了优化。</p><p>explain 语句</p><p>explain analyze 语句</p><p>optimizer_trace 分析 explain analyze</p><p>使用 mysql histogram 来验证 optimizer_trace 的分析结果</p><p>根据 histogram 的结果，可以尝试强制指定 join 时的驱动表。 因此 straight_join 可以解决问题</p><h1 id="实验环境" tabindex="-1">实验环境 <a class="header-anchor" href="#实验环境" aria-label="Permalink to &quot;实验环境&quot;">​</a></h1><p>mysql 版本 8.0.37 docker image OS macos 15 OrbStack 分配了 8 G RAM CPU M3 Pro</p><p>我们聚一个例子，需要两张表，如下</p><p>第一张 users 表</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"></span></code></pre></div><p>users 表插入数据 500_000 行，其中 deleted_at is not null 的数据很少（不到 10 条）</p><p>第二张 posts 表</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"></span></code></pre></div><p>posts 表插入数据 1500_000 行</p><p>查询如下</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">SELECT</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">	posts.</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">*</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">FROM</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">	posts</span></span>
@@ -51,315 +51,315 @@ import{_ as B,c as d,j as i,a,G as n,as as h,w as l,B as t,o}from"./chunks/frame
 <span class="line"><span>		AND users.deleted_at IS NULL</span></span>
 <span class="line"><span>	ORDER BY</span></span>
 <span class="line"><span>		posts.id DESC</span></span>
-<span class="line"><span>	LIMIT 100 OFFSET 0;</span></span></code></pre></div><p>关闭 optimizer_trace</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span>set session optimizer_trace=&#39;enabled=off&#39;;</span></span></code></pre></div><p>查看 optimizer_trace 的结果</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span>select trace from information_schema.optimizer_trace\\G</span></span>
-<span class="line"><span>mysql&gt; select trace from information_schema.optimizer_trace\\G</span></span>
-<span class="line"><span>*************************** 1. row ***************************</span></span>
-<span class="line"><span>trace: {</span></span>
-<span class="line"><span>  &quot;steps&quot;: [</span></span>
-<span class="line"><span>    {</span></span>
-<span class="line"><span>      &quot;join_preparation&quot;: {</span></span>
-<span class="line"><span>        &quot;select#&quot;: 1,</span></span>
-<span class="line"><span>        &quot;steps&quot;: [</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;expanded_query&quot;: &quot;/* select#1 */ select \`posts\`.\`id\` AS \`id\`,\`posts\`.\`source\` AS \`source\`,\`posts\`.\`user_id\` AS \`user_id\` from (\`posts\` join \`users\` on(((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null)))) order by \`posts\`.\`id\` desc limit 0,100&quot;</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;transformations_to_nested_joins&quot;: {</span></span>
-<span class="line"><span>              &quot;transformations&quot;: [</span></span>
-<span class="line"><span>                &quot;JOIN_condition_to_WHERE&quot;,</span></span>
-<span class="line"><span>                &quot;parenthesis_removal&quot;</span></span>
-<span class="line"><span>              ],</span></span>
-<span class="line"><span>              &quot;expanded_query&quot;: &quot;/* select#1 */ select \`posts\`.\`id\` AS \`id\`,\`posts\`.\`source\` AS \`source\`,\`posts\`.\`user_id\` AS \`user_id\` from \`posts\` join \`users\` where ((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null)) order by \`posts\`.\`id\` desc limit 0,100&quot;</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          }</span></span>
-<span class="line"><span>        ]</span></span>
-<span class="line"><span>      }</span></span>
-<span class="line"><span>    },</span></span>
-<span class="line"><span>    {</span></span>
-<span class="line"><span>      &quot;join_optimization&quot;: {</span></span>
-<span class="line"><span>        &quot;select#&quot;: 1,</span></span>
-<span class="line"><span>        &quot;steps&quot;: [</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;condition_processing&quot;: {</span></span>
-<span class="line"><span>              &quot;condition&quot;: &quot;WHERE&quot;,</span></span>
-<span class="line"><span>              &quot;original_condition&quot;: &quot;((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null))&quot;,</span></span>
-<span class="line"><span>              &quot;steps&quot;: [</span></span>
-<span class="line"><span>                {</span></span>
-<span class="line"><span>                  &quot;transformation&quot;: &quot;equality_propagation&quot;,</span></span>
-<span class="line"><span>                  &quot;resulting_condition&quot;: &quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
-<span class="line"><span>                },</span></span>
-<span class="line"><span>                {</span></span>
-<span class="line"><span>                  &quot;transformation&quot;: &quot;constant_propagation&quot;,</span></span>
-<span class="line"><span>                  &quot;resulting_condition&quot;: &quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
-<span class="line"><span>                },</span></span>
-<span class="line"><span>                {</span></span>
-<span class="line"><span>                  &quot;transformation&quot;: &quot;trivial_condition_removal&quot;,</span></span>
-<span class="line"><span>                  &quot;resulting_condition&quot;: &quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
-<span class="line"><span>                }</span></span>
-<span class="line"><span>              ]</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;substitute_generated_columns&quot;: {</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;table_dependencies&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                &quot;row_may_be_null&quot;: false,</span></span>
-<span class="line"><span>                &quot;map_bit&quot;: 0,</span></span>
-<span class="line"><span>                &quot;depends_on_map_bits&quot;: [</span></span>
-<span class="line"><span>                ]</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                &quot;row_may_be_null&quot;: false,</span></span>
-<span class="line"><span>                &quot;map_bit&quot;: 1,</span></span>
-<span class="line"><span>                &quot;depends_on_map_bits&quot;: [</span></span>
-<span class="line"><span>                ]</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;ref_optimizer_key_uses&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                &quot;field&quot;: &quot;user_id&quot;,</span></span>
-<span class="line"><span>                &quot;equals&quot;: &quot;\`users\`.\`id\`&quot;,</span></span>
-<span class="line"><span>                &quot;null_rejecting&quot;: true</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                &quot;field&quot;: &quot;id&quot;,</span></span>
-<span class="line"><span>                &quot;equals&quot;: &quot;\`posts\`.\`user_id\`&quot;,</span></span>
-<span class="line"><span>                &quot;null_rejecting&quot;: true</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;rows_estimation&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                &quot;table_scan&quot;: {</span></span>
-<span class="line"><span>                  &quot;rows&quot;: 14612375,</span></span>
-<span class="line"><span>                  &quot;cost&quot;: 10224</span></span>
-<span class="line"><span>                }</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                &quot;table_scan&quot;: {</span></span>
-<span class="line"><span>                  &quot;rows&quot;: 497082,</span></span>
-<span class="line"><span>                  &quot;cost&quot;: 777.25</span></span>
-<span class="line"><span>                }</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;considered_execution_plans&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;plan_prefix&quot;: [</span></span>
-<span class="line"><span>                ],</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                &quot;best_access_path&quot;: {</span></span>
-<span class="line"><span>                  &quot;considered_access_paths&quot;: [</span></span>
-<span class="line"><span>                    {</span></span>
-<span class="line"><span>                      &quot;access_type&quot;: &quot;ref&quot;,</span></span>
-<span class="line"><span>                      &quot;index&quot;: &quot;PRIMARY&quot;,</span></span>
-<span class="line"><span>                      &quot;usable&quot;: false,</span></span>
-<span class="line"><span>                      &quot;chosen&quot;: false</span></span>
-<span class="line"><span>                    },</span></span>
-<span class="line"><span>                    {</span></span>
-<span class="line"><span>                      &quot;rows_to_scan&quot;: 497082,</span></span>
-<span class="line"><span>                      &quot;filtering_effect&quot;: [</span></span>
-<span class="line"><span>                      ],</span></span>
-<span class="line"><span>                      &quot;final_filtering_effect&quot;: 0.1,</span></span>
-<span class="line"><span>                      &quot;access_type&quot;: &quot;scan&quot;,</span></span>
-<span class="line"><span>                      &quot;resulting_rows&quot;: 49708.2,</span></span>
-<span class="line"><span>                      &quot;cost&quot;: 50485.4,</span></span>
-<span class="line"><span>                      &quot;chosen&quot;: true</span></span>
-<span class="line"><span>                    }</span></span>
-<span class="line"><span>                  ]</span></span>
-<span class="line"><span>                },</span></span>
-<span class="line"><span>                &quot;condition_filtering_pct&quot;: 100,</span></span>
-<span class="line"><span>                &quot;rows_for_plan&quot;: 49708.2,</span></span>
-<span class="line"><span>                &quot;cost_for_plan&quot;: 50485.4,</span></span>
-<span class="line"><span>                &quot;rest_of_plan&quot;: [</span></span>
-<span class="line"><span>                  {</span></span>
-<span class="line"><span>                    &quot;plan_prefix&quot;: [</span></span>
-<span class="line"><span>                      &quot;\`users\`&quot;</span></span>
-<span class="line"><span>                    ],</span></span>
-<span class="line"><span>                    &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                    &quot;best_access_path&quot;: {</span></span>
-<span class="line"><span>                      &quot;considered_access_paths&quot;: [</span></span>
-<span class="line"><span>                        {</span></span>
-<span class="line"><span>                          &quot;access_type&quot;: &quot;ref&quot;,</span></span>
-<span class="line"><span>                          &quot;index&quot;: &quot;user_id&quot;,</span></span>
-<span class="line"><span>                          &quot;rows&quot;: 17.656,</span></span>
-<span class="line"><span>                          &quot;cost&quot;: 307176,</span></span>
-<span class="line"><span>                          &quot;chosen&quot;: true</span></span>
-<span class="line"><span>                        },</span></span>
-<span class="line"><span>                        {</span></span>
-<span class="line"><span>                          &quot;rows_to_scan&quot;: 14612375,</span></span>
-<span class="line"><span>                          &quot;filtering_effect&quot;: [</span></span>
-<span class="line"><span>                          ],</span></span>
-<span class="line"><span>                          &quot;final_filtering_effect&quot;: 1,</span></span>
-<span class="line"><span>                          &quot;access_type&quot;: &quot;scan&quot;,</span></span>
-<span class="line"><span>                          &quot;using_join_cache&quot;: true,</span></span>
-<span class="line"><span>                          &quot;buffers_needed&quot;: 3,</span></span>
-<span class="line"><span>                          &quot;resulting_rows&quot;: 1.46124e+07,</span></span>
-<span class="line"><span>                          &quot;cost&quot;: 7.26355e+10,</span></span>
-<span class="line"><span>                          &quot;chosen&quot;: false</span></span>
-<span class="line"><span>                        }</span></span>
-<span class="line"><span>                      ]</span></span>
-<span class="line"><span>                    },</span></span>
-<span class="line"><span>                    &quot;condition_filtering_pct&quot;: 100,</span></span>
-<span class="line"><span>                    &quot;rows_for_plan&quot;: 877647,</span></span>
-<span class="line"><span>                    &quot;cost_for_plan&quot;: 357662,</span></span>
-<span class="line"><span>                    &quot;sort_cost&quot;: 877647,</span></span>
-<span class="line"><span>                    &quot;new_cost_for_plan&quot;: 1.23531e+06,</span></span>
-<span class="line"><span>                    &quot;chosen&quot;: true</span></span>
-<span class="line"><span>                  }</span></span>
-<span class="line"><span>                ]</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;plan_prefix&quot;: [</span></span>
-<span class="line"><span>                ],</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                &quot;best_access_path&quot;: {</span></span>
-<span class="line"><span>                  &quot;considered_access_paths&quot;: [</span></span>
-<span class="line"><span>                    {</span></span>
-<span class="line"><span>                      &quot;access_type&quot;: &quot;ref&quot;,</span></span>
-<span class="line"><span>                      &quot;index&quot;: &quot;user_id&quot;,</span></span>
-<span class="line"><span>                      &quot;usable&quot;: false,</span></span>
-<span class="line"><span>                      &quot;chosen&quot;: false</span></span>
-<span class="line"><span>                    },</span></span>
-<span class="line"><span>                    {</span></span>
-<span class="line"><span>                      &quot;rows_to_scan&quot;: 14612375,</span></span>
-<span class="line"><span>                      &quot;filtering_effect&quot;: [</span></span>
-<span class="line"><span>                      ],</span></span>
-<span class="line"><span>                      &quot;final_filtering_effect&quot;: 1,</span></span>
-<span class="line"><span>                      &quot;access_type&quot;: &quot;scan&quot;,</span></span>
-<span class="line"><span>                      &quot;resulting_rows&quot;: 1.46124e+07,</span></span>
-<span class="line"><span>                      &quot;cost&quot;: 1.47146e+06,</span></span>
-<span class="line"><span>                      &quot;chosen&quot;: true</span></span>
-<span class="line"><span>                    }</span></span>
-<span class="line"><span>                  ]</span></span>
-<span class="line"><span>                },</span></span>
-<span class="line"><span>                &quot;condition_filtering_pct&quot;: 100,</span></span>
-<span class="line"><span>                &quot;rows_for_plan&quot;: 1.46124e+07,</span></span>
-<span class="line"><span>                &quot;cost_for_plan&quot;: 1.47146e+06,</span></span>
-<span class="line"><span>                &quot;pruned_by_cost&quot;: true</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;attaching_conditions_to_tables&quot;: {</span></span>
-<span class="line"><span>              &quot;original_condition&quot;: &quot;((\`posts\`.\`user_id\` = \`users\`.\`id\`) and (\`users\`.\`deleted_at\` is null))&quot;,</span></span>
-<span class="line"><span>              &quot;attached_conditions_computation&quot;: [</span></span>
-<span class="line"><span>              ],</span></span>
-<span class="line"><span>              &quot;attached_conditions_summary&quot;: [</span></span>
-<span class="line"><span>                {</span></span>
-<span class="line"><span>                  &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                  &quot;attached&quot;: &quot;(\`users\`.\`deleted_at\` is null)&quot;</span></span>
-<span class="line"><span>                },</span></span>
-<span class="line"><span>                {</span></span>
-<span class="line"><span>                  &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                  &quot;attached&quot;: &quot;(\`posts\`.\`user_id\` = \`users\`.\`id\`)&quot;</span></span>
-<span class="line"><span>                }</span></span>
-<span class="line"><span>              ]</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;optimizing_distinct_group_by_order_by&quot;: {</span></span>
-<span class="line"><span>              &quot;simplifying_order_by&quot;: {</span></span>
-<span class="line"><span>                &quot;original_clause&quot;: &quot;\`posts\`.\`id\` desc&quot;,</span></span>
-<span class="line"><span>                &quot;items&quot;: [</span></span>
-<span class="line"><span>                  {</span></span>
-<span class="line"><span>                    &quot;item&quot;: &quot;\`posts\`.\`id\`&quot;</span></span>
-<span class="line"><span>                  }</span></span>
-<span class="line"><span>                ],</span></span>
-<span class="line"><span>                &quot;resulting_clause_is_simple&quot;: false,</span></span>
-<span class="line"><span>                &quot;resulting_clause&quot;: &quot;\`posts\`.\`id\` desc&quot;</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;finalizing_table_conditions&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
-<span class="line"><span>                &quot;original_table_condition&quot;: &quot;(\`users\`.\`deleted_at\` is null)&quot;,</span></span>
-<span class="line"><span>                &quot;final_table_condition   &quot;: &quot;(\`users\`.\`deleted_at\` is null)&quot;</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;,</span></span>
-<span class="line"><span>                &quot;original_table_condition&quot;: &quot;(\`posts\`.\`user_id\` = \`users\`.\`id\`)&quot;,</span></span>
-<span class="line"><span>                &quot;final_table_condition   &quot;: null</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;refine_plan&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`users\`&quot;</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;table&quot;: &quot;\`posts\`&quot;</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          },</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;considering_tmp_tables&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;adding_tmp_table_in_plan_at_position&quot;: 2,</span></span>
-<span class="line"><span>                &quot;write_method&quot;: &quot;write_all_rows&quot;</span></span>
-<span class="line"><span>              },</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;adding_sort_to_table&quot;: &quot;&quot;</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ]</span></span>
-<span class="line"><span>          }</span></span>
-<span class="line"><span>        ]</span></span>
-<span class="line"><span>      }</span></span>
-<span class="line"><span>    },</span></span>
-<span class="line"><span>    {</span></span>
-<span class="line"><span>      &quot;join_execution&quot;: {</span></span>
-<span class="line"><span>        &quot;select#&quot;: 1,</span></span>
-<span class="line"><span>        &quot;steps&quot;: [</span></span>
-<span class="line"><span>          {</span></span>
-<span class="line"><span>            &quot;sorting_table&quot;: &quot;&lt;temporary&gt;&quot;,</span></span>
-<span class="line"><span>            &quot;filesort_information&quot;: [</span></span>
-<span class="line"><span>              {</span></span>
-<span class="line"><span>                &quot;direction&quot;: &quot;desc&quot;,</span></span>
-<span class="line"><span>                &quot;expression&quot;: &quot;\`posts\`.\`id\`&quot;</span></span>
-<span class="line"><span>              }</span></span>
-<span class="line"><span>            ],</span></span>
-<span class="line"><span>            &quot;filesort_priority_queue_optimization&quot;: {</span></span>
-<span class="line"><span>              &quot;limit&quot;: 100,</span></span>
-<span class="line"><span>              &quot;chosen&quot;: true</span></span>
-<span class="line"><span>            },</span></span>
-<span class="line"><span>            &quot;filesort_execution&quot;: [</span></span>
-<span class="line"><span>            ],</span></span>
-<span class="line"><span>            &quot;filesort_summary&quot;: {</span></span>
-<span class="line"><span>              &quot;memory_available&quot;: 262144,</span></span>
-<span class="line"><span>              &quot;key_size&quot;: 8,</span></span>
-<span class="line"><span>              &quot;row_size&quot;: 535,</span></span>
-<span class="line"><span>              &quot;max_rows_per_buffer&quot;: 101,</span></span>
-<span class="line"><span>              &quot;num_rows_estimate&quot;: 877647,</span></span>
-<span class="line"><span>              &quot;num_rows_found&quot;: 14999897,</span></span>
-<span class="line"><span>              &quot;num_initial_chunks_spilled_to_disk&quot;: 0,</span></span>
-<span class="line"><span>              &quot;peak_memory_used&quot;: 54843,</span></span>
-<span class="line"><span>              &quot;sort_algorithm&quot;: &quot;std::stable_sort&quot;,</span></span>
-<span class="line"><span>              &quot;unpacked_addon_fields&quot;: &quot;using_priority_queue&quot;,</span></span>
-<span class="line"><span>              &quot;sort_mode&quot;: &quot;&lt;fixed_sort_key, additional_fields&gt;&quot;</span></span>
-<span class="line"><span>            }</span></span>
-<span class="line"><span>          }</span></span>
-<span class="line"><span>        ]</span></span>
-<span class="line"><span>      }</span></span>
-<span class="line"><span>    }</span></span>
-<span class="line"><span>  ]</span></span>
-<span class="line"><span>}</span></span>
-<span class="line"><span>1 row in set (0.01 sec)</span></span></code></pre></div><p>这里我们重点关注这一部分，可以发现，优化器认为扫描 users 表之后，只会得到 5w 行数据。而实际 explain analyze 得到的是 50w 行记录。</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span>              &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
+<span class="line"><span>	LIMIT 100 OFFSET 0;</span></span></code></pre></div><p>关闭 optimizer_trace</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span>set session optimizer_trace=&#39;enabled=off&#39;;</span></span></code></pre></div><p>查看 optimizer_trace 的结果</p><div class="language-sql vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">select</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> trace </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">from</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> information_schema</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">optimizer_trace</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">\\G</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">mysql</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">&gt;</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> select</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> trace </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">from</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> information_schema</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">optimizer_trace</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">\\G</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">***************************</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">. </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">row</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;"> ***************************</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">trace: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">  &quot;steps&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">      &quot;join_preparation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;select#&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;steps&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;expanded_query&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;/* select#1 */ select \`posts\`.\`id\` AS \`id\`,\`posts\`.\`source\` AS \`source\`,\`posts\`.\`user_id\` AS \`user_id\` from (\`posts\` join \`users\` on(((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null)))) order by \`posts\`.\`id\` desc limit 0,100&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;transformations_to_nested_joins&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;transformations&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;JOIN_condition_to_WHERE&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;parenthesis_removal&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;expanded_query&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;/* select#1 */ select \`posts\`.\`id\` AS \`id\`,\`posts\`.\`source\` AS \`source\`,\`posts\`.\`user_id\` AS \`user_id\` from \`posts\` join \`users\` where ((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null)) order by \`posts\`.\`id\` desc limit 0,100&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">      }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">      &quot;join_optimization&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;select#&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;steps&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;condition_processing&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;WHERE&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;original_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;((\`users\`.\`id\` = \`posts\`.\`user_id\`) and (\`users\`.\`deleted_at\` is null))&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;steps&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;transformation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;equality_propagation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;resulting_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;transformation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;constant_propagation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;resulting_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;transformation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;trivial_condition_removal&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;resulting_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;((\`users\`.\`deleted_at\` is null) and multiple equal(\`users\`.\`id\`, \`posts\`.\`user_id\`))&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;substitute_generated_columns&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;table_dependencies&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;row_may_be_null&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;map_bit&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;depends_on_map_bits&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;row_may_be_null&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;map_bit&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;depends_on_map_bits&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;ref_optimizer_key_uses&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;field&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;user_id&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;equals&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`.\`id\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;null_rejecting&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;field&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;id&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;equals&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`.\`user_id\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;null_rejecting&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;rows_estimation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table_scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">14612375</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">10224</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table_scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">497082</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">777</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">25</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;considered_execution_plans&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;plan_prefix&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;best_access_path&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;considered_access_paths&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;ref&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;index&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;PRIMARY&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;usable&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;rows_to_scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">497082</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                      ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;final_filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;resulting_rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">49708</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">50485</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;condition_filtering_pct&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;rows_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">49708</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;cost_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">50485</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;rest_of_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;plan_prefix&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;\`users\`&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;best_access_path&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;considered_access_paths&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;ref&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;index&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;user_id&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">17</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">656</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">307176</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;rows_to_scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">14612375</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                          ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;final_filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;using_join_cache&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;buffers_needed&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">3</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;resulting_rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.46124e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">07</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">7</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.26355e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">10</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                          &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                        }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                      ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;condition_filtering_pct&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;rows_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">877647</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;cost_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">357662</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;sort_cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">877647</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;new_cost_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.23531e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">06</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;plan_prefix&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;best_access_path&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;considered_access_paths&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;ref&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;index&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;user_id&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;usable&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;rows_to_scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">14612375</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                      ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;final_filtering_effect&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;access_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;scan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;resulting_rows&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.46124e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">07</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.47146e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">06</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                      &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;condition_filtering_pct&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;rows_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.46124e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">07</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;cost_for_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.47146e</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">06</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;pruned_by_cost&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;attaching_conditions_to_tables&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;original_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;((\`posts\`.\`user_id\` = \`users\`.\`id\`) and (\`users\`.\`deleted_at\` is null))&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;attached_conditions_computation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;attached_conditions_summary&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;attached&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;(\`users\`.\`deleted_at\` is null)&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                  &quot;attached&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;(\`posts\`.\`user_id\` = \`users\`.\`id\`)&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;optimizing_distinct_group_by_order_by&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;simplifying_order_by&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;original_clause&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`.\`id\` desc&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;items&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                    &quot;item&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`.\`id\`&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">                ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;resulting_clause_is_simple&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: false,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;resulting_clause&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`.\`id\` desc&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;finalizing_table_conditions&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;original_table_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;(\`users\`.\`deleted_at\` is null)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;final_table_condition   &quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;(\`users\`.\`deleted_at\` is null)&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;original_table_condition&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;(\`posts\`.\`user_id\` = \`users\`.\`id\`)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;final_table_condition   &quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">null</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;refine_plan&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`users\`&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;considering_tmp_tables&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;adding_tmp_table_in_plan_at_position&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;write_method&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;write_all_rows&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;adding_sort_to_table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">      }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">      &quot;join_execution&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;select#&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">        &quot;steps&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;sorting_table&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;&lt;temporary&gt;&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;filesort_information&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;direction&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;desc&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">                &quot;expression&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;\`posts\`.\`id\`&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">              }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;filesort_priority_queue_optimization&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;limit&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;chosen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;filesort_execution&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">            &quot;filesort_summary&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;memory_available&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">262144</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;key_size&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">8</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;row_size&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">535</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;max_rows_per_buffer&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">101</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;num_rows_estimate&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">877647</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;num_rows_found&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">14999897</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;num_initial_chunks_spilled_to_disk&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;peak_memory_used&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">54843</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;sort_algorithm&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;std::stable_sort&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;unpacked_addon_fields&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;using_priority_queue&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">              &quot;sort_mode&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&quot;&lt;fixed_sort_key, additional_fields&gt;&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">          }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">      }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">}</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> row</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> in</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> set</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">01</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> sec)</span></span></code></pre></div><p>这里我们重点关注这一部分，可以发现，优化器认为扫描 users 表之后，只会得到 5w 行数据。而实际 explain analyze 得到的是 50w 行记录。</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span>              &quot;table&quot;: &quot;\`users\`&quot;,</span></span>
 <span class="line"><span>                &quot;best_access_path&quot;: {</span></span>
 <span class="line"><span>                  &quot;considered_access_paths&quot;: [</span></span>
 <span class="line"><span>                    {</span></span>
@@ -762,4 +762,68 @@ import{_ as B,c as d,j as i,a,G as n,as as h,w as l,B as t,o}from"./chunks/frame
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">        -</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">&gt;</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> Filter</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">users</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">deleted_at</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> is</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> null</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)  (cost</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">25</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> rows</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">) (actual </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">time</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0124</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">..</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0125</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> rows</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> loops</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">            -</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> Single</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">-</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">row</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> index</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> lookup </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">on</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> users </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">using</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> PRIMARY</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> (id</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">posts</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">user_id</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)  (cost</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">25</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> rows</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">) (actual </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">time</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">012</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">..</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0121</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> rows</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> loops</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> row</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> in</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> set</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">02</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> sec)</span></span></code></pre></div><p>上述就是整个使用 optimizer_trace 分析的过程。</p><p>参考：</p>`,48)),i("ul",null,[i("li",null,[n(p,{href:"https://dev.mysql.com/doc/refman/8.4/en/join.html#:~:text=official%20ODBC%20syntax.-,STRAIGHT_JOIN,-is%20similar%20to",target:"_blank",rel:"noreferrer"},{default:l(()=>s[0]||(s[0]=[a("https://dev.mysql.com/doc/refman/8.4/en/join.html#:~:text=official ODBC syntax.-,STRAIGHT_JOIN,-is similar to")])),_:1})]),i("li",null,[n(p,{href:"https://timyang.net/data/key-list-pagination/",target:"_blank",rel:"noreferrer"},{default:l(()=>s[1]||(s[1]=[a("https://timyang.net/data/key-list-pagination/")])),_:1})]),i("li",null,[n(p,{href:"https://stackoverflow.com/questions/4481388/why-does-mysql-higher-limit-offset-slow-the-query-down",target:"_blank",rel:"noreferrer"},{default:l(()=>s[2]||(s[2]=[a("https://stackoverflow.com/questions/4481388/why-does-mysql-higher-limit-offset-slow-the-query-down")])),_:1})]),i("li",null,[n(p,{href:"https://www.cnblogs.com/weixiaotao/p/10646666.html",target:"_blank",rel:"noreferrer"},{default:l(()=>s[3]||(s[3]=[a("https://www.cnblogs.com/weixiaotao/p/10646666.html")])),_:1})]),i("li",null,[n(p,{href:"https://dev.mysql.com/doc/refman/8.4/en/analyze-table.html#analyze-table-histogram-statistics-analysis",target:"_blank",rel:"noreferrer"},{default:l(()=>s[4]||(s[4]=[a("https://dev.mysql.com/doc/refman/8.4/en/analyze-table.html#analyze-table-histogram-statistics-analysis")])),_:1})]),i("li",null,[n(p,{href:"https://dev.mysql.com/blog-archive/mysql-8-0-1-accent-and-case-sensitive-collations-for-utf8mb4/",target:"_blank",rel:"noreferrer"},{default:l(()=>s[5]||(s[5]=[a("https://dev.mysql.com/blog-archive/mysql-8-0-1-accent-and-case-sensitive-collations-for-utf8mb4/")])),_:1})])]),s[11]||(s[11]=i("h1",{id:"todo",tabindex:"-1"},[a("todo "),i("a",{class:"header-anchor",href:"#todo","aria-label":'Permalink to "todo"'},"​")],-1)),s[12]||(s[12]=i("p",null,"explain 语句",-1)),s[13]||(s[13]=i("p",null,"通过 explain 语句可以得到语句可能使用的执行计划，",-1)),i("p",null,[s[7]||(s[7]=a("可以参考: ")),n(p,{href:"https://dev.mysql.com/doc/refman/8.4/en/explain.html#explain-execution-plan",target:"_blank",rel:"noreferrer"},{default:l(()=>s[6]||(s[6]=[a("https://dev.mysql.com/doc/refman/8.4/en/explain.html#explain-execution-plan")])),_:1})]),s[14]||(s[14]=h("<p>explain 语句的 json 格式</p><p>explain analyze 语句</p><p>optimizer_trace</p><p>深分页问题</p><ol><li>offset 分页</li><li>cursor 分页 <ul><li>timestamp 分页</li><li>primary key 分页</li></ul></li><li>延迟 join</li></ol><p>straight_join</p>",6)),n(e),n(r)])}const E=B(g,[["render",y]]);export{D as __pageData,E as default};
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> row</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> in</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> set</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">02</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> sec)</span></span></code></pre></div><p>上述就是整个使用 optimizer_trace 分析的过程。</p><h2 id="实验脚本" tabindex="-1">实验脚本 <a class="header-anchor" href="#实验脚本" aria-label="Permalink to &quot;实验脚本&quot;">​</a></h2><div class="language-python vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> random</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> uuid</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> string</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> mysql.connector</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">config </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">    &#39;user&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;root&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">    &#39;password&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">    &#39;host&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;127.0.0.1&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">    &#39;database&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;sql_tests&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">    &#39;raise_on_warnings&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">True</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">connection </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> mysql.connector.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">connect</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#ABB2BF;">**</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">config)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">cursor </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">cursor</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#61AFEF;"> random_string</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#24292E;--shiki-light-font-style:inherit;--shiki-dark:#D19A66;--shiki-dark-font-style:italic;">length</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">):</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">    return</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;"> &#39;&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">join</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(random.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">choices</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(string.ascii_letters </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">+</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> string.digits, </span><span style="--shiki-light:#E36209;--shiki-light-font-style:inherit;--shiki-dark:#E06C75;--shiki-dark-font-style:italic;">k</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">length))</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#61AFEF;"> insert_users</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#24292E;--shiki-light-font-style:inherit;--shiki-dark:#D19A66;--shiki-dark-font-style:italic;">count</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">):</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    sql </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;"> &#39;&#39;&#39;INSERT INTO users (name, email)</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">             VALUES (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">%s</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">%s</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">)&#39;&#39;&#39;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 0</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> _ </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#56B6C2;"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(count):</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        email </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#56B6C2;"> str</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(uuid.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">uuid4</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()) </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">+</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;"> &#39;@example.com&#39;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        name </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;"> random_string</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        cursor.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">execute</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(sql, (name, email))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 1</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 1000</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">commit</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">commit</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#61AFEF;"> insert_logins</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#24292E;--shiki-light-font-style:inherit;--shiki-dark:#D19A66;--shiki-dark-font-style:italic;">count</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">, </span><span style="--shiki-light:#24292E;--shiki-light-font-style:inherit;--shiki-dark:#D19A66;--shiki-dark-font-style:italic;">min_user_id</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">, </span><span style="--shiki-light:#24292E;--shiki-light-font-style:inherit;--shiki-dark:#D19A66;--shiki-dark-font-style:italic;">max_user_id</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">):</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    sql </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;"> &#39;&#39;&#39;INSERT INTO posts (source, user_id)</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">             VALUES (</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">%s</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">%s</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">)&#39;&#39;&#39;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 0</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> _ </span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#56B6C2;"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(count):</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        user_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> random.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">randint</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(min_user_id, max_user_id)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        source </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;"> random_string</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        cursor.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">execute</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(sql, (source, user_id))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">        cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 1</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 1000</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">commit</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">            cnt </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">    connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">commit</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">user_count </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 500_000</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">login_count </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;"> 15_000_000</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">insert_users</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(user_count)</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#56B6C2;">print</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;insert users successfully&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">select_bound_user_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;"> &quot;select min(id) as min_id, max(id) as max_id from users&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">cursor.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">execute</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(select_bound_user_id)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">res </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> cursor.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">fetchone</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">min_user_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> res[</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">max_user_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;"> res[</span><span style="--shiki-light:#005CC5;--shiki-dark:#D19A66;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">insert_logins</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(login_count, min_user_id, max_user_id)</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#56B6C2;">print</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#98C379;">&#39;insert posts successfully&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">cursor.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">close</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">connection.</span><span style="--shiki-light:#24292E;--shiki-dark:#61AFEF;">close</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">()</span></span></code></pre></div><p>需要安装</p><div class="language-python vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre class="shiki shiki-themes github-light one-dark-pro vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">pip install mysql</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">-</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">connector</span><span style="--shiki-light:#D73A49;--shiki-dark:#56B6C2;">-</span><span style="--shiki-light:#24292E;--shiki-dark:#ABB2BF;">python</span></span></code></pre></div><p>参考：</p>`,52)),i("ul",null,[i("li",null,[n(h,{href:"https://dev.mysql.com/doc/refman/8.4/en/join.html#:~:text=official%20ODBC%20syntax.-,STRAIGHT_JOIN,-is%20similar%20to",target:"_blank",rel:"noreferrer"},{default:l(()=>s[0]||(s[0]=[a("https://dev.mysql.com/doc/refman/8.4/en/join.html#:~:text=official ODBC syntax.-,STRAIGHT_JOIN,-is similar to")])),_:1})]),i("li",null,[n(h,{href:"https://timyang.net/data/key-list-pagination/",target:"_blank",rel:"noreferrer"},{default:l(()=>s[1]||(s[1]=[a("https://timyang.net/data/key-list-pagination/")])),_:1})]),i("li",null,[n(h,{href:"https://stackoverflow.com/questions/4481388/why-does-mysql-higher-limit-offset-slow-the-query-down",target:"_blank",rel:"noreferrer"},{default:l(()=>s[2]||(s[2]=[a("https://stackoverflow.com/questions/4481388/why-does-mysql-higher-limit-offset-slow-the-query-down")])),_:1})]),i("li",null,[n(h,{href:"https://www.cnblogs.com/weixiaotao/p/10646666.html",target:"_blank",rel:"noreferrer"},{default:l(()=>s[3]||(s[3]=[a("https://www.cnblogs.com/weixiaotao/p/10646666.html")])),_:1})]),i("li",null,[n(h,{href:"https://dev.mysql.com/doc/refman/8.4/en/analyze-table.html#analyze-table-histogram-statistics-analysis",target:"_blank",rel:"noreferrer"},{default:l(()=>s[4]||(s[4]=[a("https://dev.mysql.com/doc/refman/8.4/en/analyze-table.html#analyze-table-histogram-statistics-analysis")])),_:1})]),i("li",null,[n(h,{href:"https://dev.mysql.com/blog-archive/mysql-8-0-1-accent-and-case-sensitive-collations-for-utf8mb4/",target:"_blank",rel:"noreferrer"},{default:l(()=>s[5]||(s[5]=[a("https://dev.mysql.com/blog-archive/mysql-8-0-1-accent-and-case-sensitive-collations-for-utf8mb4/")])),_:1})])]),s[11]||(s[11]=i("h1",{id:"todo",tabindex:"-1"},[a("todo "),i("a",{class:"header-anchor",href:"#todo","aria-label":'Permalink to "todo"'},"​")],-1)),s[12]||(s[12]=i("p",null,"explain 语句",-1)),s[13]||(s[13]=i("p",null,"通过 explain 语句可以得到语句可能使用的执行计划，",-1)),i("p",null,[s[7]||(s[7]=a("可以参考: ")),n(h,{href:"https://dev.mysql.com/doc/refman/8.4/en/explain.html#explain-execution-plan",target:"_blank",rel:"noreferrer"},{default:l(()=>s[6]||(s[6]=[a("https://dev.mysql.com/doc/refman/8.4/en/explain.html#explain-execution-plan")])),_:1})]),s[14]||(s[14]=k("<p>explain 语句的 json 格式</p><p>explain analyze 语句</p><p>optimizer_trace</p><p>深分页问题</p><ol><li>offset 分页</li><li>cursor 分页 <ul><li>timestamp 分页</li><li>primary key 分页</li></ul></li><li>延迟 join</li></ol><p>straight_join</p>",6)),n(e),n(B)])}const q=r(y,[["render",o]]);export{D as __pageData,q as default};

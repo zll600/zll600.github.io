@@ -11,6 +11,20 @@ tags:
 
 从上到下解释一下 trace 中的各个步骤。
 
+optimizer_trace 的信息来源于 `information_schema.optimizer_trace`，该表的 schema 如下。
+````sql
+mysql> show create table information_schema.optimizer_trace\G
+*************************** 1. row ***************************
+       Table: OPTIMIZER_TRACE
+Create Table: CREATE TEMPORARY TABLE `OPTIMIZER_TRACE` (
+  `QUERY` longtext NOT NULL,
+  `TRACE` longtext NOT NULL,
+  `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` int NOT NULL DEFAULT '0',
+  `INSUFFICIENT_PRIVILEGES` tinyint NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+1 row in set (0.00 sec)
+````
+
 执行语句如下：
 ````
 EXPLAIN ANALYZE SELECT

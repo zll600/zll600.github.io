@@ -41,7 +41,7 @@
     "@netlify/functions": "^2.8.2",
     "@nolebase/markdown-it-bi-directional-links": "^2.9.0",
     "@nolebase/markdown-it-unlazy-img": "^2.9.0",
-    "@nolebase/vitepress-plugin-enhanced-mark": "^2.9.0",
+    "@nolebase/vitepress-plugin-enhanced-mark": "^2.10.0",
     "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.10.0",
     "@nolebase/vitepress-plugin-git-changelog": "^2.9.0",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.9.0",

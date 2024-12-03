@@ -48,7 +48,7 @@
     "@nolebase/vitepress-plugin-index": "^2.9.0",
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.9.0",
     "@nolebase/vitepress-plugin-meta": "^2.9.0",
-    "@nolebase/vitepress-plugin-og-image": "^2.9.0",
+    "@nolebase/vitepress-plugin-og-image": "^2.11.1",
     "@nolebase/vitepress-plugin-page-properties": "^2.9.0",
     "@nolebase/vitepress-plugin-sidebar": "^2.11.1",
     "@nolebase/vitepress-plugin-thumbnail-hash": "^2.9.0",

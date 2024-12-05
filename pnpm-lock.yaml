@@ -39,8 +39,8 @@ importers:
         specifier: ^2.10.0
         version: 2.10.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-git-changelog':
-        specifier: ^2.9.0
-        version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.11.1
+        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.9.0
         version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
@@ -858,8 +858,8 @@ packages:
   '@nolebase/vitepress-plugin-enhanced-readabilities@2.10.0':
     resolution: {integrity: sha512-/O2eKLQOUf2ejSbqWfpVPBhW0TUx/X1STnk9SYTLn+6cGH02Q3TEQbQqk4YylGCLh7XEEHiV+Tygj98A26kLmg==}
 
-  '@nolebase/vitepress-plugin-git-changelog@2.9.0':
-    resolution: {integrity: sha512-jfjNF1vmfilmf/mHuXv6BqiPh4TJbtZdmW5YP9efVEHsDmPkuAkCLYvZ9N0+EQzOa/aM3d62+zJ7udk6RpGyKA==}
+  '@nolebase/vitepress-plugin-git-changelog@2.11.1':
+    resolution: {integrity: sha512-CppE+THHJimRODyoPtY7V5f2SF4fZfBUcKST0OOIb8H4Lk+56xhY7HKtq+XzOzdZGN9Q88tTfnPV26hdg+Iwgg==}
 
   '@nolebase/vitepress-plugin-highlight-targeted-heading@2.9.0':
     resolution: {integrity: sha512-9Qmyih4RNO3rp1pUp4REqWelxSenjfBRgU0HIq4BBmUlFT6AYDgKXllD1/Em3zLnpopdzbuDQyU2C+OQqs4Sig==}
@@ -3714,10 +3714,10 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-git-changelog@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-git-changelog@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       '@iconify-json/octicon': 1.2.1
-      '@nolebase/ui': 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+      '@nolebase/ui': 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       colorette: 2.0.20
       date-fns: 4.1.0
       defu: 6.1.4

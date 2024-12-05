@@ -43,7 +43,7 @@
     "@nolebase/markdown-it-unlazy-img": "^2.9.0",
     "@nolebase/vitepress-plugin-enhanced-mark": "^2.9.0",
     "@nolebase/vitepress-plugin-enhanced-readabilities": "^2.10.0",
-    "@nolebase/vitepress-plugin-git-changelog": "^2.9.0",
+    "@nolebase/vitepress-plugin-git-changelog": "^2.11.1",
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.9.0",
     "@nolebase/vitepress-plugin-index": "^2.9.0",
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.11.1",

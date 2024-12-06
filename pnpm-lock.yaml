@@ -57,8 +57,8 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-page-properties':
-        specifier: ^2.9.0
-        version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.11.1
+        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-sidebar':
         specifier: ^2.11.1
         version: 2.11.1
@@ -876,8 +876,8 @@ packages:
   '@nolebase/vitepress-plugin-og-image@2.11.1':
     resolution: {integrity: sha512-s/4mEAcvVF/fG1tIk6OBbMiO2sgmbM6kRuk31h6E9ij67gP33UDCbhl6D4PtemA20k2fJ6Iy/O5GzqMihPG+8A==}
 
-  '@nolebase/vitepress-plugin-page-properties@2.9.0':
-    resolution: {integrity: sha512-PFgUedYVxA4BFpkq08NsvW+gTg6vNnDrF9fXNSbIMwdXUADSWuYulvJBQgd4XSDlz8Q/rYsQp2/ZJLqXF9s3Nw==}
+  '@nolebase/vitepress-plugin-page-properties@2.11.1':
+    resolution: {integrity: sha512-70qP49/d5+vHH3tWIZXUWq6gSnOfEOkOTNKjUNKSTQ9+P5/bMz7aYG4FQlYWNb/DK3BtYCW87VBJODKo8UaxnA==}
 
   '@nolebase/vitepress-plugin-sidebar@2.11.1':
     resolution: {integrity: sha512-yDq9OVFrALfxAlFC2bkrvgb3xAGIgH4AZ4+ybPnobSpWydh23DDm+ZOir+K52DWUAJwhDf5FmumQQz65SIrTlQ==}
@@ -3957,11 +3957,11 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-page-properties@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-page-properties@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       '@iconify-json/icon-park-outline': 1.2.1
       '@iconify-json/octicon': 1.2.1
-      '@nolebase/ui': 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+      '@nolebase/ui': 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       date-fns: 4.1.0
       gray-matter: 4.0.3
       less: 4.2.1

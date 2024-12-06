@@ -45,8 +45,8 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-index':
-        specifier: ^2.9.0
-        version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.11.1
+        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-inline-link-preview':
         specifier: ^2.11.1
         version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
@@ -861,8 +861,8 @@ packages:
   '@nolebase/vitepress-plugin-highlight-targeted-heading@2.11.1':
     resolution: {integrity: sha512-EfnCi5sAlPo9MgI4eRJoE7x/7CxuQYJhABT8jRhtrzphd2Bn/405zvszpGOWyyYEG4IZG6r9EsuBsG796Gmsfg==}
 
-  '@nolebase/vitepress-plugin-index@2.9.0':
-    resolution: {integrity: sha512-31yAMQaQqS5TweEXNhtMg/gS97Pm91cPZjqvMcJVpD5I2Ni68rsXQEEa12o5vfZjVJkTA5QDfFIwtKz7c6OpSw==}
+  '@nolebase/vitepress-plugin-index@2.11.1':
+    resolution: {integrity: sha512-8TYrv/rhEeLBUJTWeI+00DHGCC5jx2i7iNlO5fXED7O7XDN9SFIZmRwNVOrwNsEIlyK0U2oNJEioXhwKIpucFA==}
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.11.1':
     resolution: {integrity: sha512-RDFOuNCLqm+ZW6+7/hD4q2hgw2SXfyG0ppNb5F6zWSVSe9aOXspq62lJtwjYCe1rGT6ljnL9muwOnK/csOuvww==}
@@ -3752,13 +3752,12 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-index@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-index@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       defu: 6.1.4
       execa: 9.5.1
-      glob: 11.0.0
-      globby: 14.0.2
       gray-matter: 4.0.3
+      tinyglobby: 0.2.10
       vitepress: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
     transitivePeerDependencies:
       - '@algolia/client-search'

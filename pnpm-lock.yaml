@@ -63,8 +63,8 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1
       '@nolebase/vitepress-plugin-thumbnail-hash':
-        specifier: ^2.9.0
-        version: 2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.11.1
+        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -849,9 +849,6 @@ packages:
   '@nolebase/ui@2.11.1':
     resolution: {integrity: sha512-J08bh8wd1AXYzgGJtnoo6ptr20W+P/JuLISm7HdOTLr5nmq/pKmygOYVx63zuDVskpd04/VwUEkzA5wVipozvg==}
 
-  '@nolebase/ui@2.9.0':
-    resolution: {integrity: sha512-490S46zBqEU4+lyCM0Ik/gGgXReaKF4sycs39ItQGd7iWrcsTcy64+lKg0JmsNwxzHPKqW5xGwYM6AvAgSNUTA==}
-
   '@nolebase/vitepress-plugin-enhanced-mark@2.9.0':
     resolution: {integrity: sha512-OATeS4y7ZCWHm0tz5kk1vMTYkJjjswYqlm28iScLBqCYqb5Re5EoHnltnIi5b4MTB0JiMoGsH4GRl+3Z3z2t8Q==}
 
@@ -882,8 +879,8 @@ packages:
   '@nolebase/vitepress-plugin-sidebar@2.11.1':
     resolution: {integrity: sha512-yDq9OVFrALfxAlFC2bkrvgb3xAGIgH4AZ4+ybPnobSpWydh23DDm+ZOir+K52DWUAJwhDf5FmumQQz65SIrTlQ==}
 
-  '@nolebase/vitepress-plugin-thumbnail-hash@2.9.0':
-    resolution: {integrity: sha512-kpKgN6xZqC1cn08G2oJd3m4F58HAaullgbi8VoApUyB/4RkmSq7j7Zy9Qezd14RhkPJlc8uKdfFDUduFXF4skQ==}
+  '@nolebase/vitepress-plugin-thumbnail-hash@2.11.1':
+    resolution: {integrity: sha512-pNUVvXYhDnRAtHV7fO4wu3diXPW6eQh9bZ7Ad9pasmTyCBS06UFY/epTmZXWrufjvFk7IEUIdnRKwNL9tASqYQ==}
 
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
@@ -1137,11 +1134,11 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@unlazy/core@0.11.8':
-    resolution: {integrity: sha512-UHtSS7xFiFO6SOxrpdh3bPPorTiQiBNLif24lyu/llAsAimHILdllwO4Ou997nUtcW+dPB/H+qIxHrF8fu1Zxg==}
+  '@unlazy/core@0.12.1':
+    resolution: {integrity: sha512-FTTu09EuvlX2+Rr7Gwl0SI3WXxHmIMmC9BmuzKVic3yulLiB0Qx6m7HYcDtj/aPeE2OoNHeSw5+KfsF50WAU2A==}
 
-  '@unlazy/vue@0.11.8':
-    resolution: {integrity: sha512-dTtlsSXuJwlBk73iW4v0e++oSRsy3H6qLnvlQluXr/n4c5cLO7j43jocVD1BMQn/F6LC0gBK/0Lac4xV4dJ1Rw==}
+  '@unlazy/vue@0.12.1':
+    resolution: {integrity: sha512-3Yh3nSo5KYup9smOkcHYiFMe4sjDsXH1w6yUut2bGwlYefGxM4YCQABw3Zf99w/SzbRN+zpNob6vZhUNJSj5XQ==}
 
   '@unocss/astro@0.65.0':
     resolution: {integrity: sha512-JyQJBZqX++Hi1fBFJK7OrO37qbBLn+ff72sx2WRKYc5BYn9cbUj4DdfUuyEbqZErfoshykVafBmuQU8AWLR47w==}
@@ -2781,8 +2778,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  unlazy@0.11.8:
-    resolution: {integrity: sha512-0kvelG1wAOljB8y1+xQE8XGvIo2DVUhSl9JKC9ZG8wr4hjP7cPuh0S/xF8RPMNNPgyFuzQPagPnNMfbsYX9WOQ==}
+  unlazy@0.12.1:
+    resolution: {integrity: sha512-NdUAiAzZpqYzwCKFPLcFoWqoodwMH3Ka1ETx38ll92ACJQ/r6XhgCdApFd135paNEKKFstU5fiKvqxxd7dPyqg==}
 
   unocss@0.65.0:
     resolution: {integrity: sha512-mTL0n7GsGvsprpw6XAZ2FX0oWWbe2KJuG1cUqlH+cScF64/k3NyciqdMYycKjwqAgtp8W4Ptf7tdG1aquqmNNw==}
@@ -3610,41 +3607,6 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/ui@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
-    dependencies:
-      '@iconify-json/octicon': 1.2.1
-      less: 4.2.1
-      vitepress: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
-      vue: 3.5.13(typescript@5.7.2)
-    transitivePeerDependencies:
-      - '@algolia/client-search'
-      - '@types/node'
-      - '@types/react'
-      - '@vue/composition-api'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - fuse.js
-      - idb-keyval
-      - jwt-decode
-      - lightningcss
-      - markdown-it-mathjax3
-      - nprogress
-      - postcss
-      - qrcode
-      - react
-      - react-dom
-      - sass
-      - sass-embedded
-      - search-insights
-      - sortablejs
-      - stylus
-      - sugarss
-      - terser
-      - typescript
-      - universal-cookie
-
   '@nolebase/vitepress-plugin-enhanced-mark@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       less: 4.2.1
@@ -4001,17 +3963,17 @@ snapshots:
       fs-extra: 11.2.0
       tinyglobby: 0.2.10
 
-  '@nolebase/vitepress-plugin-thumbnail-hash@2.9.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-thumbnail-hash@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
-      '@unlazy/vue': 0.11.8
+      '@unlazy/vue': 0.12.1
       canvaskit-wasm: 0.39.1
       colorette: 2.0.20
-      glob: 11.0.0
       less: 4.2.1
       ora: 8.1.1
       thumbhash: 0.1.1
+      tinyglobby: 0.2.10
       uncrypto: 0.1.3
-      unlazy: 0.11.8
+      unlazy: 0.12.1
       vitepress: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -4284,11 +4246,11 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@unlazy/core@0.11.8': {}
+  '@unlazy/core@0.12.1': {}
 
-  '@unlazy/vue@0.11.8':
+  '@unlazy/vue@0.12.1':
     dependencies:
-      unlazy: 0.11.8
+      unlazy: 0.12.1
 
   '@unocss/astro@0.65.0(rollup@4.26.0)(vite@5.4.11(@types/node@22.9.0)(less@4.2.1))(vue@3.5.13(typescript@5.7.2))':
     dependencies:
@@ -6215,9 +6177,9 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unlazy@0.11.8:
+  unlazy@0.12.1:
     dependencies:
-      '@unlazy/core': 0.11.8
+      '@unlazy/core': 0.12.1
 
   unocss@0.65.0(postcss@8.4.49)(rollup@4.26.0)(vite@5.4.11(@types/node@22.9.0)(less@4.2.1))(vue@3.5.13(typescript@5.7.2)):
     dependencies:

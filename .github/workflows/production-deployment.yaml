@@ -1,9 +1,6 @@
 name: 构建并部署到 Netlify
 
 on:
-  push:
-    branches:
-      - "main"
   workflow_dispatch:
 
 env:

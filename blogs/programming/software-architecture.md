@@ -12,5 +12,6 @@ tags:
 - [The Intersection of Architecture and Implementation - Mark Richards](https://www.youtube.com/watch?v=n6G5qtJHmgw&t=267s)
 - [Decomposition Patterns - Mark Richards](https://www.youtube.com/watch?v=wiWjX9yaXTY&t=785s)
 
-## Markus Völter
+## DDD Europe 2024
+- [Evolving Wikipedia: A Case Study in Applying DDD - Moriel Schottlender - DDD Europe 2024](https://www.youtube.com/watch?v=IvTmHMAd7nY)
 - [How to understand almost anything - Markus Völter - DDD Europe](https://www.youtube.com/watch?v=4UHhaOCjMgY)

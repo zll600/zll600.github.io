@@ -22,4 +22,6 @@ About Moriel Schottlender:
 Moriel is a physicist turned software engineer turned systems architect, currently working on modernising Wikipedia’s systems. She’s an Open Source enthusiast, right-to-left language support and localisation evangelist, and a general domain hoarder.
 ````
 
+- [The Timeless Way of Software - Taylor Troesh - DDD Europe](https://www.youtube.com/watch?v=wTv5kvuP1hI)
+
 - [How to understand almost anything - Markus Völter - DDD Europe](https://www.youtube.com/watch?v=4UHhaOCjMgY)

@@ -48,8 +48,8 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-inline-link-preview':
-        specifier: ^2.11.1
-        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.12.0
+        version: 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-meta':
         specifier: ^2.11.1
         version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
@@ -946,6 +946,9 @@ packages:
   '@iconify-json/icon-park-outline@1.2.1':
     resolution: {integrity: sha512-cNvUJL9mk3xOfyffErQuxvyRCWk0hCx1M8AEyGmNXjqIfgPC25OChCstt0KFB3IULS+hw9es+uA7pvVPmQh+AA==}
 
+  '@iconify-json/icon-park-outline@1.2.2':
+    resolution: {integrity: sha512-7VkMWOZTIMNkC9+oAL4I5kVlVC5Pq3nQpruZ4E3cLyKaeV95gaUrEilUkvGW71fgsFYCBWAmOZ3KpM4ux0j0zA==}
+
   '@iconify-json/octicon@1.2.2':
     resolution: {integrity: sha512-qEPkP9DMMay5uILzyaSmVksSMxRw9i2wSDREfB8OK20mPdSadusjLqD/u69GzpFpw6894c+WNmoq7WzN5KAPeg==}
 
@@ -1119,8 +1122,8 @@ packages:
     peerDependencies:
       markdown-it: '>=14.0.0'
 
-  '@nolebase/markdown-it-element-transform@2.11.1':
-    resolution: {integrity: sha512-Jght930QNGQHo1TfItkc1vdY+FaCsWLNyFpNvT7XELOzwpX27+tBfH65VCSalCBY7M3iQ8rU5VBw550T+Ibflg==}
+  '@nolebase/markdown-it-element-transform@2.12.0':
+    resolution: {integrity: sha512-+lXzBPOVIkykWxRqSfCFaZtpwexRAxYWZVPQIEAcZAWAxrPOZ3fuaRsd/xcidZhUnt8nWRPSJH2K5s0v1TUdBA==}
     peerDependencies:
       markdown-it: '>=14.0.0'
 
@@ -1131,6 +1134,9 @@ packages:
 
   '@nolebase/ui@2.11.1':
     resolution: {integrity: sha512-J08bh8wd1AXYzgGJtnoo6ptr20W+P/JuLISm7HdOTLr5nmq/pKmygOYVx63zuDVskpd04/VwUEkzA5wVipozvg==}
+
+  '@nolebase/ui@2.12.0':
+    resolution: {integrity: sha512-QL2mXIIUE6uItO7MUJdIJsPqmTQkEI7Leah+i51WGEfouuvrBDgFnH2LEqhXh3fmO2Bu7HiVpUu3meduSrORLg==}
 
   '@nolebase/vitepress-plugin-enhanced-mark@2.12.0':
     resolution: {integrity: sha512-pU5UWEDTaNTj5KFpgp5p1nsWKNt1pf1M3niYhi5rfj/BGwQUvIUr0pgSqTmbkERFjmc1FbbnOqscuEJGzrdSpQ==}
@@ -1147,8 +1153,8 @@ packages:
   '@nolebase/vitepress-plugin-index@2.11.1':
     resolution: {integrity: sha512-8TYrv/rhEeLBUJTWeI+00DHGCC5jx2i7iNlO5fXED7O7XDN9SFIZmRwNVOrwNsEIlyK0U2oNJEioXhwKIpucFA==}
 
-  '@nolebase/vitepress-plugin-inline-link-preview@2.11.1':
-    resolution: {integrity: sha512-RDFOuNCLqm+ZW6+7/hD4q2hgw2SXfyG0ppNb5F6zWSVSe9aOXspq62lJtwjYCe1rGT6ljnL9muwOnK/csOuvww==}
+  '@nolebase/vitepress-plugin-inline-link-preview@2.12.0':
+    resolution: {integrity: sha512-s+Y7HnVw8RH6BynezHINJIfi9pdOdnJAv/fD9hNZWCGWF6XDuL26nm2Os6G6+ixcRdED8BP8jYt1IdzWSPXcDA==}
 
   '@nolebase/vitepress-plugin-meta@2.11.1':
     resolution: {integrity: sha512-p4QXnltUVjB1rMVeeOIKG8OPv5SP+OgpXH9IIDbHe8dymN35f0E5eCe3XpfGgdDBz7Kenl+0Mf1FZ3tOQIqOBQ==}
@@ -2416,8 +2422,8 @@ packages:
   mark.js@8.11.1:
     resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
 
-  markdown-it-attrs@4.2.0:
-    resolution: {integrity: sha512-m7svtUBythvcGFFZAv9VjMEvs8UbHri2sojJ3juJumoOzv8sdkx9a7W3KxiHbXxAbvL3Xauak8TMwCnvigVPKw==}
+  markdown-it-attrs@4.3.1:
+    resolution: {integrity: sha512-/ko6cba+H6gdZ0DOw7BbNMZtfuJTRp9g/IrGIuz8lYc/EfnmWRpaR3CFPnNbVz0LDvF8Gf1hFGPqrQqq7De0rg==}
     engines: {node: '>=6'}
     peerDependencies:
       markdown-it: '>= 9.0.0'
@@ -3741,6 +3747,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/icon-park-outline@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/octicon@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
@@ -3900,7 +3910,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nolebase/markdown-it-element-transform@2.11.1(markdown-it@14.1.0)':
+  '@nolebase/markdown-it-element-transform@2.12.0(markdown-it@14.1.0)':
     dependencies:
       markdown-it: 14.1.0
 
@@ -3924,6 +3934,41 @@ snapshots:
       - yaml
 
   '@nolebase/ui@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+    dependencies:
+      '@iconify-json/octicon': 1.2.2
+      less: 4.2.1
+      vitepress: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+      vue: 3.5.13(typescript@5.7.2)
+    transitivePeerDependencies:
+      - '@algolia/client-search'
+      - '@types/node'
+      - '@types/react'
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - lightningcss
+      - markdown-it-mathjax3
+      - nprogress
+      - postcss
+      - qrcode
+      - react
+      - react-dom
+      - sass
+      - sass-embedded
+      - search-insights
+      - sortablejs
+      - stylus
+      - sugarss
+      - terser
+      - typescript
+      - universal-cookie
+
+  '@nolebase/ui@2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       '@iconify-json/octicon': 1.2.2
       less: 4.2.1
@@ -4140,16 +4185,16 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-inline-link-preview@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-inline-link-preview@2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
-      '@iconify-json/icon-park-outline': 1.2.1
+      '@iconify-json/icon-park-outline': 1.2.2
       '@iconify-json/octicon': 1.2.2
       '@iconify-json/svg-spinners': 1.2.2
-      '@nolebase/markdown-it-element-transform': 2.11.1(markdown-it@14.1.0)
-      '@nolebase/ui': 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+      '@nolebase/markdown-it-element-transform': 2.12.0(markdown-it@14.1.0)
+      '@nolebase/ui': 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       less: 4.2.1
       markdown-it: 14.1.0
-      markdown-it-attrs: 4.2.0(markdown-it@14.1.0)
+      markdown-it-attrs: 4.3.1(markdown-it@14.1.0)
       vitepress: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -5891,7 +5936,7 @@ snapshots:
 
   mark.js@8.11.1: {}
 
-  markdown-it-attrs@4.2.0(markdown-it@14.1.0):
+  markdown-it-attrs@4.3.1(markdown-it@14.1.0):
     dependencies:
       markdown-it: 14.1.0
 

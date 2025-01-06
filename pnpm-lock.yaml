@@ -168,8 +168,8 @@ importers:
         specifier: ^6.0.6
         version: 6.0.6(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(tsx@4.19.2)
       vite-plugin-inspect:
-        specifier: ^0.8.9
-        version: 0.8.9(rollup@4.26.0)(vite@6.0.6(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(tsx@4.19.2))
+        specifier: ^0.10.6
+        version: 0.10.6(rollup@4.26.0)(vite@6.0.6(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(tsx@4.19.2))
       vitepress:
         specifier: ^1.5.0
         version: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
@@ -1181,15 +1181,6 @@ packages:
   '@resvg/resvg-wasm@2.6.2':
     resolution: {integrity: sha512-FqALmHI8D4o6lk/LRWDnhw95z5eO+eAa6ORjVg09YRR7BkcM6oPHU9uyC0gtQG5vpFLvgpeU4+zEAz2H8APHNw==}
     engines: {node: '>= 10'}
-
-  '@rollup/pluginutils@5.1.3':
-    resolution: {integrity: sha512-Pnsb6f32CD2W3uCaLZIzDmeFyQ2b8UWMFI7xtwUezpcGBDVDW6y9XgAWIlARiGAo6eNF5FK5aQTr0LFyNyqq5A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -3045,12 +3036,12 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite-plugin-inspect@0.8.9:
-    resolution: {integrity: sha512-22/8qn+LYonzibb1VeFZmISdVao5kC22jmEKm24vfFE8siEn47EpVcCLYMv6iKOYMJfjSvSJfueOwcFCkUnV3A==}
+  vite-plugin-inspect@0.10.6:
+    resolution: {integrity: sha512-R3pwljjBbjFM2sZvy6Zvynnm51oaEwLYyYPk9Wp2lF97w/YMBq+KtTJXpCA17IO2pImX0bWA6WB05kuqRnkuyQ==}
     engines: {node: '>=14'}
     peerDependencies:
       '@nuxt/kit': '*'
-      vite: ^3.1.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.1
+      vite: ^6.0.0
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
@@ -4393,14 +4384,6 @@ snapshots:
   '@polka/url@1.0.0-next.28': {}
 
   '@resvg/resvg-wasm@2.6.2': {}
-
-  '@rollup/pluginutils@5.1.3(rollup@4.26.0)':
-    dependencies:
-      '@types/estree': 1.0.6
-      estree-walker: 2.0.2
-      picomatch: 4.0.2
-    optionalDependencies:
-      rollup: 4.26.0
 
   '@rollup/pluginutils@5.1.4(rollup@4.26.0)':
     dependencies:
@@ -6608,11 +6591,11 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-plugin-inspect@0.8.9(rollup@4.26.0)(vite@6.0.6(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(tsx@4.19.2)):
+  vite-plugin-inspect@0.10.6(rollup@4.26.0)(vite@6.0.6(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(tsx@4.19.2)):
     dependencies:
       '@antfu/utils': 0.7.10
-      '@rollup/pluginutils': 5.1.3(rollup@4.26.0)
-      debug: 4.3.7
+      '@rollup/pluginutils': 5.1.4(rollup@4.26.0)
+      debug: 4.4.0
       error-stack-parser-es: 0.1.5
       fs-extra: 11.2.0
       open: 10.1.0

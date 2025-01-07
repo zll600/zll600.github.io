@@ -27,8 +27,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@nolebase/markdown-it-bi-directional-links':
-        specifier: ^2.11.1
-        version: 2.11.1(markdown-it@14.1.0)
+        specifier: ^2.12.0
+        version: 2.12.0(markdown-it@14.1.0)
       '@nolebase/markdown-it-unlazy-img':
         specifier: ^2.12.0
         version: 2.12.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.1)(markdown-it@14.1.0)(tsx@4.19.2)
@@ -943,9 +943,6 @@ packages:
   '@iconify-json/ic@1.2.2':
     resolution: {integrity: sha512-QmjwS3lYiOmVWgTCEOTFyGODaR/+689+ajep/VsrCcsUN0Gdle5PmIcibDsdmRyrOsW/E77G41UUijdbjQUofw==}
 
-  '@iconify-json/icon-park-outline@1.2.1':
-    resolution: {integrity: sha512-cNvUJL9mk3xOfyffErQuxvyRCWk0hCx1M8AEyGmNXjqIfgPC25OChCstt0KFB3IULS+hw9es+uA7pvVPmQh+AA==}
-
   '@iconify-json/icon-park-outline@1.2.2':
     resolution: {integrity: sha512-7VkMWOZTIMNkC9+oAL4I5kVlVC5Pq3nQpruZ4E3cLyKaeV95gaUrEilUkvGW71fgsFYCBWAmOZ3KpM4ux0j0zA==}
 
@@ -1117,8 +1114,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nolebase/markdown-it-bi-directional-links@2.11.1':
-    resolution: {integrity: sha512-aVuZUBx/puBeJo8dz6XLjOBcS7vryqHzSwBydx7B1aeyJlCd9IiosE1Gm73zspWI4tsMzXlC/Q1tUZvBm+sPXA==}
+  '@nolebase/markdown-it-bi-directional-links@2.12.0':
+    resolution: {integrity: sha512-TyDHYxR4F5f3erKkSdbe2YGTeKp893h+pszirGObSD1+nykHCgVWStHuV1zjiRSPV1O+SFFAp8K+m/Al7rs45g==}
     peerDependencies:
       markdown-it: '>=14.0.0'
 
@@ -3732,10 +3729,6 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/icon-park-outline@1.2.1':
-    dependencies:
-      '@iconify/types': 2.0.0
-
   '@iconify-json/icon-park-outline@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
@@ -3890,10 +3883,10 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nolebase/markdown-it-bi-directional-links@2.11.1(markdown-it@14.1.0)':
+  '@nolebase/markdown-it-bi-directional-links@2.12.0(markdown-it@14.1.0)':
     dependencies:
       colorette: 2.0.20
-      debug: 4.3.7
+      debug: 4.4.0
       markdown-it: 14.1.0
       tinyglobby: 0.2.10
     transitivePeerDependencies:

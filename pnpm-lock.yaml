@@ -51,8 +51,8 @@ importers:
         specifier: ^2.12.0
         version: 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-meta':
-        specifier: ^2.11.1
-        version: 2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
+        specifier: ^2.12.0
+        version: 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
       '@nolebase/vitepress-plugin-og-image':
         specifier: ^2.12.0
         version: 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)
@@ -1156,8 +1156,8 @@ packages:
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.0':
     resolution: {integrity: sha512-s+Y7HnVw8RH6BynezHINJIfi9pdOdnJAv/fD9hNZWCGWF6XDuL26nm2Os6G6+ixcRdED8BP8jYt1IdzWSPXcDA==}
 
-  '@nolebase/vitepress-plugin-meta@2.11.1':
-    resolution: {integrity: sha512-p4QXnltUVjB1rMVeeOIKG8OPv5SP+OgpXH9IIDbHe8dymN35f0E5eCe3XpfGgdDBz7Kenl+0Mf1FZ3tOQIqOBQ==}
+  '@nolebase/vitepress-plugin-meta@2.12.0':
+    resolution: {integrity: sha512-B01o2VyAMgOPr49uxmES4IOqQ+3gxLkEKj48V+/r0fZAhA5bxDD//RzIpVxiDCH96/s7V86wM7o+B/tuWwDwWw==}
 
   '@nolebase/vitepress-plugin-og-image@2.12.0':
     resolution: {integrity: sha512-SOFcvgV2v7xpYa7CMNJOrcKcSaj3MXThO1HabEqdHROpLwx1i54NrYJO8d/C/7I6clf21CuL/SXZwI0bB4QSDQ==}
@@ -4214,7 +4214,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-meta@2.11.1(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
+  '@nolebase/vitepress-plugin-meta@2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.1)(markdown-it-mathjax3@4.3.2)(postcss@8.4.49)(search-insights@2.14.0)(typescript@5.7.2)':
     dependencies:
       defu: 6.1.4
       hast-util-select: 6.0.3

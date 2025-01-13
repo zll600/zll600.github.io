@@ -81,7 +81,7 @@
     "simple-git": "^3.27.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.19.0",
+    "typescript-eslint": "^8.19.1",
     "unocss": "^0.65.3",
     "unplugin-vue-components": "^0.28.0",
     "uuid": "^11.0.3",

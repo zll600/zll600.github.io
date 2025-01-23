@@ -67,7 +67,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-vue": "^9.32.0",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "^11.3.0",
     "globals": "^15.14.0",
     "gray-matter": "^4.0.3",
     "less": "^4.2.2",

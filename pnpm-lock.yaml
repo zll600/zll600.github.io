@@ -30,8 +30,8 @@ importers:
         specifier: ^2.12.0
         version: 2.12.0(markdown-it@14.1.0)
       '@nolebase/markdown-it-unlazy-img':
-        specifier: ^2.12.0
-        version: 2.12.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
+        specifier: ^2.12.1
+        version: 2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
       '@nolebase/vitepress-plugin-enhanced-mark':
         specifier: ^2.12.0
         version: 2.12.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
@@ -986,10 +986,10 @@ packages:
     peerDependencies:
       markdown-it: '>=14.0.0'
 
-  '@nolebase/markdown-it-unlazy-img@2.12.0':
-    resolution: {integrity: sha512-runwZDlfCP/w+lY0e2JFME1cw1I3IafOIBq3VdreeWu9+5767WgKUBY5HleK28LxqaFz86aob/SZahyguecpQw==}
+  '@nolebase/markdown-it-unlazy-img@2.12.1':
+    resolution: {integrity: sha512-6udFKiAAa5+vPNt7A68nw3SgWzcAZEZaPPuD0m02EFrHHxoNrPXLeJErEpx/If6eqVhiPjgZH0QvJ6Yh6+tufg==}
     peerDependencies:
-      markdown-it: '>=14.0.0'
+      markdown-it: '>=14.1.0'
 
   '@nolebase/ui@2.12.0':
     resolution: {integrity: sha512-QL2mXIIUE6uItO7MUJdIJsPqmTQkEI7Leah+i51WGEfouuvrBDgFnH2LEqhXh3fmO2Bu7HiVpUu3meduSrORLg==}
@@ -3754,7 +3754,7 @@ snapshots:
     dependencies:
       markdown-it: 14.1.0
 
-  '@nolebase/markdown-it-unlazy-img@2.12.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)':
+  '@nolebase/markdown-it-unlazy-img@2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)':
     dependencies:
       colorette: 2.0.20
       markdown-it: 14.1.0

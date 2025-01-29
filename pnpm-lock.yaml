@@ -168,8 +168,8 @@ importers:
         specifier: ^6.0.11
         version: 6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
       vite-plugin-inspect:
-        specifier: ^10.0.6
-        version: 10.0.6(rollup@4.32.0)(vite@6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2))
+        specifier: ^10.1.0
+        version: 10.1.0(vite@6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2))
       vitepress:
         specifier: ^1.5.0
         version: 1.5.0(@algolia/client-search@5.13.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
@@ -260,9 +260,6 @@ packages:
 
   '@antfu/utils@0.7.10':
     resolution: {integrity: sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww==}
-
-  '@antfu/utils@8.0.0':
-    resolution: {integrity: sha512-3NfBIlWj8ffBHdNiedaiea1xIy0NIZZaqQwTbmwXa4sGekD5UarRU3NfXScpuC5aw99KCvErew3PHxGJeHqeAg==}
 
   '@antfu/utils@8.1.0':
     resolution: {integrity: sha512-XPR7Jfwp0FFl/dFYPX8ZjpmU4/1mIXTjnZ1ba48BLMyKOV62/tiRjdsFcPs2hsYcSud4tzk7w3a3LjX8Fu3huA==}
@@ -2925,8 +2922,8 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite-plugin-inspect@10.0.6:
-    resolution: {integrity: sha512-24iFdPyYY+zMPFRzyIz74h/K27PVf7NFKdebPHbohAAF1gzM60jsWxhxlmpmaa7V7XxHGp8U0+2Kd0L21DGn3Q==}
+  vite-plugin-inspect@10.1.0:
+    resolution: {integrity: sha512-solJQhkZULyR7Qq2CRGbO/8ijNPTwmxxLDMx3FkMzGQAuVqKrgqmV2cw/u8SXBsKDHgSMykipW+78MBMZz3O0g==}
     engines: {node: '>=14'}
     peerDependencies:
       '@nuxt/kit': '*'
@@ -3217,8 +3214,6 @@ snapshots:
       tinyexec: 0.3.2
 
   '@antfu/utils@0.7.10': {}
-
-  '@antfu/utils@8.0.0': {}
 
   '@antfu/utils@8.1.0': {}
 
@@ -3672,7 +3667,7 @@ snapshots:
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
-      debug: 4.4.0
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
 
@@ -6403,20 +6398,15 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-plugin-inspect@10.0.6(rollup@4.32.0)(vite@6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)):
+  vite-plugin-inspect@10.1.0(vite@6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)):
     dependencies:
-      '@antfu/utils': 8.0.0
-      '@rollup/pluginutils': 5.1.4(rollup@4.32.0)
       debug: 4.4.0
       error-stack-parser-es: 1.0.5
-      fs-extra: 11.3.0
       open: 10.1.0
-      perfect-debounce: 1.0.0
       picocolors: 1.1.1
       sirv: 3.0.0
       vite: 6.0.11(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
-      - rollup
       - supports-color
 
   vite@5.4.14(@types/node@22.9.0)(less@4.2.2):

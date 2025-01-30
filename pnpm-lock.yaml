@@ -51,8 +51,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-meta':
-        specifier: ^2.12.0
-        version: 2.12.0(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
+        specifier: ^2.12.1
+        version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-og-image':
         specifier: ^2.12.0
         version: 2.12.0(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1012,8 +1012,8 @@ packages:
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.1':
     resolution: {integrity: sha512-oEuS5a3qCfHC0jbslvTzPGFv97893r5ngUz9HvqMyitC2qDS1VPj6MGs34L1a13GkL+N0fyqqpxlw7vcKU4HEA==}
 
-  '@nolebase/vitepress-plugin-meta@2.12.0':
-    resolution: {integrity: sha512-B01o2VyAMgOPr49uxmES4IOqQ+3gxLkEKj48V+/r0fZAhA5bxDD//RzIpVxiDCH96/s7V86wM7o+B/tuWwDwWw==}
+  '@nolebase/vitepress-plugin-meta@2.12.1':
+    resolution: {integrity: sha512-dPGBm9r7dNj6iknTHxDgMI3eJJpTouTNGzWqg3WM9n1dsxI/Knby7OeJiCAF6sxTi02wvQP9DUvD+PABPqrB+Q==}
 
   '@nolebase/vitepress-plugin-og-image@2.12.0':
     resolution: {integrity: sha512-SOFcvgV2v7xpYa7CMNJOrcKcSaj3MXThO1HabEqdHROpLwx1i54NrYJO8d/C/7I6clf21CuL/SXZwI0bB4QSDQ==}
@@ -2148,8 +2148,8 @@ packages:
   hast-util-from-html@2.0.3:
     resolution: {integrity: sha512-CUSRHXyKjzHov8yKsQjGOElXy/3EKpyX56ELnkHH34vDVw1N1XSQ1ZcAvTyAPtGqLTuKP/uxM+aLkSPqF/EtMw==}
 
-  hast-util-from-parse5@8.0.1:
-    resolution: {integrity: sha512-Er/Iixbc7IEa7r/XLtuG52zoqn/b3Xng/w6aZQ0xGVxzhw5xUFxcRqdPzP6yFi/4HBYRaifaI5fQ1RH8n0ZeOQ==}
+  hast-util-from-parse5@8.0.2:
+    resolution: {integrity: sha512-SfMzfdAi/zAoZ1KkFEyyeXBn7u/ShQrfd675ZEE9M3qj+PMFX05xubzRyF76CCSJu8au9jgVxDV1+okFvgZU4A==}
 
   hast-util-from-selector@3.0.0:
     resolution: {integrity: sha512-NBgM9vHLJkBXLDrajYgsKF77DH1qM2NS33ojBmzOy9HBk2Op4iY+558o1I7FCf4UWvtY+yZTu2h8ePPxzJm6yQ==}
@@ -4110,7 +4110,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-meta@2.12.0(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)':
+  '@nolebase/vitepress-plugin-meta@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:
       defu: 6.1.4
       hast-util-select: 6.0.3
@@ -5559,17 +5559,17 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
       devlop: 1.1.0
-      hast-util-from-parse5: 8.0.1
+      hast-util-from-parse5: 8.0.2
       parse5: 7.2.1
       vfile: 6.0.3
       vfile-message: 4.0.2
 
-  hast-util-from-parse5@8.0.1:
+  hast-util-from-parse5@8.0.2:
     dependencies:
       '@types/hast': 3.0.4
       '@types/unist': 3.0.3
       devlop: 1.1.0
-      hastscript: 8.0.0
+      hastscript: 9.0.0
       property-information: 6.5.0
       vfile: 6.0.3
       vfile-location: 5.0.3

@@ -54,8 +54,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-og-image':
-        specifier: ^2.12.0
-        version: 2.12.0(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
+        specifier: ^2.12.1
+        version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1019,8 +1019,8 @@ packages:
   '@nolebase/vitepress-plugin-meta@2.12.1':
     resolution: {integrity: sha512-dPGBm9r7dNj6iknTHxDgMI3eJJpTouTNGzWqg3WM9n1dsxI/Knby7OeJiCAF6sxTi02wvQP9DUvD+PABPqrB+Q==}
 
-  '@nolebase/vitepress-plugin-og-image@2.12.0':
-    resolution: {integrity: sha512-SOFcvgV2v7xpYa7CMNJOrcKcSaj3MXThO1HabEqdHROpLwx1i54NrYJO8d/C/7I6clf21CuL/SXZwI0bB4QSDQ==}
+  '@nolebase/vitepress-plugin-og-image@2.12.1':
+    resolution: {integrity: sha512-C/L9qXfVIu2dvX0L+886KV++t3eqg2GuzyzBt4JISBwjW5s07QOFo4Ahn3924xaUtJdW+X49mwiAd1cNvAb/pw==}
 
   '@nolebase/vitepress-plugin-page-properties@2.12.1':
     resolution: {integrity: sha512-q80skOwGeDR+3/xN8ARBVvJ66NctdgYc9HGfd7fqvo0mrndnsUwjTKDcgSnc1BwN5mzjVajzRptcLFQA3ygh5w==}
@@ -1784,9 +1784,6 @@ packages:
   css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
 
-  css-selector-parser@2.3.2:
-    resolution: {integrity: sha512-JjnG6/pdLJh3iqipq7kteNVtbIczsU2A1cNxb+VAiniSuNmrB/NI3us4rSCfArvlwRXYly+jZhUUfEoInSH9Qg==}
-
   css-selector-parser@3.0.5:
     resolution: {integrity: sha512-3itoDFbKUNx1eKmVpYMFyqKX04Ww9osZ+dLgrk6GEv6KMVeXUhUnp4I5X+evw+u3ZxVU6RFXSSRxlTeMh8bA+g==}
 
@@ -2152,8 +2149,8 @@ packages:
   hast-util-from-parse5@8.0.2:
     resolution: {integrity: sha512-SfMzfdAi/zAoZ1KkFEyyeXBn7u/ShQrfd675ZEE9M3qj+PMFX05xubzRyF76CCSJu8au9jgVxDV1+okFvgZU4A==}
 
-  hast-util-from-selector@3.0.0:
-    resolution: {integrity: sha512-NBgM9vHLJkBXLDrajYgsKF77DH1qM2NS33ojBmzOy9HBk2Op4iY+558o1I7FCf4UWvtY+yZTu2h8ePPxzJm6yQ==}
+  hast-util-from-selector@3.0.1:
+    resolution: {integrity: sha512-CA2dwcsAS6a7DNZq8HT5fNP4FzUq2PUpQpKnAtOCmfTk429jR0RtasLSMlFA1FNKd8lgfeCIAFl3/vD95be8Lg==}
 
   hast-util-has-property@3.0.0:
     resolution: {integrity: sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==}
@@ -2167,9 +2164,6 @@ packages:
   hast-util-select@6.0.3:
     resolution: {integrity: sha512-OVRQlQ1XuuLP8aFVLYmC2atrfWHS5UD3shonxpnyrjcCkwtvmt/+N6kYJdcY4mkMJhxp4kj2EFIxQ9kvkkt/eQ==}
 
-  hast-util-to-html@9.0.3:
-    resolution: {integrity: sha512-M17uBDzMJ9RPCqLMO92gNNUDuBSq10a25SDBI08iCCxmorf4Yy6sYHK57n9WAbRAAaU+DuR4W6GN9K4DFZesYg==}
-
   hast-util-to-html@9.0.4:
     resolution: {integrity: sha512-wxQzXtdbhiwGAUKrnQJXlOPmHnEehzphwkK7aluUPQ+lEc1xefC8pblMgpp2w5ldBTEfveRIrADcrhGIWrlTDA==}
 
@@ -2181,9 +2175,6 @@ packages:
 
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
-
-  hastscript@8.0.0:
-    resolution: {integrity: sha512-dMOtzCEd3ABUeSIISmrETiKuyydk1w0pa+gE/uormcTpSYuaNJPbX1NU3JLyscSLjwAQM8bWMhhIlnCqnRvDTw==}
 
   hastscript@9.0.0:
     resolution: {integrity: sha512-jzaLBGavEDKHrc5EfFImKN7nZKKBdSLIdGvCwDZ9TfzbF2ffXiov8CKE445L2Z1Ek2t/m4SKQ2j6Ipv7NyUolw==}
@@ -2553,6 +2544,10 @@ packages:
 
   ora@8.1.1:
     resolution: {integrity: sha512-YWielGi1XzG1UTvOaCFaNgEnuhZVMSHYkW/FQ7UX8O26PtlpdM84c0f7wLPlkvx2RfiQmnzd61d/MGxmpQeJPw==}
+    engines: {node: '>=18'}
+
+  ora@8.2.0:
+    resolution: {integrity: sha512-weP+BZ8MVNnlCm8c0Qdc1WSWq4Qn7I+9CJGm7Qali6g44e/PUzbjNqJX5NJ9ljlNMosfJvg1fKEGILklK9cwnw==}
     engines: {node: '>=18'}
 
   p-limit@3.1.0:
@@ -4154,7 +4149,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-og-image@2.12.0(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)':
+  '@nolebase/vitepress-plugin-og-image@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:
       '@resvg/resvg-wasm': 2.6.2
       colorette: 2.0.20
@@ -4162,7 +4157,7 @@ snapshots:
       emoji-regex: 10.4.0
       fs-extra: 11.3.0
       gray-matter: 4.0.3
-      ora: 8.1.1
+      ora: 8.2.0
       rehype: 13.0.2
       rehype-meta: 4.0.1
       rehype-parse: 9.0.1
@@ -5125,8 +5120,6 @@ snapshots:
       domutils: 2.8.0
       nth-check: 2.1.1
 
-  css-selector-parser@2.3.2: {}
-
   css-selector-parser@3.0.5: {}
 
   css-tree@3.1.0:
@@ -5576,12 +5569,12 @@ snapshots:
       vfile-location: 5.0.3
       web-namespaces: 2.0.1
 
-  hast-util-from-selector@3.0.0:
+  hast-util-from-selector@3.0.1:
     dependencies:
       '@types/hast': 3.0.4
-      css-selector-parser: 2.3.2
+      css-selector-parser: 3.0.5
       devlop: 1.1.0
-      hastscript: 8.0.0
+      hastscript: 9.0.0
 
   hast-util-has-property@3.0.0:
     dependencies:
@@ -5613,20 +5606,6 @@ snapshots:
       unist-util-visit: 5.0.0
       zwitch: 2.0.4
 
-  hast-util-to-html@9.0.3:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@types/unist': 3.0.3
-      ccount: 2.0.1
-      comma-separated-tokens: 2.0.3
-      hast-util-whitespace: 3.0.0
-      html-void-elements: 3.0.0
-      mdast-util-to-hast: 13.2.0
-      property-information: 6.5.0
-      space-separated-tokens: 2.0.2
-      stringify-entities: 4.0.4
-      zwitch: 2.0.4
-
   hast-util-to-html@9.0.4:
     dependencies:
       '@types/hast': 3.0.4
@@ -5655,14 +5634,6 @@ snapshots:
   hast-util-whitespace@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
-
-  hastscript@8.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      comma-separated-tokens: 2.0.3
-      hast-util-parse-selector: 4.0.0
-      property-information: 6.5.0
-      space-separated-tokens: 2.0.2
 
   hastscript@9.0.0:
     dependencies:
@@ -6059,6 +6030,18 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.1.0
 
+  ora@8.2.0:
+    dependencies:
+      chalk: 5.4.1
+      cli-cursor: 5.0.0
+      cli-spinners: 2.9.2
+      is-interactive: 2.0.0
+      is-unicode-supported: 2.1.0
+      log-symbols: 6.0.0
+      stdin-discarder: 0.2.2
+      string-width: 7.2.0
+      strip-ansi: 7.1.0
+
   p-limit@3.1.0:
     dependencies:
       yocto-queue: 0.1.0
@@ -6172,7 +6155,7 @@ snapshots:
   rehype-meta@4.0.1:
     dependencies:
       '@types/hast': 3.0.4
-      hast-util-from-selector: 3.0.0
+      hast-util-from-selector: 3.0.1
       hast-util-select: 6.0.3
       hastscript: 9.0.0
       vfile: 6.0.3
@@ -6186,7 +6169,7 @@ snapshots:
   rehype-stringify@10.0.1:
     dependencies:
       '@types/hast': 3.0.4
-      hast-util-to-html: 9.0.3
+      hast-util-to-html: 9.0.4
       unified: 11.0.5
 
   rehype@13.0.2:

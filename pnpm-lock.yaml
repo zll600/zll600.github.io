@@ -87,8 +87,8 @@ importers:
         specifier: 65.4.3
         version: 65.4.3(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
       '@unocss/reset':
-        specifier: ^65.4.2
-        version: 65.4.2
+        specifier: ^65.4.3
+        version: 65.4.3
       '@vueuse/core':
         specifier: ^12.4.0
         version: 12.4.0(typescript@5.7.3)
@@ -1468,9 +1468,6 @@ packages:
 
   '@unocss/preset-wind@65.4.3':
     resolution: {integrity: sha512-KM13xIARNeZ/ZKJr33fZ89l79wgI+1Oo8VPJzmckLjbH9IGOhcH2GON7wVIxQqqqM9IM3vALEqw2KNdM6ontWw==}
-
-  '@unocss/reset@65.4.2':
-    resolution: {integrity: sha512-Sas0lTGEgzdWKafSiT+dyhhrUOkOpPbhJYbPMgjW6Ol/tB5JXhdlCNm90Xue1wt453P8O3J4v+dQcyrdRSq0Ig==}
 
   '@unocss/reset@65.4.3':
     resolution: {integrity: sha512-f9QnMtY1yPS1HEIkeKmSwUYcp4QS6zdo9ZcIFE9PDSLOcns3v+M1lTQg8mLChxJHVl73Cf6PofWVh5tmnxV53Q==}
@@ -4766,8 +4763,6 @@ snapshots:
       '@unocss/core': 65.4.3
       '@unocss/preset-mini': 65.4.3
       '@unocss/rule-utils': 65.4.3
-
-  '@unocss/reset@65.4.2': {}
 
   '@unocss/reset@65.4.3': {}
 

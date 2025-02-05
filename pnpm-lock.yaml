@@ -27,8 +27,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@nolebase/markdown-it-bi-directional-links':
-        specifier: ^2.12.0
-        version: 2.12.0(markdown-it@14.1.0)
+        specifier: ^2.12.1
+        version: 2.12.1(markdown-it@14.1.0)
       '@nolebase/markdown-it-unlazy-img':
         specifier: ^2.12.1
         version: 2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
@@ -977,10 +977,10 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nolebase/markdown-it-bi-directional-links@2.12.0':
-    resolution: {integrity: sha512-TyDHYxR4F5f3erKkSdbe2YGTeKp893h+pszirGObSD1+nykHCgVWStHuV1zjiRSPV1O+SFFAp8K+m/Al7rs45g==}
+  '@nolebase/markdown-it-bi-directional-links@2.12.1':
+    resolution: {integrity: sha512-s3aT+SWtv1otEnxXPiOjYBuxRXnD3q0bkE0oHMi5lJLIkoZ0KL3RRvgJQsecEhqRGlqP4w5Jk/9ZsE2yTPksCg==}
     peerDependencies:
-      markdown-it: '>=14.0.0'
+      markdown-it: '>=14.1.0'
 
   '@nolebase/markdown-it-element-transform@2.12.1':
     resolution: {integrity: sha512-yVQqpg/EmMNYrkGa66bPHm4OxzgY8vDucD5dMmFX5Q7KHbgVBg9pxZwiCodbyupehtekzZTpKPkcNTInPTEWZg==}
@@ -3788,7 +3788,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nolebase/markdown-it-bi-directional-links@2.12.0(markdown-it@14.1.0)':
+  '@nolebase/markdown-it-bi-directional-links@2.12.1(markdown-it@14.1.0)':
     dependencies:
       colorette: 2.0.20
       debug: 4.4.0

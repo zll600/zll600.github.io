@@ -10,8 +10,6 @@ tags:
 
 ## Run a PHP script
 
-
-
 ## Zend Engine
 
 ### Zend Compiler
@@ -48,7 +46,6 @@ PHP Cli command.
 
 ## Extension
 
-
 ## Opcode JIT
 
 参考 [the JIT RFC](https://wiki.php.net/rfc/jit)
@@ -69,16 +66,14 @@ Thread Safe Resource Manager, 线程安全资源管理器。在 PHP 处理 reque
 
 ### phpize
 
-
 ### Reference
+
 - [the JIT RFC](https://wiki.php.net/rfc/jit)
 - [DynAsm](https://luajit.org/dynasm.html)
 - [The unofficial DynASM Documentation](https://corsix.github.io/dynasm-doc/tutorial.html)
 - [AddressSanitizer](https://github.com/google/sanitizers/wiki/AddressSanitizer)
 - [valgrind](https://valgrind.org/)
 - [test the jit with amd64 and arm64](https://www.docker.com/blog/faster-multi-platform-builds-dockerfile-cross-compilation-guide/)
-
-
 
 ## Reference
 

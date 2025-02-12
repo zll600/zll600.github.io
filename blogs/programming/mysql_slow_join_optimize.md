@@ -10,7 +10,6 @@ tags:
 
 有一个两张表 join 的查询耗时 40s 甚至 60s。花费了很多时间才做了优化。
 
-
 explain 语句
 
 explain analyze 语句
@@ -21,8 +20,8 @@ optimizer_trace 分析 explain analyze
 
 根据 histogram 的结果，可以尝试强制指定 join 时的驱动表。 因此 straight_join 可以解决问题
 
-
 # 实验环境
+
 mysql 版本
 8.0.37 docker image
 OS macos 15
@@ -32,20 +31,23 @@ CPU M3 Pro
 我们聚一个例子，需要两张表，如下
 
 第一张 users 表
-````sql
 
-````
+```sql
+
+```
 
 users 表插入数据 500_000 行，其中 deleted_at is not null 的数据很少（不到 10 条）
 
 第二张 posts 表
-````sql
 
-````
+```sql
+
+```
 
 posts 表插入数据 1500_000 行
 
 查询如下
+
 ```sql
 SELECT
 	posts.*
@@ -58,10 +60,9 @@ FROM
 	LIMIT 100 OFFSET 0;
 ```
 
-
 explain 结果
 
-````sql
+```sql
 mysql> EXPLAIN SELECT posts.* FROM posts INNER JOIN users ON users.id = posts.user_id AND users.deleted_at IS NULL ORDER BY posts.id DESC LIMIT 100 OFFSET 0\G
 *************************** 1. row ***************************
            id: 1
@@ -90,11 +91,11 @@ possible_keys: user_id
      filtered: 100.00
         Extra: NULL
 2 rows in set, 1 warning (0.01 sec)
-````
-
+```
 
 explain analyze 结果
-````sql
+
+```sql
 mysql> EXPLAIN ANALYZE SELECT posts.* FROM posts INNER JOIN users ON users.id = posts.user_id AND users.deleted_at IS NULL ORDER BY posts.id DESC LIMIT 100 OFFSET 0\G
 *************************** 1. row ***************************
 EXPLAIN: -> Limit: 100 row(s)  (actual time=48196..48196 rows=100 loops=1)
@@ -106,16 +107,17 @@ EXPLAIN: -> Limit: 100 row(s)  (actual time=48196..48196 rows=100 loops=1)
                 -> Index lookup on posts using user_id (user_id=users.id)  (cost=4.41 rows=17.7) (actual time=0.0505..0.0924 rows=30 loops=500000)
 
 1 row in set (48.20 sec)
-````
+```
 
 使用 optimizer_trace 进行分析
-````
+
+```
 set session optimizer_trace='enabled=on';
-````
+```
 
 再次运行 explain analyze 或者重新执行一次 sql
 
-````
+```
 EXPLAIN ANALYZE SELECT
 	posts.*
 FROM
@@ -125,16 +127,17 @@ FROM
 	ORDER BY
 		posts.id DESC
 	LIMIT 100 OFFSET 0;
-````
+```
 
 关闭 optimizer_trace
-````
+
+```
 set session optimizer_trace='enabled=off';
-````
+```
 
 查看 optimizer_trace 的结果
 
-````sql
+```sql
 select trace from information_schema.optimizer_trace\G
 mysql> select trace from information_schema.optimizer_trace\G
 *************************** 1. row ***************************
@@ -444,10 +447,11 @@ trace: {
   ]
 }
 1 row in set (0.01 sec)
-````
+```
 
 这里我们重点关注这一部分，可以发现，优化器认为扫描 users 表之后，只会得到 5w 行数据。而实际 explain analyze 得到的是 50w 行记录。
-````text
+
+```text
               "table": "`users`",
                 "best_access_path": {
                   "considered_access_paths": [
@@ -469,14 +473,15 @@ trace: {
                     }
                   ]
                 },
-````
+```
 
 根据上述结果，怀疑是优化器拿到的 users.deleted_at 的数据不准，因此做出了误判。
 
 验证：
 
 使用 mysql histogram
-````
+
+```
 mysql> ANALYZE TABLE users UPDATE HISTOGRAM ON deleted_at WITH 1024 BUCKETS;
 +-----------------+-----------+----------+-------------------------------------------------------+
 | Table           | Op        | Msg_type | Msg_text                                              |
@@ -484,11 +489,11 @@ mysql> ANALYZE TABLE users UPDATE HISTOGRAM ON deleted_at WITH 1024 BUCKETS;
 | sql_tests.users | histogram | status   | Histogram statistics created for column 'deleted_at'. |
 +-----------------+-----------+----------+-------------------------------------------------------+
 1 row in set (2.81 sec)
-````
+```
 
 重复使用 optimizer_trace 得到新的 optimizer_trace 的结果
 
-````
+```
 vmysql> set session optimizer_trace='enabled=on';
 Query OK, 0 rows affected (0.01 sec)
 
@@ -504,11 +509,13 @@ EXPLAIN: -> Limit: 100 row(s)  (cost=3.65e+6 rows=100) (actual time=0.183..2.55 
 
 mysql> set session optimizer_trace='enabled=off';
 Query OK, 0 rows affected (0.00 sec)
-````
+```
+
 耗时大幅缩减
 
 得到的 optimizer_trace 的结果
-````sql
+
+```sql
 mysql> select trace from information_schema.optimizer_trace\G
 *************************** 1. row ***************************
 trace: {
@@ -835,10 +842,11 @@ trace: {
   ]
 }
 1 row in set (0.01 sec)
-````
+```
 
 再次关注扫描 users 表的预估可以发现，先扫描 users 表会得到大概 50w 行记录。而且这里也用到了 histogram 提供的统计数据。
-````text
+
+```text
                 "table": "`users`",
                 "best_access_path": {
                   "considered_access_paths": [
@@ -864,12 +872,13 @@ trace: {
                     }
                   ]
                 },
-````
+```
 
 因此可以得知，如果这里可以使用 posts 表作为驱动表，或许可以优化整体的查询效率。
 使用 STRAIGHT_JOIN 强制 posts 表作为驱动表，执行上述查询
 首先删除 histogram 数据
-````sql
+
+```sql
 mysql> ANALYZE TABLE users DROP HISTOGRAM ON deleted_at;
 +-----------------+-----------+----------+-------------------------------------------------------+
 | Table           | Op        | Msg_type | Msg_text                                              |
@@ -877,11 +886,11 @@ mysql> ANALYZE TABLE users DROP HISTOGRAM ON deleted_at;
 | sql_tests.users | histogram | status   | Histogram statistics removed for column 'deleted_at'. |
 +-----------------+-----------+----------+-------------------------------------------------------+
 1 row in set (0.01 sec)
-````
+```
 
 使用 STRAIGHT_JOIN 执行，可以大幅降低查询时间
 
-````sql
+```sql
 mysql> EXPLAIN ANALYZE SELECT posts.* FROM posts STRAIGHT_JOIN users ON users.id = posts.user_id AND users.deleted_at IS NULL ORDER BY posts.id DESC LIMIT 100 OFFSET 0\G
 *************************** 1. row ***************************
 EXPLAIN: -> Limit: 100 row(s)  (cost=3.65e+6 rows=99.9) (actual time=0.273..1.55 rows=100 loops=1)
@@ -891,12 +900,13 @@ EXPLAIN: -> Limit: 100 row(s)  (cost=3.65e+6 rows=99.9) (actual time=0.273..1.55
             -> Single-row index lookup on users using PRIMARY (id=posts.user_id)  (cost=0.25 rows=1) (actual time=0.012..0.0121 rows=1 loops=100)
 
 1 row in set (0.02 sec)
-````
+```
 
 上述就是整个使用 optimizer_trace 分析的过程。
 
 ## 实验脚本
-````python
+
+```python
 import random
 import uuid
 import string
@@ -962,12 +972,13 @@ print('insert posts successfully')
 
 cursor.close()
 connection.close()
-````
+```
 
 需要安装
-````python
+
+```python
 pip install mysql-connector-python
-````
+```
 
 参考：
 
@@ -978,8 +989,8 @@ pip install mysql-connector-python
 - https://dev.mysql.com/doc/refman/8.4/en/analyze-table.html#analyze-table-histogram-statistics-analysis
 - https://dev.mysql.com/blog-archive/mysql-8-0-1-accent-and-case-sensitive-collations-for-utf8mb4/
 
-
 # todo
+
 explain 语句
 
 通过 explain 语句可以得到语句可能使用的执行计划，
@@ -988,20 +999,16 @@ explain 语句
 
 explain 语句的 json 格式
 
-
-
 explain analyze 语句
-
-
 
 optimizer_trace
 
-
 深分页问题
+
 1. offset 分页
 2. cursor 分页
-    - timestamp 分页
-    - primary key 分页
+   - timestamp 分页
+   - primary key 分页
 3. 延迟 join
 
 straight_join

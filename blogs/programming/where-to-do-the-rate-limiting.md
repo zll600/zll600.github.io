@@ -7,7 +7,6 @@ tags:
 什么是限流/限流做了什么？
 为什么会有限流？
 
-
 后端 api 经常需要考虑限流，那么限流应该在哪里做？
 
 在 L4 网关 还是 L7 网关，还是在后端代码中?
@@ -22,4 +21,5 @@ tags:
 如果需要更精细的限流策略，那么使用
 
 # 参考
+
 - https://www.reddit.com/r/node/comments/yjmggc/where_should_rate_limiting_be_done/

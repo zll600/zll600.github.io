@@ -14,9 +14,8 @@ URL shortener 的工作原理
 
 进阶实现，需要实现多租户功能，对每个用户做好访问控制，数据隔离。
 
-
-
 # Reference
+
 - https://www.reddit.com/r/selfhosted/comments/1bssmo0/whats_your_favorite_selfhosted_url_shortener/?rdt=44732
 - shrink: https://shlink.io/
 - yourls: https://github.com/YOURLS/YOURLS

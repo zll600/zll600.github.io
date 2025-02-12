@@ -6,7 +6,6 @@ tags:
 
 # Laravel Facade
 
-
 - Laravel facade
 - php class file loading
 - php class inheritance

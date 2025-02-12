@@ -22,7 +22,7 @@ export default defineConfig(async () => {
     optimizeDeps: {
       // vitepress is aliased with replacement `join(DIST_CLIENT_PATH, '/index')`
       // This needs to be excluded from optimization
-      exclude: ["vitepress"],
+      exclude: ["vitepress", "@nolebase/vitepress-plugin-index"],
     },
     plugins: [
       Inspect(),

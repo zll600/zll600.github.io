@@ -15,13 +15,15 @@ tags:
 `localhost` 是指当前主机的主机名（hostname）。可以视为一个域名，
 
 可以通过命令 `hostname` 得到
-````shell
+
+```shell
 ➜  ~ hostname
 xxx-MacBook-Pro.local
-````
+```
 
-也可以通过查看 `/etc/hosts`，可以得到 `localhost` 对应的 ip 地址 
-````shell
+也可以通过查看 `/etc/hosts`，可以得到 `localhost` 对应的 ip 地址
+
+```shell
 cat /etc/hosts
 
 ##
@@ -33,7 +35,7 @@ cat /etc/hosts
 127.0.0.1	localhost
 255.255.255.255	broadcasthost
 ::1             localhost
-````
+```
 
 ## Loopback
 
@@ -43,6 +45,7 @@ IPv4 保留了 `127.0.0.1/8` 用来运行 `loopback`。其中 `127.0.0.1` 是用
 IPv6 只保留了 `::1` 作为标准地址。
 
 # 127.0.0.1
+
 在 loopback 机制中，指主机的 ip 地址。可以参考 `localhost` 部分的结束
 
 # 0.0.0.0
@@ -53,12 +56,13 @@ IPv6 只保留了 `::1` 作为标准地址。
 
 当指定 `INADDR_ANY`，socket 会绑定在所有的 network interface。
 
->When INADDR_ANY is
-       specified in the bind call, the socket will be bound to all local
-       interfaces. 
+> When INADDR_ANY is
 
+       specified in the bind call, the socket will be bound to all local
+       interfaces.
 
 # Reference
+
 - https://en.wikipedia.org/wiki/Localhost
 - https://en.wikipedia.org/wiki/0.0.0.0
 - https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost

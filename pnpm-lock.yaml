@@ -54,8 +54,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-og-image':
-        specifier: ^2.12.1
-        version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
+        specifier: ^2.13.2
+        version: 2.13.2(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.13.2
         version: 2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3))
@@ -1027,8 +1027,10 @@ packages:
   '@nolebase/vitepress-plugin-meta@2.12.1':
     resolution: {integrity: sha512-dPGBm9r7dNj6iknTHxDgMI3eJJpTouTNGzWqg3WM9n1dsxI/Knby7OeJiCAF6sxTi02wvQP9DUvD+PABPqrB+Q==}
 
-  '@nolebase/vitepress-plugin-og-image@2.12.1':
-    resolution: {integrity: sha512-C/L9qXfVIu2dvX0L+886KV++t3eqg2GuzyzBt4JISBwjW5s07QOFo4Ahn3924xaUtJdW+X49mwiAd1cNvAb/pw==}
+  '@nolebase/vitepress-plugin-og-image@2.13.2':
+    resolution: {integrity: sha512-V0VQBGWgsyXKbf7H1loSMvRgSbQosHjQ2lXl5MwzEPw9LmCfu36R0YC0tpezhMUjiUrxvaHjWgazwRhMKYO4Kg==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
   '@nolebase/vitepress-plugin-page-properties@2.13.2':
     resolution: {integrity: sha512-qoL6F+4p9t++Ags+uB+b/oFnGJAnFG8FJKBSYEeiaJpiKAp8FwC83rviq8TRX1WwPrsHbbB61IyHCQBLbQ/m3w==}
@@ -4116,7 +4118,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-og-image@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)':
+  '@nolebase/vitepress-plugin-og-image@2.13.2(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       '@resvg/resvg-wasm': 2.6.2
       colorette: 2.0.20
@@ -4133,34 +4135,6 @@ snapshots:
       unified: 11.0.5
       unist-util-visit: 5.0.0
       vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3)
-    transitivePeerDependencies:
-      - '@algolia/client-search'
-      - '@types/node'
-      - '@types/react'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - fuse.js
-      - idb-keyval
-      - jwt-decode
-      - less
-      - lightningcss
-      - markdown-it-mathjax3
-      - nprogress
-      - postcss
-      - qrcode
-      - react
-      - react-dom
-      - sass
-      - sass-embedded
-      - search-insights
-      - sortablejs
-      - stylus
-      - sugarss
-      - terser
-      - typescript
-      - universal-cookie
 
   '@nolebase/vitepress-plugin-page-properties@2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.1)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:

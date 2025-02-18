@@ -60,8 +60,8 @@ importers:
         specifier: ^2.13.2
         version: 2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-sidebar':
-        specifier: ^2.12.1
-        version: 2.12.1
+        specifier: ^2.14.0
+        version: 2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-thumbnail-hash':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1039,8 +1039,10 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-sidebar@2.12.1':
-    resolution: {integrity: sha512-OsQb66MLTyPNPOl3/D47S6z0FphSF5haew3MFqpy9pk45jOTqsdHcOPtXSzFHdDEQ04yeSajPqIpxwHwDYzZ0g==}
+  '@nolebase/vitepress-plugin-sidebar@2.14.0':
+    resolution: {integrity: sha512-XkO1dFa+jfkNO5csFDmRWdsOHYfzVxk6bVXm+5Lx5tHDAPmf14yWbTs66fSV8pXt5N9Ks6+ib3Tb+2HMB9nNFQ==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
   '@nolebase/vitepress-plugin-thumbnail-hash@2.12.1':
     resolution: {integrity: sha512-0uEoo4yfHkgI1B8B1L1s/CAGET0S/gw3TFkHCUqi3T7cmLE26Q/DBs03DmuFxXKTPC0xNyF5KozfTaIKhqDJ0w==}
@@ -2778,6 +2780,10 @@ packages:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.11:
+    resolution: {integrity: sha512-32TmKeeKUahv0Go8WmQgiEp9Y21NuxjwjqiRC1nrUB51YacfSwuB44xgXD+HdIppmMRgjQNPdrHyA6vIybYZ+g==}
+    engines: {node: '>=12.0.0'}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -4026,10 +4032,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-sidebar@2.12.1':
+  '@nolebase/vitepress-plugin-sidebar@2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       fs-extra: 11.3.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
+      vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
 
   '@nolebase/vitepress-plugin-thumbnail-hash@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:
@@ -4389,7 +4396,7 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.2
       perfect-debounce: 1.0.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4446,7 +4453,7 @@ snapshots:
       '@unocss/rule-utils': 65.4.3
       css-tree: 3.1.0
       postcss: 8.5.2
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - supports-color
 
@@ -4529,7 +4536,7 @@ snapshots:
       '@unocss/inspector': 65.4.3(vue@3.5.13(typescript@5.7.3))
       chokidar: 3.6.0
       magic-string: 0.30.17
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
       vite: 6.1.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
       - rollup
@@ -6097,6 +6104,11 @@ snapshots:
   tinyexec@0.3.2: {}
 
   tinyglobby@0.2.10:
+    dependencies:
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+
+  tinyglobby@0.2.11:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2

@@ -45,8 +45,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-index':
-        specifier: ^2.12.1
-        version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
+        specifier: ^2.14.0
+        version: 2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-inline-link-preview':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1020,8 +1020,10 @@ packages:
   '@nolebase/vitepress-plugin-highlight-targeted-heading@2.12.1':
     resolution: {integrity: sha512-lSfR9SORg3MKckvOJzw/+iy1j3dgw2XprUxEC5Q2i8APMS3IlPe/WoFQ7y21orOHMZFxX+5vOW1AbsdBkStYWw==}
 
-  '@nolebase/vitepress-plugin-index@2.12.1':
-    resolution: {integrity: sha512-fKRHo1mWIYX5iLXXjod/HP6DJvB37/sDKGOyVIu7nBiyOb/42RSBADb5VgkakqWNaj5zvGjCHWZVa4xsbbasOA==}
+  '@nolebase/vitepress-plugin-index@2.14.0':
+    resolution: {integrity: sha512-PoxK1/Aj0DL3udtJs2GI7FFMASxYQHlYVIMa4DEhnca6xz2zixnhbENLyTrshda46JJbShqmLOt0Vp41DRAxew==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.1':
     resolution: {integrity: sha512-oEuS5a3qCfHC0jbslvTzPGFv97893r5ngUz9HvqMyitC2qDS1VPj6MGs34L1a13GkL+N0fyqqpxlw7vcKU4HEA==}
@@ -2778,6 +2780,10 @@ packages:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.11:
+    resolution: {integrity: sha512-32TmKeeKUahv0Go8WmQgiEp9Y21NuxjwjqiRC1nrUB51YacfSwuB44xgXD+HdIppmMRgjQNPdrHyA6vIybYZ+g==}
+    engines: {node: '>=12.0.0'}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -3879,41 +3885,13 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-index@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)':
+  '@nolebase/vitepress-plugin-index@2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       defu: 6.1.4
       execa: 9.5.2
       gray-matter: 4.0.3
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
       vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
-    transitivePeerDependencies:
-      - '@algolia/client-search'
-      - '@types/node'
-      - '@types/react'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - fuse.js
-      - idb-keyval
-      - jwt-decode
-      - less
-      - lightningcss
-      - markdown-it-mathjax3
-      - nprogress
-      - postcss
-      - qrcode
-      - react
-      - react-dom
-      - sass
-      - sass-embedded
-      - search-insights
-      - sortablejs
-      - stylus
-      - sugarss
-      - terser
-      - typescript
-      - universal-cookie
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:
@@ -4389,7 +4367,7 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.2
       perfect-debounce: 1.0.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4446,7 +4424,7 @@ snapshots:
       '@unocss/rule-utils': 65.4.3
       css-tree: 3.1.0
       postcss: 8.5.2
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - supports-color
 
@@ -4529,7 +4507,7 @@ snapshots:
       '@unocss/inspector': 65.4.3(vue@3.5.13(typescript@5.7.3))
       chokidar: 3.6.0
       magic-string: 0.30.17
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
       vite: 6.1.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
       - rollup
@@ -6097,6 +6075,11 @@ snapshots:
   tinyexec@0.3.2: {}
 
   tinyglobby@0.2.10:
+    dependencies:
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+
+  tinyglobby@0.2.11:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2

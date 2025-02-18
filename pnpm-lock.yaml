@@ -54,8 +54,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-og-image':
-        specifier: ^2.13.2
-        version: 2.13.2(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
+        specifier: ^2.14.0
+        version: 2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-page-properties':
         specifier: ^2.13.2
         version: 2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))
@@ -1029,8 +1029,8 @@ packages:
   '@nolebase/vitepress-plugin-meta@2.12.1':
     resolution: {integrity: sha512-dPGBm9r7dNj6iknTHxDgMI3eJJpTouTNGzWqg3WM9n1dsxI/Knby7OeJiCAF6sxTi02wvQP9DUvD+PABPqrB+Q==}
 
-  '@nolebase/vitepress-plugin-og-image@2.13.2':
-    resolution: {integrity: sha512-V0VQBGWgsyXKbf7H1loSMvRgSbQosHjQ2lXl5MwzEPw9LmCfu36R0YC0tpezhMUjiUrxvaHjWgazwRhMKYO4Kg==}
+  '@nolebase/vitepress-plugin-og-image@2.14.0':
+    resolution: {integrity: sha512-u3zcS6itwHqAePAwzW3Xbwwvp1gVJ5O4LlACjZEG5kOEu88jMvS/yz7PisviNpySJ1SZVc8dpYbELNY37RSSyg==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -2778,6 +2778,10 @@ packages:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.11:
+    resolution: {integrity: sha512-32TmKeeKUahv0Go8WmQgiEp9Y21NuxjwjqiRC1nrUB51YacfSwuB44xgXD+HdIppmMRgjQNPdrHyA6vIybYZ+g==}
+    engines: {node: '>=12.0.0'}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -3995,7 +3999,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-og-image@2.13.2(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))':
+  '@nolebase/vitepress-plugin-og-image@2.14.0(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       '@resvg/resvg-wasm': 2.6.2
       colorette: 2.0.20
@@ -4008,7 +4012,7 @@ snapshots:
       rehype-meta: 4.0.1
       rehype-parse: 9.0.1
       rehype-stringify: 10.0.1
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
       unified: 11.0.5
       unist-util-visit: 5.0.0
       vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
@@ -4389,7 +4393,7 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.2
       perfect-debounce: 1.0.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4446,7 +4450,7 @@ snapshots:
       '@unocss/rule-utils': 65.4.3
       css-tree: 3.1.0
       postcss: 8.5.2
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
     transitivePeerDependencies:
       - supports-color
 
@@ -4529,7 +4533,7 @@ snapshots:
       '@unocss/inspector': 65.4.3(vue@3.5.13(typescript@5.7.3))
       chokidar: 3.6.0
       magic-string: 0.30.17
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.11
       vite: 6.1.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
       - rollup
@@ -6097,6 +6101,11 @@ snapshots:
   tinyexec@0.3.2: {}
 
   tinyglobby@0.2.10:
+    dependencies:
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+
+  tinyglobby@0.2.11:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2

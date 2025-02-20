@@ -27,8 +27,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@nolebase/markdown-it-bi-directional-links':
-        specifier: ^2.12.1
-        version: 2.12.1(markdown-it@14.1.0)
+        specifier: ^2.14.0
+        version: 2.14.0(markdown-it@14.1.0)
       '@nolebase/markdown-it-unlazy-img':
         specifier: ^2.12.1
         version: 2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
@@ -977,8 +977,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nolebase/markdown-it-bi-directional-links@2.12.1':
-    resolution: {integrity: sha512-s3aT+SWtv1otEnxXPiOjYBuxRXnD3q0bkE0oHMi5lJLIkoZ0KL3RRvgJQsecEhqRGlqP4w5Jk/9ZsE2yTPksCg==}
+  '@nolebase/markdown-it-bi-directional-links@2.14.0':
+    resolution: {integrity: sha512-AyWeMzGj8o90XYcEUcvM2DEuL3a+4vmZGZC+usGgOWrR3fArgEpQtYvZ7C51GopDfMLa/kD0mue/CxdJFK/ryw==}
     peerDependencies:
       markdown-it: '>=14.1.0'
 
@@ -2779,6 +2779,10 @@ packages:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.12:
+    resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
+    engines: {node: '>=12.0.0'}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -3674,7 +3678,7 @@ snapshots:
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -3703,12 +3707,12 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nolebase/markdown-it-bi-directional-links@2.12.1(markdown-it@14.1.0)':
+  '@nolebase/markdown-it-bi-directional-links@2.14.0(markdown-it@14.1.0)':
     dependencies:
       colorette: 2.0.20
       debug: 4.4.0
       markdown-it: 14.1.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
     transitivePeerDependencies:
       - supports-color
 
@@ -4388,7 +4392,7 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.2
       perfect-debounce: 1.0.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4445,7 +4449,7 @@ snapshots:
       '@unocss/rule-utils': 65.4.3
       css-tree: 3.1.0
       postcss: 8.5.2
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
     transitivePeerDependencies:
       - supports-color
 
@@ -4528,7 +4532,7 @@ snapshots:
       '@unocss/inspector': 65.4.3(vue@3.5.13(typescript@5.7.3))
       chokidar: 3.6.0
       magic-string: 0.30.17
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
       vite: 6.1.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
       - rollup
@@ -6096,6 +6100,11 @@ snapshots:
   tinyexec@0.3.2: {}
 
   tinyglobby@0.2.10:
+    dependencies:
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+
+  tinyglobby@0.2.12:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2

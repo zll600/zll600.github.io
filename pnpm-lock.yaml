@@ -30,8 +30,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(markdown-it@14.1.0)
       '@nolebase/markdown-it-unlazy-img':
-        specifier: ^2.12.1
-        version: 2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
+        specifier: ^2.14.0
+        version: 2.14.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)
       '@nolebase/vitepress-plugin-enhanced-mark':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.2)(search-insights@2.14.0)(typescript@5.7.3)
@@ -983,8 +983,8 @@ packages:
     peerDependencies:
       markdown-it: '>=14.1.0'
 
-  '@nolebase/markdown-it-unlazy-img@2.12.1':
-    resolution: {integrity: sha512-6udFKiAAa5+vPNt7A68nw3SgWzcAZEZaPPuD0m02EFrHHxoNrPXLeJErEpx/If6eqVhiPjgZH0QvJ6Yh6+tufg==}
+  '@nolebase/markdown-it-unlazy-img@2.14.0':
+    resolution: {integrity: sha512-v7Z0Nh7f9rbGIOKU+AvLzeIkPVcNAo6f8JeYK3GaGu+wh4LvcA+ImhUYzdh+ideApF1Meo1qw4bSiXrKmS0H+A==}
     peerDependencies:
       markdown-it: '>=14.1.0'
 
@@ -3723,11 +3723,11 @@ snapshots:
     dependencies:
       markdown-it: 14.1.0
 
-  '@nolebase/markdown-it-unlazy-img@2.12.1(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)':
+  '@nolebase/markdown-it-unlazy-img@2.14.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(markdown-it@14.1.0)(tsx@4.19.2)':
     dependencies:
       colorette: 2.0.20
       markdown-it: 14.1.0
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
       vite: 6.1.0(@types/node@22.9.0)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.2)
     transitivePeerDependencies:
       - '@types/node'

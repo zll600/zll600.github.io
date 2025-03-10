@@ -45,8 +45,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
       '@nolebase/vitepress-plugin-index':
-        specifier: ^2.12.1
-        version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
+        specifier: ^2.15.1
+        version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-inline-link-preview':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1021,8 +1021,10 @@ packages:
   '@nolebase/vitepress-plugin-highlight-targeted-heading@2.12.1':
     resolution: {integrity: sha512-lSfR9SORg3MKckvOJzw/+iy1j3dgw2XprUxEC5Q2i8APMS3IlPe/WoFQ7y21orOHMZFxX+5vOW1AbsdBkStYWw==}
 
-  '@nolebase/vitepress-plugin-index@2.12.1':
-    resolution: {integrity: sha512-fKRHo1mWIYX5iLXXjod/HP6DJvB37/sDKGOyVIu7nBiyOb/42RSBADb5VgkakqWNaj5zvGjCHWZVa4xsbbasOA==}
+  '@nolebase/vitepress-plugin-index@2.15.1':
+    resolution: {integrity: sha512-vmW0OkgDnXwbnxfDSR7j4GyP5KN058QfX/n3RhIf22rrC2mX9etXo7ILQPM7ST4eCsjlcP1ED3dhUMeE+5fctg==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.1':
     resolution: {integrity: sha512-oEuS5a3qCfHC0jbslvTzPGFv97893r5ngUz9HvqMyitC2qDS1VPj6MGs34L1a13GkL+N0fyqqpxlw7vcKU4HEA==}
@@ -3906,41 +3908,13 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-index@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)':
+  '@nolebase/vitepress-plugin-index@2.15.1(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       defu: 6.1.4
       execa: 9.5.2
       gray-matter: 4.0.3
-      tinyglobby: 0.2.10
+      tinyglobby: 0.2.12
       vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
-    transitivePeerDependencies:
-      - '@algolia/client-search'
-      - '@types/node'
-      - '@types/react'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - fuse.js
-      - idb-keyval
-      - jwt-decode
-      - less
-      - lightningcss
-      - markdown-it-mathjax3
-      - nprogress
-      - postcss
-      - qrcode
-      - react
-      - react-dom
-      - sass
-      - sass-embedded
-      - search-insights
-      - sortablejs
-      - stylus
-      - sugarss
-      - terser
-      - typescript
-      - universal-cookie
 
   '@nolebase/vitepress-plugin-inline-link-preview@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:

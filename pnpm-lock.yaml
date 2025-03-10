@@ -39,8 +39,8 @@ importers:
         specifier: ^2.13.0
         version: 2.13.0(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-git-changelog':
-        specifier: ^2.13.2
-        version: 2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
+        specifier: ^2.15.1
+        version: 2.15.1(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.12.1
         version: 2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
@@ -1005,6 +1005,11 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
+  '@nolebase/ui@2.15.1':
+    resolution: {integrity: sha512-IiKX2HQ8Ey7M3Nd27GZdoTrURTIq6DtkGOXc6mxrZV2REbMTYqYlby1Xwx6sfyOcSsDD7Ge62PlZze/yVIZsWg==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
+
   '@nolebase/vitepress-plugin-enhanced-mark@2.12.1':
     resolution: {integrity: sha512-QcuBdJ0EP07J9A6IY3LPWaw/SmBctbB83y+5NHkRdnpBzXKwrW3s7/v9vCAdbm9rF6V5n0a7TDfTjdveQf/cLg==}
 
@@ -1013,8 +1018,8 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^v2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-git-changelog@2.13.2':
-    resolution: {integrity: sha512-sWlENYgsT1i1V8G30Sy6nVKB5FEHEVEJRwGiMgcR/GgUgVgTcmWeH6bUcjNMRZLjnGAYIRfHyH46gKBThE3F5g==}
+  '@nolebase/vitepress-plugin-git-changelog@2.15.1':
+    resolution: {integrity: sha512-CG2rQNTvil+DztNe2/Z5tMLi+vNLIN0A/HE6YbyWdUup9965FqzdNxv5XKO1qVfb6hqCIMmPeIRTUJIq/SZfxw==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -1838,8 +1843,8 @@ packages:
   error-stack-parser-es@1.0.5:
     resolution: {integrity: sha512-5qucVt2XcuGMcEGgWI7i+yZpmpByQ8J1lHhcL7PwqCwu9FPP3VUXzT4ltHe5i2z9dePwEHcDVOAfSnHsOlCXRA==}
 
-  es-toolkit@1.32.0:
-    resolution: {integrity: sha512-ZfSfHP1l6ubgW/B/FRtqb9bYdMvI6jizbOSfbwwJNcOQ1QE6TFsC3jpQkZ900uUPSR3t3SU5Ds7UWKnYz+uP8Q==}
+  es-toolkit@1.33.0:
+    resolution: {integrity: sha512-X13Q/ZSc+vsO1q600bvNK4bxgXMkHcf//RxCmYDaRY5DAcT+eoXjY5hoAPGMdRnWQjvyLEcyauG3b6hz76LNqg==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -3815,6 +3820,15 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@nolebase/ui@2.15.1(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))':
+    dependencies:
+      '@iconify-json/octicon': 1.2.5
+      less: 4.2.2
+      vitepress: 1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)
+      vue: 3.5.13(typescript@5.7.3)
+    transitivePeerDependencies:
+      - typescript
+
   '@nolebase/vitepress-plugin-enhanced-mark@2.12.1(@algolia/client-search@5.20.0)(@types/node@22.9.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3)':
     dependencies:
       less: 4.2.2
@@ -3857,14 +3871,14 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-git-changelog@2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))':
+  '@nolebase/vitepress-plugin-git-changelog@2.15.1(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))':
     dependencies:
       '@iconify-json/octicon': 1.2.5
-      '@nolebase/ui': 2.13.2(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
+      '@nolebase/ui': 2.15.1(typescript@5.7.3)(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@22.9.0)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.7.3))
       colorette: 2.0.20
       date-fns: 4.1.0
       defu: 6.1.4
-      es-toolkit: 1.32.0
+      es-toolkit: 1.33.0
       execa: 9.5.2
       globby: 14.1.0
       gray-matter: 4.0.3
@@ -4979,7 +4993,7 @@ snapshots:
 
   error-stack-parser-es@1.0.5: {}
 
-  es-toolkit@1.32.0: {}
+  es-toolkit@1.33.0: {}
 
   esbuild@0.21.5:
     optionalDependencies:

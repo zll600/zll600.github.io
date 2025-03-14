@@ -49,7 +49,7 @@
     "@nolebase/vitepress-plugin-inline-link-preview": "^2.12.1",
     "@nolebase/vitepress-plugin-meta": "^2.12.1",
     "@nolebase/vitepress-plugin-og-image": "^2.13.2",
-    "@nolebase/vitepress-plugin-page-properties": "^2.13.2",
+    "@nolebase/vitepress-plugin-page-properties": "^2.15.1",
     "@nolebase/vitepress-plugin-sidebar": "^2.12.1",
     "@nolebase/vitepress-plugin-thumbnail-hash": "^2.12.1",
     "@types/fs-extra": "^11.0.4",

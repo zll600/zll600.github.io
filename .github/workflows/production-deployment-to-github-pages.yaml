@@ -76,7 +76,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           run_install: false
-          version: "10.3.0"
+          version: "10.6.3"
 
       - name: 获取 pnpm store 目录
         shell: bash

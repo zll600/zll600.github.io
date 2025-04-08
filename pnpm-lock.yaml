@@ -60,8 +60,8 @@ importers:
         specifier: ^2.15.1
         version: 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-sidebar':
-        specifier: ^2.15.1
-        version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))
+        specifier: ^2.16.0
+        version: 2.16.0(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-thumbnail-hash':
         specifier: ^2.15.1
         version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))
@@ -1041,8 +1041,8 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-sidebar@2.15.1':
-    resolution: {integrity: sha512-rCicttkabL30IJF++Xo8UCBZeEawqSxdhNjwrI8N9qwPFd/4i1ZHiZ0CNjmn3toKmmYqai76um4f5eZP7U1gPg==}
+  '@nolebase/vitepress-plugin-sidebar@2.16.0':
+    resolution: {integrity: sha512-gGd3slKSQYzkjDhs3ANnHgO2F/Kgc2TC99Gg3ERAxwCtaOYWGkxoCIHkODtdiFw7lyEp7J5WJU1TETmiXaVLBw==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -3912,7 +3912,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-sidebar@2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))':
+  '@nolebase/vitepress-plugin-sidebar@2.16.0(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.13.10)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       fs-extra: 11.3.0
       tinyglobby: 0.2.12

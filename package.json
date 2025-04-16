@@ -61,7 +61,7 @@
     "@unocss/eslint-plugin": "66.0.0",
     "@unocss/reset": "^66.0.0",
     "@vueuse/core": "^13.1.0",
-    "@vueuse/shared": "^13.0.0",
+    "@vueuse/shared": "^13.1.0",
     "emoji-regex": "^10.4.0",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "10.1.2",

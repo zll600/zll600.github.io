@@ -63,7 +63,7 @@
     "@vueuse/core": "^13.1.0",
     "@vueuse/shared": "^13.1.0",
     "emoji-regex": "^10.4.0",
-    "eslint": "^9.24.0",
+    "eslint": "^9.25.1",
     "eslint-config-prettier": "10.1.2",
     "eslint-plugin-vue": "^9.33.0",
     "fast-glob": "^3.3.3",

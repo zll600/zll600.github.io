@@ -79,7 +79,7 @@
     "prettier": "3.5.3",
     "sharp": "^0.34.1",
     "simple-git": "^3.27.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0",
     "unocss": "^66.0.0",

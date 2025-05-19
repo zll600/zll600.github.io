@@ -59,7 +59,7 @@
     "@types/node-fetch": "^2.6.12",
     "@unocss/eslint-config": "^66.0.0",
     "@unocss/eslint-plugin": "66.0.0",
-    "@unocss/reset": "^66.0.0",
+    "@unocss/reset": "^66.1.2",
     "@vueuse/core": "^13.1.0",
     "@vueuse/shared": "^13.1.0",
     "emoji-regex": "^10.4.0",

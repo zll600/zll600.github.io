@@ -57,7 +57,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node-fetch": "^2.6.12",
-    "@unocss/eslint-config": "^66.0.0",
+    "@unocss/eslint-config": "^66.1.2",
     "@unocss/eslint-plugin": "66.0.0",
     "@unocss/reset": "^66.1.2",
     "@vueuse/core": "^13.1.0",

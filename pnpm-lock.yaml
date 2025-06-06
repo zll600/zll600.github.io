@@ -42,8 +42,8 @@ importers:
         specifier: ^2.15.1
         version: 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
-        specifier: ^2.15.1
-        version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
+        specifier: ^2.17.2
+        version: 2.17.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-index':
         specifier: ^2.15.1
         version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
@@ -1249,8 +1249,8 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.15.1':
-    resolution: {integrity: sha512-TASUbZOFjfI+Yw1wTr8nXhFkaHFxTVwm9OEODCBptOLujKLkkag06qVgUn3+GbKWKOYpWk6c1t3dtBd3+iE+ug==}
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.17.2':
+    resolution: {integrity: sha512-CtAU5tZX0X3gsVy1zH6rtVg74i9ZSfYVfOVmFjSA0V24kxIMAYf7Jk28xM+Zz0kwgqgre2yM5xMf95E8vqnzKw==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -5473,7 +5473,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.17.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       less: 4.3.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)

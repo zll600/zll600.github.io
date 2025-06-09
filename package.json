@@ -78,7 +78,7 @@
     "node-fetch": "^3.3.2",
     "prettier": "3.5.3",
     "sharp": "^0.34.1",
-    "simple-git": "^3.27.0",
+    "simple-git": "^3.28.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0",

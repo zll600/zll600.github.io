@@ -42,8 +42,8 @@ importers:
         specifier: ^2.15.1
         version: 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
-        specifier: ^2.15.1
-        version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
+        specifier: ^2.18.1
+        version: 2.18.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-index':
         specifier: ^2.15.1
         version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
@@ -1259,8 +1259,8 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.15.1':
-    resolution: {integrity: sha512-TASUbZOFjfI+Yw1wTr8nXhFkaHFxTVwm9OEODCBptOLujKLkkag06qVgUn3+GbKWKOYpWk6c1t3dtBd3+iE+ug==}
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.1':
+    resolution: {integrity: sha512-AbccQQErDDOyfR5Kr1yCamlQLBR0LEO6LRC2OOdi10l/8mGPkIGdA/nG1wWH9yWWICX6qD+dcbGdVfO4bEJ+1Q==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -3198,6 +3198,11 @@ packages:
 
   less@4.3.0:
     resolution: {integrity: sha512-X9RyH9fvemArzfdP8Pi3irr7lor2Ok4rOttDXBhlwDg+wKQsXOXgHWduAJE1EsF7JJx0w0bcO6BC6tCKKYnXKA==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  less@4.4.0:
+    resolution: {integrity: sha512-kdTwsyRuncDfjEs0DlRILWNvxhDG/Zij4YLO4TMJgDLW+8OzpfkdPnRgrsRuY1o+oaxJGWsps5f/RVBgGmmN0w==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5454,7 +5459,7 @@ snapshots:
   '@nolebase/ui@2.16.0(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       '@iconify-json/octicon': 1.2.8
-      less: 4.3.0
+      less: 4.4.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
       vue: 3.5.13(typescript@5.8.3)
     transitivePeerDependencies:
@@ -5492,9 +5497,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
-      less: 4.3.0
+      less: 4.4.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
 
   '@nolebase/vitepress-plugin-index@2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
@@ -7780,6 +7785,20 @@ snapshots:
       readable-stream: 2.3.8
 
   less@4.3.0:
+    dependencies:
+      copy-anything: 2.0.6
+      parse-node-version: 1.0.1
+      tslib: 2.8.1
+    optionalDependencies:
+      errno: 0.1.8
+      graceful-fs: 4.2.11
+      image-size: 0.5.5
+      make-dir: 2.1.0
+      mime: 1.6.0
+      needle: 3.3.1
+      source-map: 0.6.1
+
+  less@4.4.0:
     dependencies:
       copy-anything: 2.0.6
       parse-node-version: 1.0.1

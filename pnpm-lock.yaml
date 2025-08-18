@@ -36,8 +36,8 @@ importers:
         specifier: ^2.15.1
         version: 2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
       '@nolebase/vitepress-plugin-enhanced-readabilities':
-        specifier: ^2.15.1
-        version: 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
+        specifier: ^2.18.2
+        version: 2.18.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))(vue@3.5.13(typescript@5.8.3))
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: ^2.15.1
         version: 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
@@ -987,8 +987,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/carbon@1.2.8':
-    resolution: {integrity: sha512-6xh4YiFBz6qoSnB3XMe23WvjTJroDFXB17J1MbiT7nATFe+70+em1acRXr8hgP/gYpwFMHFc4IvjA/IPTPnTzg==}
+  '@iconify-json/carbon@1.2.13':
+    resolution: {integrity: sha512-vXrFFKkfYaZSwf4WfnRQJQMnpEzxlPlupwZZlS1WvOAuNnWahsUudHycaMpoBzDqBfniH4KQ2b5qnw0VMKoJug==}
 
   '@iconify-json/eos-icons@1.2.2':
     resolution: {integrity: sha512-kYfV1WfgiHDbWdG9JEbV1K77MvksRmo9KIM4VjtYFMnF8pKqTv4MoLIOdCD2lbRlhBZspxr1GKde5Z/LYqz3Qw==}
@@ -998,6 +998,12 @@ packages:
 
   '@iconify-json/icon-park-outline@1.2.2':
     resolution: {integrity: sha512-7VkMWOZTIMNkC9+oAL4I5kVlVC5Pq3nQpruZ4E3cLyKaeV95gaUrEilUkvGW71fgsFYCBWAmOZ3KpM4ux0j0zA==}
+
+  '@iconify-json/icon-park-outline@1.2.4':
+    resolution: {integrity: sha512-NyZxXe2gD2TbTOyoRRMdtEJhr6i2KQCdDlYYoOn5oZLndQjwpIhw79hzeFhXvP38/o40D3gQ+l+IaSJgbB+0TQ==}
+
+  '@iconify-json/octicon@1.2.10':
+    resolution: {integrity: sha512-dAwgLd35EPeEu6VHnERJ+sSJ9VKe0qFX4EXHjmWb4o7OyUfB1/F98JEjUxVa9eEHJ307z4q0AuGSVz8L3LWz5g==}
 
   '@iconify-json/octicon@1.2.8':
     resolution: {integrity: sha512-HNi18zdI/9fMuwpPjrlkHT7slt2dF0/+rq5IXDJopl/t+3JE2jsJCx5l8TMjqzm/dlvrnEOuO6n9t7ZxhFjByQ==}
@@ -1244,13 +1250,19 @@ packages:
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
+  '@nolebase/ui@2.18.2':
+    resolution: {integrity: sha512-xxfRacF9cqQ5/umMhvhr0y2W4SkhzTmrrAHJ0UAAu/pIWfV/JPE9Hj0buH06bK7ZEUur+036gxkKlStI6UtDBw==}
+    peerDependencies:
+      vitepress: ^1.5.0 || ^2.0.0-alpha.1
+      vue: '>= 3.5.18'
+
   '@nolebase/vitepress-plugin-enhanced-mark@2.15.1':
     resolution: {integrity: sha512-IJYVbgzpIIXlYfT8RGZw2s6C43gddpL4GMKzE+a3K1UAxjBQ+OpH6lfWr+qn3RSxQxmyTXirTRcnj20ZZau3lg==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
-  '@nolebase/vitepress-plugin-enhanced-readabilities@2.15.1':
-    resolution: {integrity: sha512-M02A54mM8nQch8jyuzHOYJGvn/fr5Ihz2a82TnzZNbVDrrKXEKAOf9LmcidLUVPwG/Z0hE5dQA8y0EEZHgd5TA==}
+  '@nolebase/vitepress-plugin-enhanced-readabilities@2.18.2':
+    resolution: {integrity: sha512-fDhdZBSJL2qs/1xac0PtJfU5UI7b36ffVPYgzM8Ig2NjqMJ7cBvrTTPGq03lUeMjK7GD7fItAKudaP+ZrtMg8w==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
 
@@ -3201,6 +3213,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  less@4.4.0:
+    resolution: {integrity: sha512-kdTwsyRuncDfjEs0DlRILWNvxhDG/Zij4YLO4TMJgDLW+8OzpfkdPnRgrsRuY1o+oaxJGWsps5f/RVBgGmmN0w==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -5118,7 +5135,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@iconify-json/carbon@1.2.8':
+  '@iconify-json/carbon@1.2.13':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5131,6 +5148,14 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/icon-park-outline@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/icon-park-outline@1.2.4':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/octicon@1.2.10':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5445,7 +5470,7 @@ snapshots:
   '@nolebase/ui@2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       '@iconify-json/octicon': 1.2.8
-      less: 4.3.0
+      less: 4.4.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
       vue: 3.5.13(typescript@5.8.3)
     transitivePeerDependencies:
@@ -5454,26 +5479,33 @@ snapshots:
   '@nolebase/ui@2.16.0(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       '@iconify-json/octicon': 1.2.8
-      less: 4.3.0
+      less: 4.4.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
       vue: 3.5.13(typescript@5.8.3)
     transitivePeerDependencies:
       - typescript
+
+  '@nolebase/ui@2.18.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))(vue@3.5.13(typescript@5.8.3))':
+    dependencies:
+      '@iconify-json/octicon': 1.2.10
+      less: 4.4.0
+      vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
+      vue: 3.5.13(typescript@5.8.3)
 
   '@nolebase/vitepress-plugin-enhanced-mark@2.15.1(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
       less: 4.3.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
 
-  '@nolebase/vitepress-plugin-enhanced-readabilities@2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
+  '@nolebase/vitepress-plugin-enhanced-readabilities@2.18.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      '@iconify-json/carbon': 1.2.8
-      '@iconify-json/icon-park-outline': 1.2.2
-      '@nolebase/ui': 2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))
-      less: 4.3.0
+      '@iconify-json/carbon': 1.2.13
+      '@iconify-json/icon-park-outline': 1.2.4
+      '@nolebase/ui': 2.18.2(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))(vue@3.5.13(typescript@5.8.3))
+      less: 4.4.0
       vitepress: 1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3)
     transitivePeerDependencies:
-      - typescript
+      - vue
 
   '@nolebase/vitepress-plugin-git-changelog@2.15.1(typescript@5.8.3)(vitepress@1.6.3(@algolia/client-search@5.21.0)(@types/node@22.15.29)(jwt-decode@4.0.0)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.4)(search-insights@2.14.0)(typescript@5.8.3))':
     dependencies:
@@ -7780,6 +7812,20 @@ snapshots:
       readable-stream: 2.3.8
 
   less@4.3.0:
+    dependencies:
+      copy-anything: 2.0.6
+      parse-node-version: 1.0.1
+      tslib: 2.8.1
+    optionalDependencies:
+      errno: 0.1.8
+      graceful-fs: 4.2.11
+      image-size: 0.5.5
+      make-dir: 2.1.0
+      mime: 1.6.0
+      needle: 3.3.1
+      source-map: 0.6.1
+
+  less@4.4.0:
     dependencies:
       copy-anything: 2.0.6
       parse-node-version: 1.0.1

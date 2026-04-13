@@ -87,8 +87,8 @@ importers:
         specifier: 66.5.4
         version: 66.5.4(eslint@9.26.0(jiti@2.6.1))(typescript@5.8.3)
       '@unocss/reset':
-        specifier: ^66.1.2
-        version: 66.1.2
+        specifier: ^66.6.8
+        version: 66.6.8
       '@vueuse/core':
         specifier: ^13.3.0
         version: 13.3.0(vue@3.5.13(typescript@5.8.3))
@@ -1712,11 +1712,11 @@ packages:
   '@unocss/preset-wind@66.3.3':
     resolution: {integrity: sha512-3Mxl/TDPcv8nNKdFe3WKdlXE6de+lCaaizEH86BILW3ZeyPU9aKzWcZIoxohla0a6zMxDQ2+Gf+7EwaOvpqo7Q==}
 
-  '@unocss/reset@66.1.2':
-    resolution: {integrity: sha512-njNy/QCpuPKBFeEvhYGwwCe3t8R8JTxONsyUB9NsFOamkF13DSlEB4Yy/QLQfIinbbmx0F/wiej/JGOJk1ecDg==}
-
   '@unocss/reset@66.3.3':
     resolution: {integrity: sha512-VIeR/mIcCL89/1uA1KM1QCYca4aeIGqEHMTJL1nCD4v+7wk6XhNXhsp5gMIHo+V804SUSmATWaeHTiKpiFu7AQ==}
+
+  '@unocss/reset@66.6.8':
+    resolution: {integrity: sha512-H+YP3ltizUiPO9FzFgFhv8WGsefO7fTgT1If1/9ritPDqZlvzTqMmjelhcq8D8MGoQ1RQBUvtkZ5HJoKVY0Tgw==}
 
   '@unocss/rule-utils@66.1.2':
     resolution: {integrity: sha512-nn0ehvDh7yyWq2mcBDLVpmMAivjRATUroZ8ETinyN1rmfsGesm71R0d1gV3K+Z6YC7a3+dMLc+/qzI7VK3AG/Q==}
@@ -6096,9 +6096,9 @@ snapshots:
       '@unocss/core': 66.3.3
       '@unocss/preset-wind3': 66.3.3
 
-  '@unocss/reset@66.1.2': {}
-
   '@unocss/reset@66.3.3': {}
+
+  '@unocss/reset@66.6.8': {}
 
   '@unocss/rule-utils@66.1.2':
     dependencies:
